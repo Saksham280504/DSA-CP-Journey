@@ -1,0 +1,3 @@
+Buying day: 1
+Selling day: 4
+Profit : 5

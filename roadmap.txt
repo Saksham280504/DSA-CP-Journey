@@ -1,0 +1,87 @@
+🧱 Phase 1: Foundation (1–2 weeks)
+Goal: Get comfortable with C++ basics and programming environment.
+
+✅ Master C++ Basics:
+
+Variables, data types, conditionals, loops
+
+Functions, arrays, strings
+
+Input/output (cin, cout), STL basics
+
+📘 Recommended:
+
+Book: "Programming in C++" by Bjarne Stroustrup (optional)
+
+YouTube: CodeHelp by Babbar / Apna College
+
+🧠 Phase 2: Core DSA (4–8 weeks)
+Goal: Understand key data structures and algorithms.
+
+👇 Topics to cover (in this order):
+Arrays & Strings
+
+Recursion & Backtracking
+
+Pointers & Dynamic Memory
+
+Sorting Algorithms
+
+Searching (Binary Search)
+
+Stacks and Queues (Use STL)
+
+Linked Lists
+
+Trees and Binary Trees
+
+Binary Search Trees
+
+Heaps & Priority Queue
+
+Hashing (maps, sets)
+
+Graphs (BFS, DFS, Dijkstra)
+
+Dynamic Programming (basic to medium)
+
+🛠 Practice Platform:
+
+LeetCode
+
+Codeforces
+
+AtCoder
+
+GFG
+
+🏁 Phase 3: Competitive Programming Practice
+Goal: Learn how to think fast and solve problems under time pressure.
+
+✅ Learn:
+
+Greedy algorithms
+
+Bit Manipulation
+
+Modular Arithmetic
+
+Sliding Window / Two Pointers
+
+Prefix Sum
+
+🧠 Train on:
+
+Codeforces Div 2 contests (solve 2–3 problems weekly)
+
+AtCoder Beginner Contests
+
+Virtual contests on vjudge.net
+
+✍️ Daily Routine (Recommended for Beginners):
+
+| Task                     | Duration |
+| ------------------------ | -------- |
+| Learn one concept/video  | 45 mins  |
+| Solve 2-3 problems       | 1.5 hrs  |
+| Analyze & debug mistakes | 30 mins  |

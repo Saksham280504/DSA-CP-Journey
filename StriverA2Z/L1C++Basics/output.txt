@@ -1,0 +1,3 @@
+Value inside main before function: 1
+Value inside the function: 101
+Value inside main after function: 101

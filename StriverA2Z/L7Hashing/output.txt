@@ -1,0 +1,2 @@
+The elements with maximum frequency 2 are: 1 2 3 
+The element with minimum frequency 1 is 12

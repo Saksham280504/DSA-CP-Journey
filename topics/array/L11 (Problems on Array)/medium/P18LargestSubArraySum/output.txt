@@ -1,0 +1,2 @@
+The sub array with the maximum sum is: 
+4 + -1 + -2 + 1 + 5 : 7

@@ -1,0 +1,4 @@
+Array before Left-Rotation: 
+1 2 3 4 5 
+Array after Left-Rotation: 
+2 3 4 5 1 

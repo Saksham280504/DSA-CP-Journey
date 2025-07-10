@@ -1,0 +1,12 @@
+{
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && g++ -std=c++17 -Wall -Wextra $fileName -o C:/Users/sanya/DSA-CP/build/$fileNameWithoutExt.exe && C:/Users/sanya/DSA-CP/build/$fileNameWithoutExt.exe"
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "files.associations": {
+    "iosfwd": "cpp",
+    "iostream": "cpp",
+    "ostream": "cpp"
+  }
+}

@@ -1,0 +1,2 @@
+Array before sorting: 1 3 4 2 0 
+Array after sorting: 4 3 2 1 0 
