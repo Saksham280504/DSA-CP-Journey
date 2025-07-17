@@ -1,7 +1,7 @@
 import os
 
 # Modify this with your DSA-CP path if needed
-base_dir = os.path.join(os.path.expanduser("~"), "DSA-CP", "topics", "array", "L11 (Problems on Array)", "hard")
+base_dir = os.path.join(os.path.expanduser("~"), "DSA-CP", "StriverA2Z")
 
 template_code = '''#include <bits/stdc++.h>
 using namespace std;
