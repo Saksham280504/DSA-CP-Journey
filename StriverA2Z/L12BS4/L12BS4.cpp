@@ -14,6 +14,7 @@ int SearchInSortedArray(vector<int>& arr, int n, int x) {
             if(arr[low] <= x && x <= arr[mid]) high = mid-1;
             else low = mid+1;
         }
+        // Right half is Sorted
         else {
             if(arr[mid] <= x && x <= arr[high]) low = mid+1;
             else high = mid-1;
