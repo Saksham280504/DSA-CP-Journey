@@ -13,8 +13,6 @@ int main() {
     freopen("output.txt", "w", stdout);
 #endif
 
-    // your code here
-
     int n;
     cin >> n;
     vector<int> arr(n);
