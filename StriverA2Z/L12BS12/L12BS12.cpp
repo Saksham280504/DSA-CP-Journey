@@ -74,6 +74,7 @@ int main() {
     // TC -> O(N+(maxi*(N)) (This can be optimised using binary Search)
 
     int minRate = MinHourRateUsingBS(arr, n, maxi, h);
+    // TC -> O(N+(log2(maxi)*N))
 
     cout << minRate << endl;
 
