@@ -29,21 +29,6 @@ int MinDay(vector<int>& arr, int n, int m, int k, int mini, int maxi) {
     return -1;
 }
 
-int numOfBs(vector<int>& arr, int n, int k, int day) {
-    int cnt = 0;
-    int nob = 0;
-    for(int i=0; i<n; i++) {
-        if(arr[i]<=day) cnt++;
-        else {
-            nob += cnt/k;
-            cnt = 0;
-        }
-    }
-    nob += cnt/k;
-
-    return nob;
-}
-
 int MinDayBS(vector<int>&arr, int n, int m, int k, int mini, int maxi) {
     if(n<(m*k)) return -1;
 
@@ -52,8 +37,8 @@ int MinDayBS(vector<int>&arr, int n, int m, int k, int mini, int maxi) {
     int ans = INT_MAX;
     while(low<=high) {
         int mid = (low+high)/2;
-        int nob = numOfBs(arr,n,k,mid);
-        if(nob >= m) {
+        bool possiblity = isPossible(arr,n,m,k,mid);
+        if(possiblity) {
             ans = min(ans,mid);
             high = mid-1;
         }
