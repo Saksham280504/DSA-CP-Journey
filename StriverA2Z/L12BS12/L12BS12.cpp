@@ -27,6 +27,22 @@ int MinimumHourlyRate(vector<int>& arr, int h, int maxi, int n) {
 
     return hourlyRate;
 }
+
+int MinHourRateUsingBS(vector<int>& arr, int n ,int maxi, int h) {
+    int low = 1;
+    int high = maxi;
+    int ans = INT_MAX;
+    while(low<=high) {
+        int mid  =(low+high)/2;
+        int timeRequired = timeTaken(arr,n,mid);
+        if(timeRequired <= h) {
+            ans = min(ans, mid);
+            high = mid-1;
+        }
+        else low = mid+1;
+    }
+    return ans;
+}
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -54,7 +70,10 @@ int main() {
 
     int maxi = maxElement(arr,n);
 
-    int minRate = MinimumHourlyRate(arr,h,maxi,n);
+    // int minRate = MinimumHourlyRate(arr,h,maxi,n);
+    // TC -> O(N+(maxi*(N)) (This can be optimised using binary Search)
+
+    int minRate = MinHourRateUsingBS(arr, n, maxi, h);
 
     cout << minRate << endl;
 
