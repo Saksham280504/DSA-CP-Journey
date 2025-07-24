@@ -5,10 +5,10 @@ using namespace std;
 double median(vector<int>& arr1, vector<int>& arr2) {
     int n = arr1.size();
     int m = arr2.size();
-    if(n<m) return median(arr2, arr1);
+    if(n>m) return median(arr2, arr1);
     int low = 0, high = n; // low,high -> minimum,maximum number of elements that can be picked from arr1 (smaller array)
     int num = n+m;
-    int left = (n+m+1)/2;
+    int left = (num+1)/2;
     while(low<=high) {
         int mid1 = (low+high)/2;
         int mid2 = left-mid1;
@@ -26,6 +26,8 @@ double median(vector<int>& arr1, vector<int>& arr2) {
         else if(l1 > r2) high = mid1-1;
         else low = mid1+1;
     }
+
+    return -1;
 }
 int main() {
     ios::sync_with_stdio(0);
@@ -99,52 +101,52 @@ int main() {
 
     // Better-Approach
 
-    int i = 0;
-    int j = 0;
-    int cnt = 0;
-    int ele1;
-    int ele2;
-    int num = (n+m);
-    int ind1 = (num)/2;
-    int ind2 = ind1-1;
+    // int i = 0;
+    // int j = 0;
+    // int cnt = 0;
+    // int ele1;
+    // int ele2;
+    // int num = (n+m);
+    // int ind1 = (num)/2;
+    // int ind2 = ind1-1;
 
-    while(i<n && j<m) {
-        if(arr1[i]<=arr2[j]) {
-            if(cnt==ind1) ele1 = arr1[i];
-            if(cnt==ind2) ele2 = arr1[i];
-            i++;
-            cnt++;
-        }
-        else {
-            if(cnt==ind1) ele1 = arr2[j];
-            if(cnt==ind2) ele2 = arr2[j];
-            j++;
-            cnt++;
-        }
-    }
+    // while(i<n && j<m) {
+    //     if(arr1[i]<=arr2[j]) {
+    //         if(cnt==ind1) ele1 = arr1[i];
+    //         if(cnt==ind2) ele2 = arr1[i];
+    //         i++;
+    //         cnt++;
+    //     }
+    //     else {
+    //         if(cnt==ind1) ele1 = arr2[j];
+    //         if(cnt==ind2) ele2 = arr2[j];
+    //         j++;
+    //         cnt++;
+    //     }
+    // }
 
-    while(i<n) {
-        if(cnt==ind1) ele1 = arr1[i];
-        if(cnt==ind2) ele2 = arr1[i];
-        i++;
-        cnt++;
-    }
-    while(j<m) {
-        if(cnt==ind1) ele1 = arr2[j];
-        if(cnt==ind2) ele2 = arr2[j];
-        j++;
-        cnt++;
-    }
+    // while(i<n) {
+    //     if(cnt==ind1) ele1 = arr1[i];
+    //     if(cnt==ind2) ele2 = arr1[i];
+    //     i++;
+    //     cnt++;
+    // }
+    // while(j<m) {
+    //     if(cnt==ind1) ele1 = arr2[j];
+    //     if(cnt==ind2) ele2 = arr2[j];
+    //     j++;
+    //     cnt++;
+    // }
 
-    if((num)%2==0) {
-        double median = ((double)(ele1) + (double)(ele2))/2.0;
-        cout << median << endl;
-    }
+    // if((num)%2==0) {
+    //     double median = ((double)(ele1) + (double)(ele2))/2.0;
+    //     cout << median << endl;
+    // }
 
-    else {
-        int median = ele1;
-        cout << median << endl;
-    }
+    // else {
+    //     int median = ele1;
+    //     cout << median << endl;
+    // }
 
     // This is also partially accepted
     // TC -> O(N+M)
@@ -152,7 +154,10 @@ int main() {
 
     // Optimal Approach
 
+    double med = median(arr1,arr2);
+    cout << med << endl;
     
-
+    // TC -> O(min(n,m))
+    // SC -> O(1)
     return 0;
 }
