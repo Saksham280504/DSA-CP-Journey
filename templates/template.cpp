@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
+void solve() {
 
+}
 // #define int long long  => when use this convert int main()  to int32_t main() 
 // #define endl '\n'
 
@@ -16,9 +18,12 @@ int main() {
 #endif
 
     // Sample Code
-    int a, b;
-    cin >> a >> b;
-    cout << a + b << endl;
+
+    int t; 
+    cin >> t;
+    while(t--) {
+        solve();
+    }
 
     return 0;
 }
