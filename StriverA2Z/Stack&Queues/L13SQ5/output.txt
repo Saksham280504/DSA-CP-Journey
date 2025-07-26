@@ -1,0 +1,12 @@
+Element pushed
+Element popped: 10
+Stack size: 0
+Stack empty or not? 1
+stack's top element: -1
+Element pushed
+Element pushed
+Element pushed
+Element pushed
+Stack Elements: 35 25 15 5 
+Popped: 35
+Stack elements: 25 15 5 
