@@ -25,29 +25,45 @@ int main() {
         for(int i=0; i<n; i++) {
             cin >> arr[i];
         }
- 
-        while(n) {
-            int closest = INT_MIN;
-            int closestInd = -1;
-            int flag = 0;
-            for(int i=0;i<n; i++) {
-                if(arr[i] <= c) flag = 1;
-                if(arr[i]>=closest && arr[i]<=c) {
-                closest = arr[i];
-                closestInd = i;
+
+        ll coins = 0;
+        int bags_left = n;
+
+        while(bags_left > 0) {
+            ll MaxFreeWeight = INT_MIN;
+            int MaxFreeInd = -1;
+            for(int i=0;i<bags_left; i++) {
+                if(arr[i] <= c) {
+                    if(arr[i]>=MaxFreeWeight) {
+                        MaxFreeWeight = arr[i];
+                        MaxFreeInd = i;
+                    }
                 }
             }
-            if(flag==0) {
-            cout << n << endl;
-            break;
+            int destroyIndex;
+            if(MaxFreeInd!=-1) {
+                destroyIndex = MaxFreeInd;
             }
-            for(int i=0; i<n; i++) {
-            if(i!=closestInd) arr[i] = 2*arr[i];
+            else {
+                ll MinPaidWeight = __LONG_LONG_MAX__;
+                int MinPaidInd = -1;
+                for(int i=0; i<bags_left; i++) {
+                    if(arr[i]<MinPaidWeight && arr[i]>c) {
+                        MinPaidWeight = arr[i];
+                        MinPaidInd = i;
+                    }
+                }
+                coins++;
+                destroyIndex = MinPaidInd;
+            }
+            for(int i=0; i<bags_left; i++) {
+            if(i!=destroyIndex) arr[i] = 2*arr[i];
             else arr[i] = 0;
             }
-            swap(arr[closestInd],arr[n-1]);
-            n--;
+            swap(arr[destroyIndex],arr[bags_left-1]);
+            bags_left--;
         }
+        cout << coins << endl;
     }
     return 0;
 }
