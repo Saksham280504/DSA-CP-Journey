@@ -23,15 +23,6 @@ int main() {
         string s;
         cin >> s;
 
-        if(n-k==1) {
-            cout << "YES" << endl;
-            continue;
-        }
-        if(k==0) {
-            cout << "NO" << endl;
-            continue;
-        }
-
         map<char,int> mpp;
 
         for(int i=0; i<n; i++) {

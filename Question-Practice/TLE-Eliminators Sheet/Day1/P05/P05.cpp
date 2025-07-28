@@ -1,9 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
-// #define int long long  => when use this convert int main()  to int32_t main()
-// #define endl '/n'
 
-int main() {
+#define int long long
+#define endl '\n'
+
+void solve()
+{
+    string s;
+    cin >> s;
+    int n = s.size();
+    int num0 = 0, num1 =0;
+    for(int i=0; i<n; i++) {
+        if(s[i]=='0') num0++;
+        else num1++;
+    }
+    string ans = "";
+    for(int i=0; i<n; i++) {
+        if(s[i]=='0') {
+            if(num1!=0) {
+                ans += '1';
+                num1--;
+            }
+            else break;
+        }
+        else {
+            if(num0!=0) {
+                ans += '0';
+                num0--;
+            }
+            else break;
+        }
+    }
+
+    int m = ans.size();
+    cout << n-m << endl;
+}
+
+int32_t main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
@@ -15,43 +48,11 @@ int main() {
 
     // your code here
 
-    int tc;
-    cin >> tc;
-    while(tc--) {
-        string s;
-        cin >> s;
-        string t = s;
-        int n = s.size();
-        queue<pair<char,int>> q;
-        int num0 = 0;
-        int num1 = 0;
-        int paise = 0;
-        for(int i=0; i<n; i++) {
-            if(!q.empty()) {
-                if(t[i]=='0') num0++;
-                else num1++;
-                if(q.front().first!=t[i]) {
-                    swap(t[i],t[q.front().second]);
-                    q.pop();
-                }
-                else {
-                    q.push({t[i], i});
-                }
-            }
-            else {
-                if(t[i]=='0') num0++;
-                else num1++;
-                q.push({t[i],i});
-            }
-        }
-        paise = abs(num0-num1);
-        int f_paise = paise;
-        for(int i=0; i<=(n-1-paise); i++) {
-            if(t[i]==s[i]) {
-                f_paise++;
-            }
-        }
-        cout << f_paise << endl;
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
     }
+
     return 0;
 }
