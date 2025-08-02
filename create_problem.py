@@ -1,7 +1,7 @@
 import os
 
 # Modify this with your DSA-CP path if needed
-base_dir = os.path.join(os.path.expanduser("~"), "DSA-CP", "Question-Practice", "TLE-Eliminators Sheet", "Day1")
+base_dir = os.path.join(os.path.expanduser("~"), "DSA-CP", "Question-Practice", "TLE-Eliminators Sheet", "800 Rated Problems")
 
 template_code = '''#include <bits/stdc++.h>
 using namespace std;
