@@ -2,7 +2,13 @@
 using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
-using ll = long long;
+
+void solve() {
+    int n;
+    cin >> n;
+    if(n%3==2 || n%3==1) cout << "First" << endl;
+    else cout << "Second" << endl;
+}
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -14,23 +20,12 @@ int main() {
 #endif
 
     // your code here
+
     int t;
     cin >> t;
     while(t--) {
-        int n;
-        cin >> n;
-        int k;
-        cin >> k;
-        vector<int> arr(n);
-        ll prod = 1;
-        for(int i=0; i<n; i++) {
-        cin >> arr[i];
-        prod = prod*arr[i];
-        }
-
-        int m = prod%k;
+        solve();
     }
-    
 
     return 0;
 }
