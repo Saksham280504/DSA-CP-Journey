@@ -10,21 +10,48 @@ void solve() {
         cin >> a[i];
     }
 
-    int num1 = a[0];
-    int num2 = a[1];
-
+    map<int,int> mpp;
+    
     for(int i=0; i<n; i++) {
-        if(i%2==0 && a[i]!=num1) {
-            cout << "NO" << endl;
-            return;
-        }
-        else if(i%2==1 && a[i]!=num2) {
-            cout << "NO" << endl;
-            return;
-        }
+        mpp[a[i]]++;
     }
 
-    cout << "YES" << endl;
+    int mpSize = mpp.size();
+    if(mpSize > 2) {
+        cout << "NO" << endl;
+        return;
+    }
+    else if(mpSize == 1) {
+        cout << "YES" << endl;
+        return;
+    }
+    else {
+        vector<int> cnt;
+        for(auto it: mpp) {
+            cnt.push_back(it.second);
+        }
+
+        if(n%2==0) {
+            if(cnt[0]!=cnt[1]) {
+                cout << "NO" << endl;
+                return;
+            }
+            else {
+                cout << "YES" << endl;
+                return;
+            }
+        }
+        else {
+            if(abs(cnt[0]-cnt[1])>1) {
+                cout << "NO" << endl;
+                return;
+            }
+            else {
+                cout << "YES" << endl;
+                return;
+            }
+        }
+    }
 }
 int main() {
     ios::sync_with_stdio(0);
