@@ -9,19 +9,15 @@ void solve() {
     for(int i=0; i<n; i++) {
         cin >> arr[i];
     }
-    
-    int high = n-2;
-    while(high>=1) {
-        for(int i=1; i<=high; i++) {
-            if(arr[i] > arr[i-1] && arr[i] > arr[i+1]) swap(arr[i], arr[i+1]);
-        }
-        high--;
+
+    int OddCount = 0;
+    for(int i=0; i<n; i++) {
+        if(arr[i]%2==1) OddCount++;
     }
-    if(arr[high+1]<arr[high]) {
-        cout << "NO" << endl;
-        return;
+    if(OddCount%2==0) {
+        cout << "YES" << endl;
     }
-    cout << "YES" << endl;
+    else cout << "NO" << endl;
 }
 int main() {
     ios::sync_with_stdio(0);
