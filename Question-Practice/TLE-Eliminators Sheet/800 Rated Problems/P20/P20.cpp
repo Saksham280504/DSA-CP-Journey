@@ -5,32 +5,22 @@ using namespace std;
 void solve() {
     int n;
     cin >> n;
-    vector<int> arr(n);
+    vector<int> a(n);
     for(int i=0; i<n; i++) {
-        cin >> arr[i];
-    }
-    vector<int> arr1(n+1,0);
-    vector<int> b;
-    for(int i=n-1; i>=0; i--) {
-        for(int j=n; j>=1; j--) {
-            if(i==n-1) {
-                b.push_back(n);
-                arr1[n]++;
-                break;
-            }
-            if(arr1[j]==1 || arr[i]+j>arr[i+1]+b[n-(i+2)]) {
-                continue;
-            }
-            arr1[j]++;
-            b.push_back(j);
-            break;
-        }
+        cin >> a[i];
     }
 
-    for(int i=n-1; i>=0; i--) {
+    // Here what we firstly try to catch is that we need to convert the less than or equal to relation to just equal to relation, and then we will use bi = n+1-ai
+    vector<int> b(n);
+    for(int i=0; i<n; i++) {
+        b[i] = n+1-a[i];
+    }
+
+    for(int i=0; i<n; i++) {
         cout << b[i] << " ";
     }
     cout << endl;
+
 }
 int main() {
     ios::sync_with_stdio(0);
