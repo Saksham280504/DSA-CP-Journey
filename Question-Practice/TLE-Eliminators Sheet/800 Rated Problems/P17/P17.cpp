@@ -5,44 +5,44 @@ using namespace std;
 void solve() {
     int n,k,x;
     cin >> n >> k >> x;
-    int sum = 0;
-    vector<int> arr;
-    int length = arr.size();
-    int flag = 0;
-    int numOfOps = 0;
-    if(k==1 && x==1) {
-        cout << "NO" << endl;
-        return;
-    }
-    while(flag==0 && numOfOps <= n) {
-        for(int i=1; i<=k; i++) {
-            if(sum==n) {
-            flag = 1;
-            break;
-            }
-            if(i==x) continue;
-            sum += i;
-            arr.push_back(i);
-            length++;
-            numOfOps++;
-            if(sum > n && length ) {
-            sum -= i;
-            arr.pop_back();
-            length--;
-            }
-        }
-    }
     
-    if(flag) {
+    if(x!=1) {
         cout << "YES" << endl;
-        cout << length << endl;
-        for(int i=0; i<length; i++) {
-            cout << arr[i] << " ";
+        cout << n << endl;
+        for(int i=0; i<n; i++) {
+            cout << 1 << " ";
         }
         cout << endl;
         return;
     }
-    cout << "NO" << endl;
+    else if(k==1) {
+        cout << "NO" << endl;
+        return;
+    }
+    else if(k==2 && n%2==1) {
+        cout << "NO" << endl;
+        return;
+    }
+    else {
+        if(n%2==0) {
+            cout << "YES" << endl;
+            cout << n/2 << endl;
+            for(int i=0; i<n/2; i++) {
+                cout << 2 << " ";
+            }
+            cout << endl;
+            return;
+        }
+        cout << "YES" << endl;
+        int num = (n-3)/2;
+        cout << num + 1 << endl;
+        cout << 3 << " ";
+        for(int i=0; i<num; i++) {
+            cout << 2 << " ";
+        }
+        cout << endl;
+        return;
+    }
 }
 int main() {
     ios::sync_with_stdio(0);
