@@ -5,40 +5,37 @@ using namespace std;
 void solve() {
     int n;
     cin >> n;
-    vector<int> a(n);
+    vector<int> arr(n);
     for(int i=0; i<n; i++) {
-        cin >> a[i];
+        cin >> arr[i];
     }
-
-    // Here what we firstly try to catch is that we need to convert the less than or equal to relation to just equal to relation, and then we will use bi = n+1-ai
-    // Here, we have used n+1 as the integer which can be formed by using only the integers of the permutation a[n];
-    vector<int> b(n);
+    int maxi = INT_MIN;
+    int counter = 0;
     for(int i=0; i<n; i++) {
-        b[i] = n+1-a[i];
+        if(arr[i]==1) counter = 0;
+        else counter++;
+        maxi = max(counter, maxi);
     }
-
-    for(int i=0; i<n; i++) {
-        cout << b[i] << " ";
-    }
-    cout << endl;
-
+ 
+    cout << maxi << endl;
 }
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-
+ 
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
-
+ 
     // your code here
-
+ 
     int t;
-    cin >> t; 
+    cin >> t;
     while(t--) {
         solve();
     }
+ 
     return 0;
 }
