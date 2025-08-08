@@ -10,7 +10,7 @@ void solve() {
     ll small = (k*(k+1))/2;
     ll large = (n*(n+1)/2)-((n-k)*(n-k+1)/2);
 
-    if(x < small || x > large) {
+    if(x<small || x > large) {
         cout << "NO" << endl;
         return;
     }
