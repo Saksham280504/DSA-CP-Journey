@@ -9,17 +9,25 @@ void solve() {
     for(int i=0; i<n; i++) {
         cin >> arr[i];
     }
-    int sum = 0;
+
+    int flag = 1;
     for(int i=0; i<n-1; i++) {
-        sum += arr[i];
-        if(sum==arr[i+1]) {
-            swap(arr[i+1],arr[i]);
+        if(arr[i]!=arr[i+1]) {
+            flag =0;
+            break;
         }
     }
 
-    if(arr[0]==arr[1]) {
+    if(flag) {
         cout << "NO" << endl;
         return;
+    }
+    reverse(arr.begin(),arr.end());
+
+    if(arr[1]==arr[0]){
+        for(int i=2; i<n; i++) {
+            if(arr[i]!= arr[1]) swap (arr[i],arr[1]);
+        }
     }
     cout << "YES" << endl;
     for(int i=0; i<n; i++) {
