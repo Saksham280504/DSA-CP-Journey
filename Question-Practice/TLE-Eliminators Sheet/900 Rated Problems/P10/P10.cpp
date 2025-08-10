@@ -4,25 +4,18 @@ using ll = long long;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 void solve() {
-    ll a,b;
-    int n;
-    cin >> a >> b >> n;
-
-    vector<ll> arr(n);
-
+    int n,q;
+    cin >> n >> q;
+    vector<int> arr(n);
     for(int i=0; i<n; i++) {
         cin >> arr[i];
     }
-
-    ll time = 0;
-    for(int i=0; i<n; i++) {
-        time += min(arr[i],a-1);
+    for(int i=0; i<q; i++) {
+        int l,r;
+        ll k;
+        cin >> l >> r >> k;
     }
-
-    time += b;
-    cout << time << endl;
 }
-
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -43,5 +36,3 @@ int main() {
 
     return 0;
 }
-
-// In any case, timer will always complete b seconds, all you need to check is now how much time you can increase in it, and for that you will need to always apply the tool when only 1 second is remaining so that the total extension in time becomes min(arr[i], a-1).

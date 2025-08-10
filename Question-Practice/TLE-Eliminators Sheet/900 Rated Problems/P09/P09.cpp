@@ -1,26 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 void solve() {
-    ll a,b;
     int n;
-    cin >> a >> b >> n;
-
-    vector<ll> arr(n);
+    cin >> n;
+    vector<int> arr(n);
 
     for(int i=0; i<n; i++) {
         cin >> arr[i];
     }
 
-    ll time = 0;
-    for(int i=0; i<n; i++) {
-        time += min(arr[i],a-1);
+    int k = 0;
+    int cnt = 0;
+    for(int j=0; j<n; j++) {
+        if(arr[j]==j+1) continue;
+        for(int i=j+1; i<n; i++) {
+            if(arr[i]==j+1) {
+                if(cnt== 0) {
+                    k = i-j;
+                    cnt = 1;
+                    swap(arr[i],arr[j]);
+                } 
+                else {
+                    k = __gcd(i-j,k);
+                    swap(arr[i],arr[j]);
+                }
+            }
+        }
     }
 
-    time += b;
-    cout << time << endl;
+    cout << k << endl;
+    
 }
 
 int main() {
@@ -40,8 +51,5 @@ int main() {
     while(t--) {
         solve();
     }
-
     return 0;
 }
-
-// In any case, timer will always complete b seconds, all you need to check is now how much time you can increase in it, and for that you will need to always apply the tool when only 1 second is remaining so that the total extension in time becomes min(arr[i], a-1).
