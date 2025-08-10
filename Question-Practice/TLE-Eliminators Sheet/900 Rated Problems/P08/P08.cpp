@@ -7,19 +7,22 @@ void solve() {
     cin >> n;
     string s;
     cin >> s;
-    vector<int> arr(n+1);
-    arr[0] = 100;
+    int maxi = INT_MIN;
     for(int i=0; i<n; i++) {
-        if(s[i]=='<') arr[i+1] = arr[i]+1;
-        else arr[i+1] = arr[i]-1;
+        int flag = 1;
+        for(int j=i+1; j<n; j++) {
+            if(s[j]!=s[i]) {
+                maxi = max(j-i,maxi);
+                flag = 0;
+                break;
+            }
+        }
+        if(flag) {
+            maxi = max(n-i,maxi);
+            break;
+        }
     }
-
-    set<int> st;
-    for(int i=0; i<n+1; i++) {
-        st.insert(arr[i]);
-    }
-
-    cout << st.size() << endl;
+    cout << maxi+1<< endl;
 }
 int main() {
     ios::sync_with_stdio(0);
