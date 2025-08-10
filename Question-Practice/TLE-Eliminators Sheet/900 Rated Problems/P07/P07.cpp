@@ -1,43 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
+using ll = long long;
 void solve() {
-    ll a,b;
-    int n;
-    cin >> a >> b >> n;
-
+    ll n,k;
+    cin >> n >> k;
     vector<ll> arr(n);
-
-    for(int i=0; i<n; i++) {
+    for(ll i=0; i<n; i++) {
         cin >> arr[i];
     }
 
     sort(arr.begin(),arr.end());
 
-    int time = 0;
-    int ind = 0;
-
-    while(ind < n) {
-        if(b+arr[ind]<=a) {
-            b = b+arr[ind];
-            ind++;
-        }
-        else if(arr[ind]>a) {
-            time += b-1;
-            b = a-1;
-            time++;
-            ind++;
-        }
-        else if(b+arr[ind]>a){
-            time += b+arr[ind]-a;
-            b = a;
-            ind++;
+    ll maxLength = 0;
+    ll cnt = 1;
+    for(ll i=1; i<n; i++) {
+        if(arr[i]-arr[i-1]<=k) cnt++;
+        else {
+            maxLength = max(cnt,maxLength);
+            cnt = 1;
         }
     }
-    time+=b;
-    cout << time << endl;
+    maxLength = max(cnt,maxLength);
+
+    cout << n-maxLength << endl;
 }
 int main() {
     ios::sync_with_stdio(0);
