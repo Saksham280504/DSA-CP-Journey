@@ -11,27 +11,13 @@ void solve() {
         cin >> arr[i];
     }
 
-    int k = 0;
-    int cnt = 0;
-    for(int j=0; j<n; j++) {
-        if(arr[j]==j+1) continue;
-        for(int i=j+1; i<n; i++) {
-            if(arr[i]==j+1) {
-                if(cnt== 0) {
-                    k = i-j;
-                    cnt = 1;
-                    swap(arr[i],arr[j]);
-                } 
-                else {
-                    k = __gcd(i-j,k);
-                    swap(arr[i],arr[j]);
-                }
-            }
-        }
+    int hcf = abs(arr[0]-1-0);
+
+    for(int i=1; i<n; i++) {
+        hcf = __gcd(hcf, abs(arr[i]-1-i));
     }
 
-    cout << k << endl;
-    
+    cout << hcf << endl;
 }
 
 int main() {
