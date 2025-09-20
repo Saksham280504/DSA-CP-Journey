@@ -1,0 +1,37 @@
+### RoadMap for SDE ###
+1. DBMS
+2. Operating Systems
+3. OOPS
+4. DSA - DP
+5. DSA - Graph
+6. DSA - Sliding Window & Two Pointer
+7. DSA - Greedy Algorithm
+7. DSA - Binary Trees & Binary Search Trees
+8. DSA - Tries
+---------------To be Completed till October End---------------
+
+9. From Now on CP 31 questions straight from 1200-1900 journey begins
+10. Continuous revision of DSA Concepts
+11. 30 DC development Journey starts ---> MERN Stack Development
+12. Next.js Development
+13. AI mastery for developers
+14. Chatgpt & Prompt AI Engineering Course
+15. Mobile App Development Course
+16. Block Chain & Defi App development Course
+------------------ To be Completed till December End----------
+
+17. Data Analytics Course (both)
+18. Backend skills that Companies love
+19. FAANG Tech Startup Job
+19. FullStack Project Ideas
+20. FullStack Interview Projects and Ideas
+-----------------To be Completed till February End------------
+
+Now, after this till April end, we will cover all the remaining parts of DSA, CS core Subjects, Full-Stack Development and we will also do a whole lot of CP at this time on different Platforms other than Codeforces as well like LeetCode, CodeChef etc.
+
+-> AIMS -> 
+1. Fully Green GitHub Profile filled with 30+ Extremely Cream Projects
+2. CP Rating on Codeforces - 2000+
+3. CP Rating on LeetCode - 4Star +
+4. CP Rating on CodeChef -
+5. Intern Sorted for May, June, July in a good Company with 80k per month
