@@ -42,15 +42,34 @@ int main() {
     // int cnt = FrogJump(n-1,jump,dp);
     // cout << cnt << endl;
 
-    vector<int> dp(n+1,-1);
-    dp[0] = 0;
+    // Tabulation Approach:
+    // vector<int> dp(n+1,-1);
+    // dp[0] = 0;
+    // for(int i=1; i<n; i++) {
+    //     int fs = dp[i-1] + abs(jump[i]-jump[i-1]);
+    //     int ss = INT_MAX;
+    //     if(i>1) ss = dp[i-2] + abs(jump[i]-jump[i-2]);
+    //     dp[i] = min(ss,fs);
+    // }
+
+    // cout << dp[n-1] << endl;
+
+    // TC -> O(N)
+    // SC -> O(N)
+
+    int prev = 0;
+    int prev2 = 0;
+    int curi = -1;
     for(int i=1; i<n; i++) {
-        int fs = dp[i-1] + abs(jump[i]-jump[i-1]);
+        int fs = prev + abs(jump[i]-jump[i-1]);
         int ss = INT_MAX;
-        if(i>1) ss = dp[i-2] + abs(jump[i]-jump[i-2]);
-        dp[i] = min(ss,fs);
+        if(i>1) ss = prev + abs(jump[i]-jump[i-2]);
+        curi = min(fs,ss);
+
+        prev2 = prev;
+        prev = curi;
     }
 
-    cout << dp[n-1] << endl;
+    cout << curi << endl;
     return 0;
 }
