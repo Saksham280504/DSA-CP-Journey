@@ -63,7 +63,7 @@ int main() {
     for(int i=1; i<n; i++) {
         int fs = prev + abs(jump[i]-jump[i-1]);
         int ss = INT_MAX;
-        if(i>1) ss = prev + abs(jump[i]-jump[i-2]);
+        if(i>1) ss = prev2 + abs(jump[i]-jump[i-2]);
         curi = min(fs,ss);
 
         prev2 = prev;
