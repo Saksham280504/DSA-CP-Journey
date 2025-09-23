@@ -33,26 +33,38 @@ int main() {
     vector<int> dp(n,-1);
 
     // Recursive/Memoization Approach:
-    // int maxSum = MaxNonAdjacentSum(n-1,arr, dp);
+    // int maxSum = MaxNonAdjacentSum(n-1,arr,dp);
     // cout << maxSum << endl;
 
     // Recursive Approach -> TC -> O(2^N), SC -> O(N) (stack-space)
     // Memoization Approach -> TC -> O(N), SC -> O(N) (stack-space) + O(N) (DP-Array)
 
     // Tabulation-Approach:
-    int maxSum1 = arr[0];
-    int maxSum2 = arr[0];
+    // dp[0] = arr[0];
+    // for(int i=1; i<n; i++) {
+    //     int take = arr[i];
+    //     if(i>1) take += dp[i-2];
+    //     int nontake = 0 + dp[i-1];
+    //     dp[i] = max(take, nontake);
+    // }
+    // cout << dp[n-1] << endl;
+
+    // TC -> O(N)
+    // SC -> O(N)
+
+    // SPace-optimization Approach:
+    
+    int prev = arr[0];
+    int prev2 = 0;
     for(int i=1; i<n; i++) {
-        if(i==1) {
-            if(arr[i]<arr[i-1]) maxSum2 = arr[i-1];
-            else maxSum2 = arr[i];
-            continue;
-        }
-        int pick = arr[i] + maxSum1;
-        int notpick = 0 + maxSum2;
-        maxSum2 = pick;
-        maxSum1 = notpick;
+        int pick = arr[i];
+        if(i>1) pick += prev2;
+        int notpick = 0 + prev;
+        int curi = max(pick, notpick);
+        prev2 = prev;
+        prev = curi;
     }
-    cout << max(maxSum1, maxSum2) << endl;
+    cout << prev << endl;
+    
     return 0;
 }
