@@ -60,7 +60,7 @@ int minPathSO(int n, int m, vector<vector<int>>& grid) {
     }
     return dp[m-1];
     // TC -> O(N*M)
-    // SC -> O(2M)
+    // SC -> O(2*M)
 }
 
 int main() {
