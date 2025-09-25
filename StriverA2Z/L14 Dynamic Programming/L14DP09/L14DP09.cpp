@@ -4,7 +4,7 @@ using namespace std;
 // #define endl '/n'
 
 int numberOfPaths(int i, int j,vector<vector<int>>& maze, vector<vector<int>>& dp) {
-    if(maze[i][j]==-1) return 0;
+    if(i>=0 && j>=0 && maze[i][j]==-1) return 0;
     if(i==0 && j==0) return 1;
     if(i<0 || j<0) return 0;
     if(dp[i][j]!=-1) return dp[i][j];
@@ -24,7 +24,7 @@ int numberOfPaths(int i, int j,vector<vector<int>>& maze, vector<vector<int>>& d
 int numOfPathsTab(int m, int n, vector<vector<int>>& maze, vector<vector<int>>& dp) {
     for(int i=0; i<m; i++) {
         for(int j=0; j<n; j++) {
-            if(maze[i][j]==-1) dp[i][j] = 0;
+            if(i>=0 && j>=0 && maze[i][j]==-1) dp[i][j] = 0;
             else if(i==0 && j==0) dp[i][j] = 1;
             else {
                 int up = 0;
@@ -45,11 +45,11 @@ int numOfPathsSO(int m, int n, vector<vector<int>>& maze) {
     vector<int> dp(n,0);
     for(int i=0; i<m; i++) {
         vector<int> temp(n);
-        if(maze[i][0]==-1) temp[0] = 0;
+        if(i>=0 && maze[i][0]==-1) temp[0] = 0;
         else if(i==0) temp[0] = 1;
         else temp[0] = dp[0];
         for(int j=1; j<n; j++) {
-            if(maze[i][j]==-1) temp[j] = 0;
+            if(i>=0 && j>=0 && maze[i][j]==-1) temp[j] = 0;
             else temp[j] = temp[j-1] + dp[j];
         }
         dp = temp;
