@@ -52,6 +52,20 @@ int numOfSubsetsSO(int n, int target, vector<int>& arr) {
 
     return prev[target];
 }
+
+int numOfSubsetsZero(int ind, int target, vector<int>& arr) {
+    // if(sum==0) This line is now not needed as it disregards lots of cases where 0s are still left.
+    if(ind==0) {
+        if(target==0 && arr[ind]==0) return 2;
+        if(target==0 || target==arr[0]) return 1;
+        else return 0;
+    }
+
+    int notPick = numOfSubsetsZero(ind-1,target,arr);
+    int pick = 0;
+    if(arr[ind]<=target) pick = numOfSubsetsZero(ind-1,target-arr[ind],arr);
+    return pick + notPick;
+}
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -74,16 +88,21 @@ int main() {
     }
     int target;
     cin >> target;
-    vector<vector<int>> dp(n,vector<int>(target+1,-1));
-    int num = numOfSubsets(n-1,target,arr,dp);
-    cout << num << endl;
+    
+    // vector<vector<int>> dp(n,vector<int>(target+1,-1));
+    // int num = numOfSubsets(n-1,target,arr,dp);
+    // cout << num << endl;
 
-    vector<vector<int>> dp1(n,vector<int>(target+1,0));
-    int num2 = numOfSubsetsTab(n,target,arr,dp1);
-    cout << num2 << endl;
+    // vector<vector<int>> dp1(n,vector<int>(target+1,0));
+    // int num2 = numOfSubsetsTab(n,target,arr,dp1);
+    // cout << num2 << endl;
 
-    int num3 = numOfSubsetsSO(n,target,arr);
-    cout << num3 << endl;
+    // int num3 = numOfSubsetsSO(n,target,arr);
+    // cout << num3 << endl;
 
+    int num4 = numOfSubsetsZero(n-1,target,arr);
+    cout << num4 << endl;
+
+    // Here we have strictly taken arr[i]>=1, if array would have had 0's as its elements, then the base-case would have been different. I have shown it in a different function here.
     return 0;
 }
