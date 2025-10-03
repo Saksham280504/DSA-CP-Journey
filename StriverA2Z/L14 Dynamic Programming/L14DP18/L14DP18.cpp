@@ -34,6 +34,28 @@ int numOfPartitionsTabulation(int n, int target, vector<int>& arr, vector<vector
 
     return dp[n-1][target];
 }
+
+int numOfPartitionsSO(int n, int target, vector<int>& arr) {
+    vector<int> prev(target+1,0);
+    vector<int> curr(target+1,0);
+    if(arr[0]==0) prev[0] = 2;
+    else {
+        prev[0] = 1;
+        if(arr[0]<=target) prev[arr[0]] = 1;
+    }
+
+    for(int i=1; i<n; i++) {
+        for(int k=0; k<=target; k++) {
+            int notPick = prev[k];
+            int pick = 0;
+            if(arr[i]<=k) pick = prev[k-arr[i]];
+            curr[k] = pick + notPick;
+        }
+        prev = curr;
+    }
+
+    return prev[target];
+}
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -86,5 +108,8 @@ int main() {
     vector<vector<int>> dp2(n,vector<int>(s2+1,0));
     int cnt2 = numOfPartitionsTabulation(n,s2,arr,dp2);
     cout << cnt2 << endl;
+
+    int cnt3  = numOfPartitionsSO(n,s2, arr);
+    cout << cnt3 << endl;
     return 0;
 }
