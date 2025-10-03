@@ -3,38 +3,36 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-int numOfPartitionsTab(int n, int d, int target, vector<int>& arr, vector<vector<bool>>& dp) {
-    for(int i=0; i<n; i++) dp[i][0]  = true;
-    if(arr[0]<=target) dp[0][arr[0]] = true;
 
-    for(int i=1; i<n; i++) {
-        for(int k=1; k<=target; k++) {
-            bool notPick = dp[i-1][k];
-            bool pick = false;
-            if(arr[i]<=k) pick = dp[i-1][k-arr[i]];
-            dp[i][k] = pick | notPick;
-        }
-    }
-
-    int cnt = 0;
-    for(int k=0; k<=target; k++) {
-        if(dp[n-1][k]==true && k>=(target-k) && (2*k-target)==d) cnt++;
-    }
-
-    return cnt;
-}
-
-int numOfPartitionsRecursion(int ind, int s2, vector<int>& arr) {
+int numOfPartitionsRecursion(int ind, int s2, vector<int>& arr, vector<vector<int>>& dp) {
     if(ind==0) {
         if(s2==0 && arr[ind]==0) return 2;
         if(s2==0 || s2==arr[ind]) return 1;
         else return 0;
     }
-
-    int notPick = numOfPartitionsRecursion(ind-1,s2,arr);
+    if(dp[ind][s2]!=-1) return dp[ind][s2];
+    int notPick = numOfPartitionsRecursion(ind-1,s2,arr,dp);
     int pick = 0;
-    if(arr[ind]<=s2) pick = numOfPartitionsRecursion(ind-1,s2-arr[ind],arr);
-    return pick + notPick;
+    if(arr[ind]<=s2) pick = numOfPartitionsRecursion(ind-1,s2-arr[ind], arr, dp);
+    return dp[ind][s2] = pick + notPick;
+}
+
+int numOfPartitionsTabulation(int n, int target, vector<int>& arr, vector<vector<int>>& dp) {
+    if(arr[0]==0) dp[0][0] = 2; // two ways: take or not take
+    else {
+        dp[0][0] = 1; // One way: not take
+        if(arr[0]<=target) dp[0][arr[0]] = 1;
+    }
+    for(int ind=1; ind<n; ind++) {
+        for(int k=0; k<=target; k++) { // We have not handled the case when target = 0 here in the base case, that is why the loop starts from k = 0 here.
+            int notPick = dp[ind-1][k];
+            int pick = 0;
+            if(arr[ind]<=k) pick = dp[ind-1][k-arr[ind]];
+            dp[ind][k] = pick + notPick;
+        }
+    }
+
+    return dp[n-1][target];
 }
 int main() {
     ios::sync_with_stdio(0);
@@ -65,14 +63,8 @@ int main() {
     for(int i=0; i<n; i++) {
         target += arr[i];
     }
-    vector<vector<bool>> dp(n, vector<bool>(target+1,false));
 
-    int cnt1 = numOfPartitionsTab(n,d,target,arr,dp);
-    cout << cnt1 << endl;
-
-    // Here I have used the first way of finding subsets, i.e. using tabulation to find one subset S1 using the dp-array.
-
-    // We can also apply the DP17 lecture here, by using the following analogy:
+    // We apply the DP17 lecture here, by using the following analogy:
     // S1 >= S2
     // S1-S2 = D
     // S1+S2 = TotalSum
@@ -81,13 +73,18 @@ int main() {
     // Now, we just need to find the number of subsets with sum S2 such that:
     // TotalSum-D>=0
     // (TotalSum-D)%2==0
+
     if(target-d<0 || (target-d)%2!=0) {
         cout << 0 << endl;
         return 0;
     }
     int s2 = (target-d)/2;
-    int cnt2 = numOfPartitionsRecursion(n-1,s2,arr);
+    vector<vector<int>> dp1(n,vector<int>(s2+1,-1));
+    int cnt1 = numOfPartitionsRecursion(n-1,s2,arr,dp1);
+    cout << cnt1 << endl;
 
+    vector<vector<int>> dp2(n,vector<int>(s2+1,0));
+    int cnt2 = numOfPartitionsTabulation(n,s2,arr,dp2);
     cout << cnt2 << endl;
     return 0;
 }
