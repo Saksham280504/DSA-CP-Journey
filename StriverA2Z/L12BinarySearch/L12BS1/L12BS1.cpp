@@ -55,8 +55,8 @@ int main() {
     int target;
     cin >> target;
 
-    // BinarySearchIterative(arr,n,target); // Iterative Approach
-
+    // BinarySearchIterative(arr,n,target); 
+    // Iterative Approach
     // Recursive approach
 
     int ind;
@@ -72,7 +72,7 @@ int main() {
 
     // TC -> O(log2(N))
 
-    // Overflow case: Imagine if the arraw is of size INT_MAX, then in that case what we need to do is to make sure that we use any of the following 2 methods to prevent overflow.
+    // Overflow case: Imagine if the array is of size INT_MAX, then in that case what we need to do is to make sure that we use any of the following 2 methods to prevent overflow.
 
     // 1st method: define low, high and mid as long long
 

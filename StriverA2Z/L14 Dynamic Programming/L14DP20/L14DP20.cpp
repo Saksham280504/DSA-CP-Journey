@@ -97,6 +97,7 @@ int main() {
     int mini2 = minCoinsTab(n,8,arr,dp1);
     cout << mini2 << endl;
 
+    // For Space-Optimization Approach:
     int mini3 = minCoinsSO(n,8,arr);
     cout << mini3 << endl;
 

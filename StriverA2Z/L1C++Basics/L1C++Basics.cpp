@@ -5,7 +5,7 @@ using namespace std;
 
 void doSomething(int arr[]) {
     arr[0] += 100;
-    cout << "Value inside the function: " <<arr[0] << endl;
+    cout << "Value inside the function: " << arr[0] << endl;
 }
 int main() {
     ios::sync_with_stdio(0);
