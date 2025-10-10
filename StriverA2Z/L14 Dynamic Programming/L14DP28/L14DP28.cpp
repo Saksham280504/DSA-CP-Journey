@@ -21,6 +21,24 @@ int lcsTab(int n, int m, string s1, string s2, vector<vector<int>>& dp) {
         }
     }
 
+    int length = dp[n][m];
+    string s3 = "";
+    int ind = length-1;
+    for(int i=0; i<length; i++) {
+        s3 += '$';
+    }
+    int i = n;
+    int j = m;
+    while(i>0 && j>0) {
+        if(s1[i-1]==s2[j-1]) {
+            s3[ind--] = s1[i-1];
+            i--;
+            j--;
+        }
+        else if(dp[i-1][j]>dp[i][j-1]) i--;
+        else j--;
+    }
+    cout << s3 << endl;
     return dp[n][m];
 }
 
