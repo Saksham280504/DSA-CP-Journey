@@ -40,6 +40,9 @@ int lisPrint(int n, vector<int>& arr) {
     cout << endl;
 
     return maxi;
+
+    // TC -> O(N*N) + O(LIS)
+    // SC -> O(N) + O(LIS)
 }
 int main() {
     ios::sync_with_stdio(0);
