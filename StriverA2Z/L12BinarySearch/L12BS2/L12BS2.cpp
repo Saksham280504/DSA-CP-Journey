@@ -112,9 +112,9 @@ int main() {
 
     // Search Insert Position: In this problem what we need to do is just look for the index at which x is present and if x is not present then look for the index where x can be inserted. We are given an array of sorted unique integers. So, to solve this problem we use lowerBound.
 
-    // int ind;
+    int ind = lowerBound(arr, n, x); // This is my function
 
-    // ind = lowerBound(arr, n, x); // This is my function
+    cout << ind << endl;
 
     // We can also use C++ stl here.
 
@@ -132,17 +132,17 @@ int main() {
     // Ceil is same as the lowerBound
     // Floor has slight modifications in the code
 
-    int floor;
+    // int floor;
 
-    floor = Floor(arr,n, x);
+    // floor = Floor(arr,n, x);
 
-    cout << floor << endl;
+    // cout << floor << endl;
 
-    int ceil;
+    // int ceil;
 
-    ceil = Ceil(arr, n, x);
+    // ceil = Ceil(arr, n, x);
 
-    cout << ceil << endl;
+    // cout << ceil << endl;
 
     return 0;
 }

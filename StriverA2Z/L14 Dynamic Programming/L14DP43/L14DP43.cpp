@@ -3,6 +3,23 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+int lb(vector<int>& arr, int n, int val) {
+    int low = 0;
+    int high = n-1;
+    int ans = n;
+
+    while(low<=high) {
+        int mid = (low+high)/2;
+        if(arr[mid]>=val) {
+            ans = mid;
+            high = mid-1;
+        }
+        else low = mid+1;
+    }
+
+    return ans;
+    // TC -> O(log2(N))
+}
 int lisBest(int n, vector<int>& arr) {
     vector<int> temp;
     temp.push_back(arr[0]); // LIS will atleast be of size 1
@@ -13,7 +30,9 @@ int lisBest(int n, vector<int>& arr) {
             length++;
         }
         else {
-            int ind = lower_bound(temp.begin(), temp.end(), arr[i]) - temp.begin();
+            // int ind = lower_bound(temp.begin(), temp.end(), arr[i]) - temp.begin();
+            int ind = lb(temp,length,arr[i]);
+            // LowerBound is the lowermost index such that arr[ind] >= val
             temp[ind] = arr[i];
         }
     }
