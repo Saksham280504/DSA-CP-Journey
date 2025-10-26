@@ -37,6 +37,7 @@ int main() {
     vector<int> arr(n);
     for(int i=0; i<n; i++) cin >> arr[i];
 
+    // Number of operations in multiplying a (mXn) and (nXp) matrix = m*n*p
     // Recursive/Memoization Approach:
     vector<vector<int>> dp1(n,vector<int>(n,-1));
     int mini = mcm(1,n-1,arr,dp1);
