@@ -22,24 +22,20 @@ void solve(vector<vector<char>>& board) {
     vector<int> delrow = {-1,0,1,0};
     vector<int> delcol = {0,1,0,-1};
     
-    for(int j=0; j<m; j++) {
-        if(board[0][j]=='O' && !vis[0][j]) {
-            dfs(0,j,vis,board,delrow,delcol);
-        }
-    }
     for(int i=0; i<n; i++) {
         if(board[i][0]=='O' && !vis[i][0]) {
             dfs(i,0,vis,board,delrow,delcol);
+        }
+        if(board[i][m-1]=='O' && !vis[i][m-1]) {
+            dfs(i,m-1,vis,board,delrow,delcol);
         }
     }
     for(int j=0; j<m; j++) {
         if(board[n-1][j]=='O' && !vis[n-1][j]) {
             dfs(n-1,j,vis,board,delrow,delcol);
         }
-    }
-    for(int i=0; i<n; i++) {
-        if(board[i][m-1]=='O' && !vis[i][m-1]) {
-            dfs(i,m-1,vis,board,delrow,delcol);
+        if(board[0][j]=='O' && !vis[0][j]) {
+            dfs(0,j,vis,board,delrow,delcol);
         }
     }
 
@@ -48,6 +44,11 @@ void solve(vector<vector<char>>& board) {
             if(board[i][j]=='O' && !vis[i][j]) board[i][j] = 'X';
         }
     }
+
+    // TC -> O(N*M*4) (worst case for dfs traversal) + O(N*M) (outer for-loop)
+    // SC -> O(N*M) (vis) + O(N*M) (worst case for recursion stack-space)
+
+    // Worst case will be when all entries on board are: '0'
 }
 int main() {
     ios::sync_with_stdio(0);
