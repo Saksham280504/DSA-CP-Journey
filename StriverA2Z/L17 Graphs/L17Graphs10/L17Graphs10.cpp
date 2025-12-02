@@ -32,7 +32,7 @@ bool isCycle(int n, vector<int> adjLS[]) {
 
     return false;
 
-    // TC -> O(N) (for loop) + O(2E) (we check the queue for the entire degree of the graph)
+    // TC -> O(N) (for loop) + O(N + 2E) (we check the queue for the entire degree of the graph)
     // SC -> O(N) (visited array) + O(N) (queue)
 }
 int main() {
