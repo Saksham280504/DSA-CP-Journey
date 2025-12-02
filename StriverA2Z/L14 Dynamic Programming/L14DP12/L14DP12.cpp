@@ -46,27 +46,27 @@ int maxPathTab(int n, int m, vector<vector<int>>& arr, vector<vector<int>>& dp) 
 }
 
 int maxPathSO(int n, int m, vector<vector<int>>& arr) {
-    vector<int> dp(m,0);
+    vector<int> prev(m,0);
     for(int j=0; j<m; j++) {
-        dp[j] = arr[0][j];
+        prev[j] = arr[0][j];
     }
 
     for(int i=1; i<n; i++) {
         vector<int> temp(m);
         for(int j=0; j<m; j++) {
             int ld = arr[i][j];
-            if(j>0) ld += dp[j-1];
+            if(j>0) ld += prev[j-1];
             int rd = arr[i][j];
-            if(j<m-1) rd += dp[j+1];
-            int s = arr[i][j] + dp[j];
+            if(j<m-1) rd += prev[j+1];
+            int s = arr[i][j] + prev[j];
             temp[j] = max(s, max(ld,rd));
         }
-        dp = temp;
+        prev = temp;
     }
     
     int maxi = INT_MIN;
     for(int j=0; j<m; j++) {
-        maxi = max(maxi,dp[j]);
+        maxi = max(maxi,prev[j]);
     }
     return maxi;
 

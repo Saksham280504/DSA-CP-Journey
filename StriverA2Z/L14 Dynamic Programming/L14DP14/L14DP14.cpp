@@ -26,7 +26,7 @@ bool isSsThere(int ind, int target, vector<int>& arr, vector<vector<int>>& dp) {
 
 bool isSsTab(int n, int target,vector<int>& arr, vector<vector<bool>>& dp) {
     for(int i=0; i<n; i++) dp[i][0] = true;
-    dp[0][arr[0]] = true;
+    if(arr[0]<=target)dp[0][arr[0]] = true;
 
     for(int ind=1; ind<n; ind++) {
         for(int k=1; k<=target; k++) {
@@ -48,7 +48,7 @@ bool isSsTab(int n, int target,vector<int>& arr, vector<vector<bool>>& dp) {
 bool isSsSO(int n, int target, vector<int>& arr) {
     vector<bool> prev(target+1,false);
     prev[0] = true;
-    prev[arr[0]] = true;
+    if(arr[0]<=target)prev[arr[0]] = true;
     vector<bool> curr(target+1,false);
     curr[0] = true;
     for(int ind=1; ind<n; ind++) {

@@ -5,6 +5,7 @@ using namespace std;
 bool isSsThere(int ind, int target, vector<int> &arr, vector<vector<int>> &dp) {
     if(target==0) return true;
     if(ind==0) return (arr[ind]==target);
+    if(dp[ind][target]!=-1) return dp[ind][target];
     bool notTake = isSsThere(ind-1,target,arr,dp);
     bool take = false;
     if(target>=arr[ind]) take = isSsThere(ind-1,target-arr[ind],arr,dp);
@@ -14,7 +15,7 @@ bool isSsThere(int ind, int target, vector<int> &arr, vector<vector<int>> &dp) {
 
 bool isSsTab(int n, int target, vector<int>& arr, vector<vector<bool>> &dp) {
     for(int i=0; i<n; i++) dp[i][0] = true;
-    dp[0][arr[0]] = true;
+    if(arr[0]<=target)dp[0][arr[0]] = true;
     for(int i=1; i<n; i++) {
         for(int k=1; k<=target; k++) {
             bool notTake = dp[i-1][k];
@@ -31,7 +32,7 @@ bool isSsSO(int n, int target, vector<int>& arr){
     vector<bool> curi(target+1,false);
     prev[0] = true;
     curi[0] = true;
-    prev[arr[0]] = true;
+    if(arr[0]<=target) prev[arr[0]] = true;
 
     for(int i=1; i<n; i++) {
         for(int k=1; k<=target; k++) {
