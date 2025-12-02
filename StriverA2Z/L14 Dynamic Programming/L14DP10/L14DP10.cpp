@@ -41,7 +41,7 @@ int minPathTab(int n, int m, vector<vector<int>>& grid, vector<vector<int>>& dp)
 }
 
 int minPathSO(int n, int m, vector<vector<int>>& grid) {
-    vector<int> dp(m,0);
+    vector<int> prev(m,0);
     for(int i=0; i<n; i++) {
         vector<int> temp(m);
         for(int j=0; j<m; j++) {
@@ -49,16 +49,16 @@ int minPathSO(int n, int m, vector<vector<int>>& grid) {
             else {
                 int up = 0;
                 int left = 0;
-                if(i>0) up = grid[i][j] + dp[j];
+                if(i>0) up = grid[i][j] + prev[j];
                 if(j>0) left = grid[i][j] + temp[j-1];
                 if(up==0) temp[j] = left;
                 else if(left==0) temp[j] = up;
                 else temp[j] = min(up,left);
             }
         }
-        dp = temp;
+        prev = temp;
     }
-    return dp[m-1];
+    return prev[m-1];
     // TC -> O(N*M)
     // SC -> O(2*M)
 }

@@ -42,19 +42,19 @@ int numOfPathsTab(int m, int n, vector<vector<int>>& maze, vector<vector<int>>& 
 }
 
 int numOfPathsSO(int m, int n, vector<vector<int>>& maze) {
-    vector<int> dp(n,0);
+    vector<int> prev(n,0);
     for(int i=0; i<m; i++) {
         vector<int> temp(n);
         if(i>=0 && maze[i][0]==-1) temp[0] = 0;
         else if(i==0) temp[0] = 1;
-        else temp[0] = dp[0];
+        else temp[0] = prev[0];
         for(int j=1; j<n; j++) {
-            if(i>=0 && j>=0 && maze[i][j]==-1) temp[j] = 0;
-            else temp[j] = temp[j-1] + dp[j];
+            if(i>=0 && j>=1 && maze[i][j]==-1) temp[j] = 0;
+            else temp[j] = temp[j-1] + prev[j];
         }
-        dp = temp;
+        prev = temp;
     }
-    return dp[n-1];
+    return prev[n-1];
 
     // TC -> O(N*M)
     // SC -> O(2N)

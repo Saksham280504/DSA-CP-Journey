@@ -26,6 +26,7 @@ int maxPoints(int ind, int last, vector<vector<int>>& arr, vector<vector<int>>& 
 }
 
 int maxPointsTab(int n, vector<vector<int>> arr) {
+    // Base-Case:
     // vector<vector<int>> dp(n,vector<int>(4,0));
     // dp[0][0] = max(arr[0][1], arr[0][2]);
     // dp[0][1] = max(arr[0][2], arr[0][0]);

@@ -40,19 +40,19 @@ int numOfPathsTab(int m, int n, vector<vector<int>>& dp) {
 }
 
 int numOfPathsSO(int m, int n) {
-    vector<int> dp(n,0);
+    vector<int> prev(n,0);
 
     for(int i=0; i<m; i++) {
         vector<int> temp(n);
         if(i==0) temp[0] = 1;
-        else temp[0] = dp[0];
+        else temp[0] = prev[0];
         for(int j=1; j<n; j++) {
-            temp[j] = temp[j-1] + dp[j];
+            temp[j] = temp[j-1] + prev[j];
         }
-        dp = temp;
+        prev = temp;
     }
 
-    return dp[n-1];
+    return prev[n-1];
     // TC -> O(MXN)
     // SC -> O(2N)
 }

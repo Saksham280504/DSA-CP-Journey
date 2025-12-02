@@ -33,6 +33,7 @@ bool isCycle(int n, vector<int> adjLS[]) {
     return false;
 
     // TC -> O(N) (for loop) + O(2E) (we check the queue for the entire degree of the graph)
+    // SC -> O(N) (visited array) + O(N) (queue)
 }
 int main() {
     ios::sync_with_stdio(0);
@@ -55,6 +56,9 @@ int main() {
         adjLS[u].push_back(v);
         adjLS[v].push_back(u);
     }
+
+    if(isCycle(n,adjLS)) cout << "True" << endl;
+    else cout << "False" << endl;
 
     return 0;
 }

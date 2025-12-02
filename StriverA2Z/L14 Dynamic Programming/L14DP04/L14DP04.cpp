@@ -50,14 +50,14 @@ int main() {
     // Tabulation Approach:
     dp[0] = 0;
     for(int i=1; i<n; i++) {
-        int minSteps = INT_MAX;
+        int minEnergySteps = INT_MAX;
         for(int j=1; j<=k; j++) {
             if(i-j>=0) {
                 int energyTaken = dp[i-j] + abs(jumps[i]-jumps[i-j]);
-                minSteps = min(minSteps, energyTaken);
+                minEnergySteps = min(minEnergySteps, energyTaken);
             }
         }
-        dp[i] = minSteps;
+        dp[i] = minEnergySteps;
     }
     cout << dp[n-1] << endl;
     // TC -> O(N*K)
