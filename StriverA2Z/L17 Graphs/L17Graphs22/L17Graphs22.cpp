@@ -3,36 +3,33 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-vector<int> topoSort(int n, vector<int> adjLS[]) {
+bool isCyclic(int n, vector<int> adjLS[]) {
     vector<int> indegree(n,0);
-    queue<int> q;
 
     for(int i=0; i<n; i++) {
         for(auto it: adjLS[i]) {
             indegree[it]++;
         }
     }
-    
+    queue<int> q;
     for(int i=0; i<n; i++) {
         if(indegree[i]==0) q.push(i);
     }
-
-    vector<int> topo;
+    int cnt=0;
     while(!q.empty()) {
         int node = q.front();
         q.pop();
-        topo.push_back(node);
-        // Node is in your TopoSort, so please remove it from your indegree
+        cnt++;
         for(auto it: adjLS[node]) {
             indegree[it]--;
-            if(indegree[it]==0) q.push(it); // We are just pushing those items into the queue which have their indegree=0 that means that 
+            if(indegree[it]==0) q.push(it);
         }
     }
 
-    return topo;
-
-    // TC -> O(N+E)
-    // SC -> O(N) (indegree) + O(N) (queue) (when all nodes are independent)
+    if(cnt==n) {
+        return false;
+    }
+    return true;
 }
 int main() {
     ios::sync_with_stdio(0);
@@ -46,6 +43,8 @@ int main() {
 
     // your code here
 
+    // To detect a cycle in a directed graph using BFS, we applay Kahn's Algorithm topo sort logic. We know that Topo Sort is only applicable for DAG, so if the graph does have a cycle TopoSort will not work as the queue will get empty before it traverses the entire graph. This will therefore generate a topologically sorted array whose size is lesser than the number of nodes, thus telling that a cycle is present.
+
     int n,m;
     cin >> n >> m;
     vector<int> adjLS[n];
@@ -56,10 +55,8 @@ int main() {
         adjLS[u].push_back(v);
     }
 
-    vector<int> ans = topoSort(n,adjLS);
-
-    for(auto x: ans) cout << x << " ";
-    cout << endl;
+    if(isCyclic(n,adjLS)) cout << "true" << endl;
+    else cout << "false" << endl;
 
     return 0;
 }
