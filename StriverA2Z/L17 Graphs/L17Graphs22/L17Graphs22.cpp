@@ -30,6 +30,9 @@ bool isCyclic(int n, vector<int> adjLS[]) {
         return false;
     }
     return true;
+
+    // TC -> O(N+E) (bfs traversal of directed graph)
+    // SC -> O(N) (indegree) + O(N) (worst case for queue)
 }
 int main() {
     ios::sync_with_stdio(0);
