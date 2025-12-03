@@ -8,10 +8,7 @@ bool dfs(int node, int color, vector<int>& colors,vector<int> adjLS[]) {
 
     for(auto it: adjLS[node]) {
         if(colors[it]==-1) {
-            if(color==0) {
-                if(dfs(it,1,colors,adjLS)==false) return false;
-            }
-            else if(dfs(it,0,colors,adjLS)==false) return false;
+            if(dfs(it,!color,colors,adjLS)==false) return false;
         }
         else if(colors[it]==color) return false;
     }
@@ -38,6 +35,9 @@ bool isBipartite(vector<vector<int>>& grid) {
     }
 
     return true;
+
+    // TC -> O(N+2E) (DFS traversal)
+    // SC -> O(N) (color array)
 
     // // Every graph which has a cycle with odd number of nodes will never be bipartite.
     // // Other than that all the graphs are bipartite.
