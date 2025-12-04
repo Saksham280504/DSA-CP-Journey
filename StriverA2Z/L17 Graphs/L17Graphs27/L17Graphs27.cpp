@@ -34,6 +34,9 @@ vector<int> shortestPath(vector<vector<int>>& graph, int n, int m) {
     }
 
     return dist;
+
+    // TC -> O(V+2E) BFS traversal of the graph
+    // SC -> O(N) (dist-array) + O(N) (worst case for queue)
 }
 int main() {
     ios::sync_with_stdio(0);
