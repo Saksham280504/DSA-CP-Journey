@@ -54,6 +54,8 @@ vector<int> shortestPath(int n, int m, vector<vector<int>>& edges) {
         ans.push_back(dist[destination]);
         reverse(ans.begin(),ans.end());
         return ans;
+
+        // TC -> O(ElogV) (for generation of dist array) + O(length of path for generating ans)
 }
 
 int main() {
