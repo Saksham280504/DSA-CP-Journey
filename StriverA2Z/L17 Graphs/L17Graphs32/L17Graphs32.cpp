@@ -3,7 +3,7 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-int minEffortPath(vector<vector<int>>& heights) {
+int minimumEffortPath(vector<vector<int>>& heights) {
     int n = heights.size();
     int m = heights[0].size();
 

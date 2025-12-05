@@ -36,7 +36,7 @@ int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
     }
     return -1;
 
-    // TC -> O(ElogV) where E(edges)->(n*m*4) & V -> (n*m)
+    // TC -> O(E) as we are using queue and not priority queue, thus TC -> O(E) -> O(N*M*9)
     // SC -> near about O(N*M) (dist array)
 }
 int main() {
