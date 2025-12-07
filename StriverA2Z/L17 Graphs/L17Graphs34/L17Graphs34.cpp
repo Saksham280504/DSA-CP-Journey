@@ -36,7 +36,7 @@ int countPaths(int n, vector<vector<int>>& roads) {
 
             // I have got this distance before
             else if(dis+edgW==dist[adjNode]) {
-                ways[adjNode] = (ways[adjNode] + ways[node])%mod;
+                ways[adjNode] = (ways[adjNode] + ways[node])%mod; // You always apply mod on operations like addition or subtraction etc.
             }
         }
     }
