@@ -77,7 +77,7 @@ int main() {
     // Functionality: 1) Find Parent 2) Union (rank,size)
 
     // Initially we assume that all the nodes are single.
-    // Then we connect two nodes, this is done by union. As we join any two nodes, the graph changes. Disjoint set allows us to check for components in constant Time Complexity at any point of time.
+    // Then we connect two nodes, this is done by union. As we join any two nodes, the graph changes. Disjoint set allows us to check for components in constant time complexity at any point of time.
 
     // So in short whenever we are asked to check whether two nodes belong to the same component or not at any given time, we can answer that question in constant time Complexity using disjoint sets.
 
