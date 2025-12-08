@@ -22,6 +22,8 @@ void floydWarshall(vector<vector<int>> &dist) {
 
     // TC -> O(N^3)
     // SC -> O(N^2)
+
+    // If the graph doesn't have negative weights, then remember to always use Dijkstra over this!!
 }
 int main() {
     ios::sync_with_stdio(0);
