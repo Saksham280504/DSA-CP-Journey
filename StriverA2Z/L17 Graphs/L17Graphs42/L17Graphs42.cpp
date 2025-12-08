@@ -102,5 +102,7 @@ int main() {
     // 1. By attaching smaller to larger, we keep the tree size as smaller as possible.
     // 2. Secondly, we try to keep the time taken to find the ultimate parents minimal.
 
+    // V.V.V. imp point of observation:- Any time we see dynamic connections taking place, that's where we use DisjointSet data structure.
+
     return 0;
 }
