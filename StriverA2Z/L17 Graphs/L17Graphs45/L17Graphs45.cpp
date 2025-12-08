@@ -62,7 +62,7 @@ int removeStones(vector<vector<int>>& stones) {
         maxCol = max(maxCol,col);
     }
     // Total number of nodes for disjoint set = maxRow + maxCol + 1
-    DisjointSet ds(maxRow+maxCol+1);
+    DisjointSet ds(maxRow+maxCol+2); // for safety
     unordered_map<int,int> stoneNodes;
 
     // O(N*4*alpha) -> O(N)
