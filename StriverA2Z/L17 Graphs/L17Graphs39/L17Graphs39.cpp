@@ -32,20 +32,19 @@ int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
     // To get minimum neighbour cities of each city as per threshold value
     vector<int> minCities(n);
     int mini = INT_MAX;
+    int cityNo = -1;
     for(int i=0; i<n; i++) {
         int cities = 0;
         for(int j=0; j<n; j++) {
             if(adjMat[i][j]<=distanceThreshold && i!=j) cities++;
         }
-        mini = min(mini,cities);
-        minCities[i] = cities;
+        if(cities<=mini) {
+            cityNo = i;
+            mini = cities;
+        }
     }
-    int ans = -1;
-    for(int i=0; i<n; i++) {
-        if(minCities[i]==mini) ans = i;
-    }
-    return ans;
 
+    return cityNo;
     // TC -> O(N^3)
     // SC -> O(N^2)
 }
