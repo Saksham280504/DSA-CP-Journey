@@ -47,6 +47,15 @@ int swimInWater(vector<vector<int>>& grid) {
     }
 
     return -1;
+
+    // TC -> O(ElogV) -> O(N^2log(N))
+    // SC -> O(N^2)
+
+    // Why was pq (min_heap) used?
+    // We use a Min-Heap pq to always take the next cell that has the lowest elevation requirement so far.
+    // pq makes sure that among all the pushed cells in the pq (to be reached), which cell is reached first.
+    // If you can reach a lower-elevation neighbor earlier, you should, because that path is less “expensive” in terms of water level needed.
+    // Always expanding the currently possible minimum-elevation cell ensures that once we reach (n-1,n-1), we have used the optimal path.
 }
 int main() {
     ios::sync_with_stdio(0);
