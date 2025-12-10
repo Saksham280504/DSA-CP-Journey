@@ -3,7 +3,6 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-// class representing the node of the Binary Tree
 class Node {
 public:
     int data;
@@ -17,25 +16,21 @@ public:
 };
 
 class Solution {
-public:
-    // Function to perform preorder traversal of the tree and store values in 'arr'
-
-    void preorder(Node* node, vector<int>& arr) { // {root,left,right}
-        if(node==nullptr) {
-            return;
-        }
+private:
+    void inorder(Node* node, vector<int>& arr) { // {left,root,right}
+        if(node==nullptr) return;
+        inorder(node->left,arr);
         arr.push_back(node->data);
-        preorder(node->left,arr);
-        preorder(node->right,arr);
+        inorder(node->right,arr);
     }
+public:
 
-    vector<int> preOrder(Node* root) {
-        vector<int> arr; // This arr will contain the order of preOrder traversal.
-        preorder(root,arr);
+    vector<int> inOrder(Node* root) {
+        vector<int> arr;
+        inorder(root,arr);
         return arr;
     }
 };
-
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -54,9 +49,8 @@ int main() {
     root->left->left = new Node(4);
     root->left->right = new Node(5);
     root->right->right = new Node(6);
-
     Solution sol;
-    vector<int> ans = sol.preOrder(root);
+    vector<int> ans = sol.inOrder(root);
 
     for(auto x: ans) {
         cout << x << " ";
