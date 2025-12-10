@@ -3,12 +3,12 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-// class representing the node of the Binary Tree
 class Node {
-public:
+    public:
     int data;
     Node* left;
     Node* right;
+
     Node(int val) {
         data = val;
         left = nullptr;
@@ -17,27 +17,20 @@ public:
 };
 
 class Solution {
-private:
-    // Function to perform preorder traversal of the tree and store values in 'arr'
-
-    void preorder(Node* node, vector<int>& arr) { // {root,left,right}
-        if(node==nullptr) {
-            return;
+    private:
+        void postorder(Node* node, vector<int>& arr) {
+            if(node==nullptr) return;
+            postorder(node->left,arr);
+            postorder(node->right,arr);
+            arr.push_back(node->data);
         }
-        arr.push_back(node->data);
-        preorder(node->left,arr);
-        preorder(node->right,arr);
-    }
-    
-public:
-
-    vector<int> preOrder(Node* root) {
-        vector<int> arr; // This arr will contain the order of preOrder traversal.
-        preorder(root,arr);
-        return arr;
-    }
+    public:
+        vector<int> postOrder(Node* root) {
+            vector<int> arr;
+            postorder(root,arr);
+            return arr;
+        }
 };
-
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -56,14 +49,11 @@ int main() {
     root->left->left = new Node(4);
     root->left->right = new Node(5);
     root->right->right = new Node(6);
-
     Solution sol;
-    vector<int> ans = sol.preOrder(root);
-
+    vector<int> ans = sol.postOrder(root);
     for(auto x: ans) {
         cout << x << " ";
     }
     cout << endl;
-
     return 0;
 }
