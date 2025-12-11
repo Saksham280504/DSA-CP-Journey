@@ -60,7 +60,7 @@ int main() {
 
     // your code here
 
-    // I need to partition a set into two subsets with minimum absolute sum difference. For this we use the same concept of DP on subsequences as per L14DP14, where we see that tabulation approach allows us to check whether we can generate a subsequence with sum 1 to target from an array of size n (0->n-1 elements).
+    // I need to partition a set into two subsets with minimum absolute sum difference. For this we use the same concept of DP on subsequences as per L14DP14, where we see that tabulation approach allows us to check whether we can generate a subsequence with sum 0 to target from an array of size n (0->n-1 elements).
 
     int n;
     cin >> n;

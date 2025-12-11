@@ -71,7 +71,7 @@ int main() {
     // We are given an array and we have to create two partitions such that:
 
     // 1. Their union create the original array
-    // 2. The partitions have sum S1 and S2, such that S1 >= S2 and S1-S2 = 
+    // 2. The partitions have sum S1 and S2, such that S1 >= S2 and S1-S2 = target
     // Finally we have to count that how many subsets can we create this way
 
     int n;

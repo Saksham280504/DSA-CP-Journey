@@ -16,7 +16,7 @@ int minCoins(int ind, int target, vector<int>& arr,  vector<vector<int>>& dp) {
     }
     if(dp[ind][target]!=-1) return dp[ind][target];
     int notPick = 0 + minCoins(ind-1,target,arr, dp);
-    int pick = INT_MAX;
+    int pick = 1e9;
     if(arr[ind]<=target) pick = 1 + minCoins(ind,target-arr[ind],arr, dp);
     return dp[ind][target] = min(pick,notPick);
 
