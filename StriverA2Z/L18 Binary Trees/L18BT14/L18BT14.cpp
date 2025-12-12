@@ -55,6 +55,7 @@ class Solution {
         return true;
 
         // TC -> O(N) (favourable)
+        // SC -> O(N) (worst case->skew tree)
     }
 };
 int main() {
