@@ -16,28 +16,25 @@ class Node {
 
 class Solution {
   public:
-    int findCeil(Node* root, int key) {
+    int floor(Node* root, int key) {
         if(!root) return -1;
         Node* node = root;
-        int ceil = -1;
+        int floor = -1;
         while(node) {
             if(node->data==key) {
-                ceil = key;
+                floor = key;
                 break;
             }
-            else if(node->data>key) {
-                ceil = node->data;
-                node = node->left;
+            else if(node->data<key) {
+                floor = node->data;
+                node = node->right;
             }
-            else node = node->right;
+            else node = node->left;
         }
-
-        return ceil;
-
-        // TC -> O(log2N)
-        // SC -> O(1)
+        return floor;
     }
 };
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
