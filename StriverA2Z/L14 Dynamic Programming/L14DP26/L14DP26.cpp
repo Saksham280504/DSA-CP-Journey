@@ -17,7 +17,7 @@ void lcsPrint(int n, int m, string s1, string s2, vector<vector<int>>& dp) {
     }
     // Tabulation: 
     // TC -> O(N*M)
-    // SC -> O(N+M) (dp-array)
+    // SC -> O(N*M) (dp-array)
 
     // Back-tracking -> O(N+M) for the worst case
     int length = dp[n][m];

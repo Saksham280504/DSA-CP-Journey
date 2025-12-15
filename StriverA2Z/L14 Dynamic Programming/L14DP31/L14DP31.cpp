@@ -81,7 +81,7 @@ int main() {
 
     // your code here
 
-    // Here we are given two arrays s1 and s2 and we have to generate the shortest Common supersequence of them. This basically refers to a string which has both s1 and s2 as its subsequences.
+    // Here we are given two strings s1 and s2 and we have to generate the shortest Common supersequence of them. This basically refers to a string which has both s1 and s2 as its subsequences.
 
     // Easiest way is to just paste s2 after s1 (n+m)
     // But in order to generate the shortest possible supersequence we have to follow some other path. We first need to find the largest common subsequence and then we need to paste the characters from s1 and s2 which are not a part of the subsequence while maintaining the order of their occurance.

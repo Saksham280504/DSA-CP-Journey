@@ -3,11 +3,11 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-int lcs(int ind1, int ind2, string s1, string s2, vector<vector<int>> dp) {
-    if(ind1==0 || ind2==0) return 0;
-    if(dp[ind1][ind2]!=-1) return dp[ind1][ind2];
-    if(s1[ind1-1]==s2[ind2-1]) return dp[ind1][ind2] = 1 + lcs(ind1-1,ind2-1,s1,s2,dp);
-    return dp[ind1][ind2] = (0 + max(lcs(ind1-1,ind2,s1,s2,dp),lcs(ind1, ind2-1,s1,s2,dp)));
+int lcs(int len1, int len2, string s1, string s2, vector<vector<int>> dp) {
+    if(len1==0 || len2==0) return 0;
+    if(dp[len1][len2]!=-1) return dp[len1][len2];
+    if(s1[len1-1]==s2[len2-1]) return dp[len1][len2] = 1 + lcs(len1-1,len2-1,s1,s2,dp);
+    return dp[len1][len2] = (0 + max(lcs(len1-1,len2,s1,s2,dp),lcs(len1, len2-1,s1,s2,dp)));
 
     // For recursive approach:
     // TC -> O(2^N*2^M) Exponential (Too high, need to optimize)
