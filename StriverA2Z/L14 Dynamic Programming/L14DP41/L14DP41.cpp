@@ -6,7 +6,7 @@ using namespace std;
 int lis(int ind, int prev_ind, int n, vector<int>& arr, vector<vector<int>>& dp) {
     if(ind==n) return 0;
     if(dp[ind][prev_ind+1]!=-1) return dp[ind][prev_ind+1];
-    int len = 0 + lis(ind+1,prev_ind,n,arr,dp);
+    int len = 0 + lis(ind+1,prev_ind,n,arr,dp); // We initially consider that arr[prev_ind] >= arr[ind]
     if(prev_ind==-1||arr[ind]>arr[prev_ind]) len = max(len, 1 + lis(ind+1,ind,n,arr,dp));
     return dp[ind][prev_ind+1] = len;
 

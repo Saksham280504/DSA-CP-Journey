@@ -31,7 +31,7 @@ int checkTab(int n, int m, string s1, string s2, vector<vector<int>>& dp) {
     for(int j=1; j<=m; j++) dp[0][j] = false;
     for(int i=1; i<=n; i++) {
         int flag = 1;
-        for(int ii=1; ii<=i; i++) {
+        for(int ii=1; ii<=i; ii++) {
             if(s1[ii-1]!='*') {
                 flag = 0;
                 break;

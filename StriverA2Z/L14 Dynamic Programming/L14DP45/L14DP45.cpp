@@ -56,7 +56,7 @@ int main() {
 
     // your code here
 
-    // You are given an array of strings and you have to written the longest string chain possible in that array of strings.
+    // You are given an array of strings and you have to write the longest string chain possible in that array of strings.
 
     int n;
     cin >> n;
