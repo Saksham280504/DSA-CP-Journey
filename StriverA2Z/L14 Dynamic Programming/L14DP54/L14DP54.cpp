@@ -24,6 +24,7 @@ ll MaxSum(int i, int k, int n, vector<int>& arr, vector<ll>& dp) {
 }
 
 int MaxSumTab(int n, int k, vector<int>& arr, vector<ll>& dp) {
+    // Base case is covered in declaration
     for(int i=n-1; i>=0; i--) {
     ll len = 0;
     ll maxi = INT_MIN;
