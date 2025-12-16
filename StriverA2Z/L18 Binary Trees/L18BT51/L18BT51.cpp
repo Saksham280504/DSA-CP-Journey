@@ -16,32 +16,57 @@ class Node {
 
 class BSTIterator {
     stack<Node*> st;
+    // true-> before
+    // false -> next
+    bool reverse;
+
     private:
     void pushAll(Node* node) {
         while(node) {
             st.push(node);
-            node = node->left;
+            if(reverse) node = node->right;
+            else node = node->left;
         }
     }
+
     public:
-    BSTIterator(Node* root) {
+    BSTIterator(Node* root, bool isReverse) {
+        bool reverse = isReverse;
         pushAll(root);
     }
+
     int next() {
         Node* temp = st.top();
         st.pop();
-        pushAll(temp->right);
+        if(reverse) pushAll(temp->left);
+        else pushAll(temp->right);
         return temp->data;
     }
 
     bool hasNext() {
         return !st.empty();
     }
-
-    // SC -> O(H)
-    // TC (per call) -> O(1)
 };
 
+class Solution {
+    public:
+    bool findTarget(Node* root, int k) {
+        BSTIterator l(root,false);
+        BSTIterator r(root,true);
+        int i = l.next();
+        int j = r.next(); // This is r.before(), we have used one single class for mainitaining code quality
+        while(i<j) {
+            int sum = i+j;
+            if(sum==k) return true;
+            else if(sum<k) i = l.next();
+            else j = r.next();
+        }
+        return false;
+    }
+
+    // TC -> O(N)
+    // SC -> O(2H)
+};
 
 int main() {
     ios::sync_with_stdio(0);
