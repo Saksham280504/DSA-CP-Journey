@@ -3,6 +3,31 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+// Memoization Solution
+class Solution {
+    private:
+    bool check(int ind, int cnt, string s, int n, vector<vector<int>> & dp) {
+        if(cnt<0) return false;
+        if(ind==n) return (cnt==0);
+        if(dp[ind][cnt]!=-1) return dp[ind][cnt];
+        else if(s[ind]=='(') {
+            return check(ind+1,cnt+1,s,n,dp);
+        }
+        else if(s[ind]==')') {
+            return check(ind+1,cnt-1,s,n,dp);
+        }
+        return check(ind+1,cnt+1,s,n,dp) | check(ind+1,cnt-1,s,n,dp) | check(ind+1,cnt,s,n,dp);
+    } 
+    public:
+    bool checkValidString(string s) {
+        int n = s.size();
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        return check(0,0,s,n,dp);
+    }
+
+    // TC -> O(N*N)
+    // SC -> O(N*N)
+};
 class Solution {
     public:
     bool checkValidString(string s) {
