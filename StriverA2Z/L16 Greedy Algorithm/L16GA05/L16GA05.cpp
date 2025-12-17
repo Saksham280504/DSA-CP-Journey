@@ -3,31 +3,6 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-// class Solution {
-//     private:
-//     bool check(int ind, int cnt, int n, string s, vector<vector<int>>& dp) {
-//         if(cnt<0) return false;
-//         if(ind==n) return (cnt==0);
-//         if(dp[ind][cnt]!=-1) return dp[ind][cnt];
-//         if(s[ind]=='(') return dp[ind][cnt] = check(ind+1,cnt+1,n,s,dp);
-//         else if(s[ind]==')') return dp[ind][cnt] = check(ind+1,cnt-1,n,s,dp);
-//         return dp[ind][cnt] = check(ind+1,cnt-1,n,s,dp) | check(ind+1,cnt+1,n,s,dp) | check(ind+1,cnt,n,s,dp);
-//     }
-//     public:
-//     bool checkValidString(string s) { 
-//         int n = s.size();
-//         vector<vector<int>> dp(n,vector<int>(n,-1)); // dp[ind][cnt]
-//         return check(0,0,n,s,dp);
-//     }
-
-//     // TC -> O(N^2)
-//     // SC -> O(N^2) + O(N)
-
-//     // This is the memoization solution, even if we perform tabulation or space-optimization our TC would still be O(N^2)
-// };
-
-// TC-> O(N) solution
-
 class Solution {
     public:
     bool checkValidString(string s) {
@@ -52,10 +27,10 @@ class Solution {
         }
         if(mini==0) return true;
         return false;
-    }
 
-    // TC -> O(N)
-    // SC -> O(1)
+        // TC -> O(N)
+        // SC -> O(1)
+    }
 };
 
 int main() {
