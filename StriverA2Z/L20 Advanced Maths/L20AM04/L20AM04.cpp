@@ -3,24 +3,24 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-// Check if prime
+// Print prime factors of n
 
 class Solution {
   public:
-    bool isPrime(int n) {
-        int cnt = 0;
-        for(int i=1; i*i<=n; i++) {
+    vector<int> primeFac(int n) {
+        // code here
+        vector<int> ans;
+        for(int i=2; i*i<=n; i++) {
             if(n%i==0) {
-                cnt++;
-                if((n/i)!=i) cnt++;
+                ans.push_back(i);
+                while(n%i==0) n=n/i;
             }
-            if(cnt>2) break;
         }
-        if(cnt==2) return true;
-        return false;
+        if(n!=1) ans.push_back(n);
+        return ans;
     }
 
-    // TC -> O(sqr(N))
+    // TC -> O(sqr(N)*logN)
 };
 
 int main() {
