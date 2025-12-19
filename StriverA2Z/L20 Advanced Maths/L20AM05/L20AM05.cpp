@@ -3,24 +3,27 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-// Print prime factors of n
-
 class Solution {
-  public:
-    vector<int> primeFac(int n) {
-        // code here
-        vector<int> ans;
-        for(int i=2; i*i<=n; i++) {
-            if(n%i==0) {
-                ans.push_back(i);
-                while(n%i==0) n=n/i;
+public:
+    double myPow(double x, int n) {
+        long m = n;
+        m = abs(m);
+        double ans = 1;
+        while(m>0) {
+            if(m%2==1) {
+                ans = ans*x;
+                m = m-1;
+            }
+            else {
+                x = x*x;
+                m = m/2;
             }
         }
-        if(n!=1) ans.push_back(n); // IF after the iteration N>1, then definitely N will be a prime number itself 
+        if(n<0) return 1.0/ans;
         return ans;
     }
 
-    // TC -> O(sqr(N)*logN)
+    // TC -> O(log2N)
 };
 
 int main() {
