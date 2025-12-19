@@ -5,26 +5,23 @@ using namespace std;
 
 class Solution {
 public:
-    double myPow(double x, int n) {
-        long m = n;
-        m = abs(m);
-        double ans = 1;
-        while(m>0) {
-            if(m%2==1) {
-                ans = ans*x;
-                m = m-1;
-            }
-            else {
-                x = x*x;
-                m = m/2;
+    int countPrimes(int n) {
+        vector<int> prime(n+1,1);
+        for(int i=2; i*i<=n; i++) {
+            if(prime[i]==1) {
+                for(int j=i*i; j<=n; j+=i) prime[j] = 0;
             }
         }
-        if(n<0) return 1.0/ans;
-        return ans;
-    }
+        int cnt = 0;
+        for(int i=2; i<n; i++) {
+            if(prime[i]==1) cnt++;
+        }
 
-    // TC -> O(log2N)
-    // SC -> O(1)
+        return cnt;
+
+        // TC -> O(N + Nlog(logN))
+        // SC -> O(N)
+    }
 };
 
 int main() {
