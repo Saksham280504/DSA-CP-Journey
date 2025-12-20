@@ -3,7 +3,7 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-class Solution {
+class Solution { // Maximum size array with number of zeros at most <= k
 public:
     int longestOnes(vector<int>& nums, int k) {
         int n = nums.size();
