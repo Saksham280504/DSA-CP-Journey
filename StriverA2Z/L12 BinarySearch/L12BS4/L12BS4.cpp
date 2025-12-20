@@ -62,8 +62,9 @@ int main() {
     // Procedure:
 
     // 1. Identify the sorted half->left/right
-    // 2. Remove the Unsorted part
-    // 3. Check for the number in sorted
+    // 2. Check for the number in sorted
+    // 2. If present,remove the unsorted part
+    // 3. If not, then remove the sorted part
     // 4. Repeat from 1
 
     int index = SearchInSortedArray(arr, n, target);

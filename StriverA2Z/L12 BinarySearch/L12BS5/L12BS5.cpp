@@ -15,11 +15,11 @@ bool isElementPresent(vector<int>& arr, int n, int x) {
             continue;
         }
         if(arr[mid] <= arr[high]) {
-            if(arr[mid] <= x && x <= arr[high]) low = mid + 1;
+            if(arr[mid] < x && x <= arr[high]) low = mid + 1;
             else high = mid-1;
         }
         else {
-            if(arr[low] <= x && x <= arr[mid]) high = mid-1;
+            if(arr[low] <= x && x < arr[mid]) high = mid-1;
             else low = mid+1;
         }
     }

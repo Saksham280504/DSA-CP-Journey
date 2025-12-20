@@ -24,7 +24,7 @@ int BinarySearchRecursive(vector<int>& arr, int low, int high, int target) {
     int mid = (low+high)/2;
     if(arr[mid]==target) return mid;
     else if(arr[mid] < target) return BinarySearchRecursive(arr, mid+1, high, target);
-    else return BinarySearchRecursive(arr, low, mid -1, target);   
+    return BinarySearchRecursive(arr, low, mid -1, target);   
 }
 
 int main() {
@@ -55,13 +55,12 @@ int main() {
     int target;
     cin >> target;
 
-    // BinarySearchIterative(arr,n,target); 
     // Iterative Approach
+    // BinarySearchIterative(arr,n,target); 
+
     // Recursive approach
 
-    int ind;
-
-    ind = BinarySearchRecursive(arr,0,n-1,target);
+    int ind = BinarySearchRecursive(arr,0,n-1,target);
 
     if(ind == -1) {
         cout << "Target not found" << endl;

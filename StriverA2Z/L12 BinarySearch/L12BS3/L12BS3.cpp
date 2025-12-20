@@ -123,8 +123,8 @@ int main() {
     // int lb;
     // lb = LowerBound(arr,n,x);
 
-    // if(lb==n || arr[lb]!=x) cout << -1 << " " << -1 << endl;
-    // else cout << lb << " " << UpperBound(arr,n,x) -1  << endl;
+    // if(lb==n || arr[lb]!=x) cout << -1 << " " << -1 << endl; // There is no occurance of x in the array
+    // else cout << lb << " " << UpperBound(arr,n,x) -1  << endl; // There is atleast one occurance of x in the array
 
     // TC -> 2*O(log2(N))
     // SC -> O(1)
@@ -146,7 +146,7 @@ int main() {
     // TC -> 2*O(log2(N))
     // SC -> O(1)
 
-    // Now if a problem is given in which an array that can contain duplicates is given to us and we are asked to print the frequency of number x, then frequency = lastOccurance - first Occurance +1
+    // Now if a problem is given in which an array that can contain duplicates is given to us and we are asked to print the frequency of number x, then frequency = lastOccurance - first Occurance + 1
 
     pair<int,int> ans = firstAndLastOccurance(arr,n,x);
 
