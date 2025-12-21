@@ -24,6 +24,9 @@ class Solution {
         int numSubarraysWithSum(vector<int>& nums, int goal) {
             return numSubarrayWithSumAtMostK(nums,goal)-numSubarrayWithSumAtMostK(nums,goal-1);
         }
+
+        // TC -> O(2*(N+N))
+        // SC -> O(1)
 };
 
 int main() {
