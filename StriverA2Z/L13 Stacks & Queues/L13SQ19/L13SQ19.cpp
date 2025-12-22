@@ -10,7 +10,7 @@ public:
         stack<int> st;
         int maxArea = 0;
         for(int i=0; i<n; i++) {
-            while(!st.empty() && heights[st.top()]>heights[i]) {
+            while(!st.empty() && heights[st.top()]>heights[i]) { // In the optimal approach we find psee rather than pse so that 1) While returning we are sure about nse and 2) while returning we are able to find the maximum area of adjoining bars having the same height from the leftmost bar
                 int elIndex  = st.top();
                 st.pop();
                 int nse = i;
