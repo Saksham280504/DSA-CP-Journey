@@ -6,19 +6,18 @@ using namespace std;
 void solve() {
     int n,r,b;
     cin >> n >> r >> b;
-    int RwinsInaRow = r/b;
-    int RwinsInLast = r%b;
-    if(RwinsInLast==0) {
-        RwinsInaRow = (r-1)/2;
-        RwinsInLast = r-(RwinsInaRow*b);
-    }
+    int RwinsInaRow = r/(b+1); // You need to distribute number of red wins equally among (b+1) segments.
+    int ExtraRWins = r%(b+1); // These are extra R's that will remain after equal distribution of R wins in (b+1) segments, so you will also distribute these extra R's equally till you can.
     string s = "";
-    while(b>0) {
+    for(int times=1; times<=b+1; times++) {
         for(int i=0;i<RwinsInaRow; i++) s += 'R';
-        s += 'B';
-        b--;
+        if(ExtraRWins>0) {
+            s += 'R';
+            ExtraRWins--;
+        }
+        if(times!=b+1) s+= 'B'; // If its the last segment, don't place a 'B' then
     }
-    for(int i=0; i<RwinsInLast; i++) s += 'R';
+
     cout << s << endl;
 }
 int main() {

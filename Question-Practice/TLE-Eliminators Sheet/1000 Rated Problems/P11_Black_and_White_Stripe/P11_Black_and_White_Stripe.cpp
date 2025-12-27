@@ -8,28 +8,18 @@ void solve() {
     cin >> n >> k;
     string strip;
     cin >> strip;
-    int blackCount = 0;
-    int whiteCount = 0;
+    vector<int> prefixSum(n,0); // This will give me the total number of whites from start till ith position
+    prefixSum[0] = strip[0]=='W' ? 1 : 0;
+    for(int i=1; i<n; i++) {
+        prefixSum[i] = strip[i]=='W' ? prefixSum[i-1]+1 : prefixSum[i-1];
+    }
     int minChange = INT_MAX;
-    int l = 0;
-    int r = 0;
-    while(r<=l+k-1) {
-    if(strip[r]=='W') whiteCount++;
-    else blackCount++;
-    r++;
+    for(int i=0; i<n-k+1; i++) {
+        int stripWhites = prefixSum[i+k-1] - prefixSum[i];
+        if(strip[i]=='W') stripWhites++;
+        minChange = min(minChange,stripWhites);
     }
-    minChange = min(minChange,whiteCount);
-    while(r<n) {
-        minChange = min(minChange,whiteCount);
-        if(strip[l]=='W') whiteCount--;
-        else blackCount--;
-        l++;
-        r++;
-        if(r<n) {
-            if(strip[r]=='W') whiteCount++;
-            else blackCount++;
-        }
-    }
+
     cout << minChange << endl;
 }
 int main() {
