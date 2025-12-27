@@ -4,15 +4,15 @@ using namespace std;
 // #define endl '/n'
 
 bool static comp(const pair<long long, long long>& p1, const pair<long long, long long>& p2) {
-    if(p1.second!=p2.second) return p1.second<p2.second;
+    if(p1.second!=p2.second) return p1.second<p2.second; // Sort is applied on the basis of which resident has lower sharing cost 
     return p1.first>p2.first;
 }
 void solve() {
     long long n,p;
     cin >> n >> p;
     vector<pair<long long, long long>> club(n);
-    for(int i=0; i<n; i++) cin >> club[i].first;
-    for(int i=0; i<n; i++) cin >> club[i].second;
+    for(int i=0; i<n; i++) cin >> club[i].first; // No. of residents to which one guy can share information
+    for(int i=0; i<n; i++) cin >> club[i].second; // Cost per share
     sort(club.begin(),club.end(),comp);
 
     long long cost = p;
@@ -20,7 +20,7 @@ void solve() {
     for(int i=0; i<n; i++) {
         long long can_be_shared = club[i].first;
         long long sharing_cost = club[i].second;
-        if(sharing_cost>=p) break;
+        if(sharing_cost>=p) break; // If the resident's cost of sharing was more than or equal to pak Chanek then he could himself distribute the information than him
         if(already_shared+can_be_shared>n) {
             cost += (n-already_shared)*sharing_cost;
             already_shared = n;
