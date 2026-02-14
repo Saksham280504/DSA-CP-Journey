@@ -16,33 +16,30 @@ int main() {
     // your code here
     ll n,k,x;
     cin >> n >> k >> x;
-    if(n==1) {
-        cout << 1 << endl;
-        return 0;
-    }
     vector<ll> a(n);
     for(ll i=0; i<n; i++) cin >> a[i];
-    sort(a.begin(),a.end());
-    ll cnt = 0;
-    vector<ll> diff;
+    sort(a.begin(), a.end());
+
+    vector<ll> b;
     for(ll i=1; i<n; i++) {
         if(a[i]-a[i-1]>x) {
-            cnt++;
-            diff.push_back(a[i]-a[i-1]);
+            b.push_back(a[i]-a[i-1]);
         }
     }
-    cnt++;
 
-    sort(diff.begin(), diff.end());
-    ll ind = 0;
-    ll m = diff.size();
-    while(k>0 && cnt>1 && ind<m) {
-        if(k<diff[ind]/x) break;
-        k -= diff[ind]/x;
-        cnt--;
-        ind++;
+    sort(b.begin(), b.end());
+
+    ll ans = b.size()+1;
+
+    for(auto diff: b) {
+        ll val = (diff/x) + (diff%x!=0)-1;
+        if(k>=val) {
+            ans--;
+            k-=val;
+        }
     }
-    cout << cnt << endl;
+
+    cout << ans << endl;
 
     return 0;
 }
