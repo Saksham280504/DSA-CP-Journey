@@ -6,13 +6,11 @@ using namespace std;
 void solve1() {
     long long x;
     cin >> x;
-    if(x<10) {
-        cout << 0 << endl;
-    }
-    else if(x%9LL==0 && x%90LL!=0) {
-        cout << 10 << endl;
-    }
-    else cout << 0 << endl;
+    bool chck=x%9==0;
+    int ok=x/9;
+    bool k=ok%10==0;
+    if(chck && ok!=1 && !k ) cout<<"10"<<endl;
+    else cout<<"0"<<endl;
 }
 
 void solve2() {
