@@ -70,7 +70,7 @@ int main() {
     // Types of problems:-
 
     // 1. Constant Window
-    // 2. Longest subarray/ substring where <condition>
+    // 2. Longest subarray / substring where <condition>
 
     // 2A. Longest subarray with sum<=k
 

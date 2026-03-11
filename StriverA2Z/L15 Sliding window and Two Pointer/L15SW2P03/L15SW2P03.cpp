@@ -34,6 +34,8 @@ int longestSubString2(int n, string s) {
     }
 
     return maxLen;
+    // TC -> O(N)
+    // SC -> O(256) -> O(1)
 }
 int main() {
     ios::sync_with_stdio(0);
