@@ -62,9 +62,10 @@ int main() {
 
     // Tabular approach goes from base-case to answer (bottom-up).
 
-    // Tabular approach -> SC(N) approach:
+    // Tabular approach -> SC -> O(N) approach:
 
     vector<int> dpTab(n+1,-1);
+    // Base-Cases 
     dpTab[0] = 0;
     dpTab[1] = 1;
 
