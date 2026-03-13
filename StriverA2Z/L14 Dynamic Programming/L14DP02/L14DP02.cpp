@@ -39,7 +39,7 @@ int main() {
     // Try to represent the problem in terms of index.
     // Do all possible stuffs on that index according to the problem statement.
     // Sum of all stuffs -> count all ways
-    // min of all stuffs -> find min 
+    // min/max of all stuffs -> find min/max 
 
     // Solution:
 
