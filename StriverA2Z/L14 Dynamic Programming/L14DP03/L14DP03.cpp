@@ -5,10 +5,10 @@ using namespace std;
 int FrogJump(int ind, vector<int>& jump, vector<int>& dp) {
     if(ind==0) return 0;
     if(dp[ind]!=-1) return dp[ind];
-    int right = INT_MAX;
-    int left = FrogJump(ind-1,jump,dp) + abs(jump[ind]-jump[ind-1]);
-    if(ind>1) right = FrogJump(ind-2,jump,dp) + abs(jump[ind]-jump[ind-2]);
-    return dp[ind] = min(left,right);
+    int ss = INT_MAX;
+    int fs = FrogJump(ind-1,jump,dp) + abs(jump[ind]-jump[ind-1]);
+    if(ind>1) ss = FrogJump(ind-2,jump,dp) + abs(jump[ind]-jump[ind-2]);
+    return dp[ind] = min(fs,ss);
 
     // TC -> O(N)
     // SC -> O(N) (stack-space) + O(N) (dp-array)
