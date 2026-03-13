@@ -15,7 +15,7 @@ int maxiSum(int ind, vector<int>& arr,vector<int>& dp) {
 }
 
 int maxiSumTab(int n,vector<int>& arr) {
-    // vector<int>dp(n,-1);
+    // vector<int>dp(n-1,-1);
     // dp[0] = arr[0];
     // for(int i=1; i<n-1; i++) {
     //     int pick = arr[i];
@@ -69,8 +69,8 @@ int main() {
 
     // Recursive/Memoization Approach:
 
-    // vector<int> dp1(n,-1);
-    // vector<int> dp2(n,-1);
+    // vector<int> dp1(n-1,-1);
+    // vector<int> dp2(n-1,-1);
     // int sum1 = maxiSum(n-2,temp1,dp1);
     // int sum2 = maxiSum(n-2,temp2,dp2);
     // cout << max(sum1,sum2) << endl;
