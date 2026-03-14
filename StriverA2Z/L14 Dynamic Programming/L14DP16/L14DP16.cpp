@@ -22,7 +22,7 @@ int isPartitionPossible(int n, int target, vector<int>& arr, vector<vector<bool>
     for(int k=0; k<=target; k++) {
         if(dp[n-1][k]==true) mini = min(mini,abs(k-(target-k)));
     }
-
+    
     return mini;
 }
 
