@@ -31,51 +31,58 @@ void solve1() {
 }
 
 void solve2() {
-    int n,k,p,m;
-    cin >> n >> k >> p >> m;
-    k--;
-    p--;
-    vector<int> arr(n);
-    for(int i=0; i<n; i++) cin >> arr[i];
-    int mini = INT_MAX;
-    int minIndex = -1;
-    for(int i=0; i<k; i++) {
-        if(arr[i]<=mini) {
-            mini = arr[i];
-            minIndex = i;
-        }
-    }
-
-    int cnt = 0;
-    while(m>=0) {
-        if(mini>m && p>k) break;
-        if(p<=k && m>=arr[p]) {
-            int x = arr[p];
-            arr.erase(arr.begin()+p);
-            p = n-1;
-            m -= x;
-            arr.push_back(x);
-            cnt++;
-        }
-        else {
-            int x = arr[minIndex];
-            arr.erase(arr.begin() + minIndex);
-            p--;
-            m -= x;
-            arr.push_back(x);
-            int temp = INT_MAX;
-            for(int i=0; i<k; i++) {
-                if(arr[i]<=temp) {
-                temp = arr[i];
-                minIndex = i;
-                }
-            }
-            mini = temp;
-        }
-    }
-    cout << cnt << endl;
+	int n,k,p,m,cnt=0;
+	cin>>n>>k>>p>>m;
+    vector<int> a(5005);
+	for(int i=1;i<=n;i++){
+		cin>>a[i];
+	}
+	int cost1=0;
+	if(p>k){
+		sort(a.begin()+1,a.begin()+p);
+		for(int i=1;i<=p-k;i++){
+			cost1+=a[i];
+		}
+		cost1+=a[p];
+		if(cost1>m){
+			cout<<0<<endl;
+			return;
+		}
+		cnt++;
+		m-=cost1;
+	}else{
+		cost1+=a[p];
+		if(cost1>m){
+			cout<<0<<endl;
+			return;
+		}
+		cnt++;
+		m-=cost1;
+	}
+	//cout<<"here"<<m<<endl;
+	int temp=a[p];
+	a[p]=1e9+7;
+	sort(a.begin()+1,a.begin()+1+n);
+	cost1=0;
+	for(int i=1;i<=n-k;i++){
+		cost1+=a[i];
+	}
+	cost1+=temp;
+	cnt+=m/cost1;
+	cout<<cnt<<endl;
+	return;
 }
 
+void solve3() {
+    int n;
+    cin >> n;
+    vector<double> c(n), p(n);
+    for(int i=0; i<n; i++) cin >> c[i] >> p[i];
+    double ans = 0;
+    for(int i=n-1; i>=0; i--) ans = max(ans, c[i] + ans*(1-p[i]/100.00));
+
+    cout << fixed << setprecision(10) << ans << endl;
+}
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -90,7 +97,7 @@ int main() {
 
     int t;
     cin >> t;
-    while(t--) solve2();
+    while(t--) solve3();
 
     return 0;
 }
