@@ -29,24 +29,27 @@ class TreeNode {
 class Solution {
 public:
     int maxLevelSum(TreeNode* root) {
-        priority_queue<pair<int,TreeNode*>, vector<pair<int,TreeNode*>>, greater<>> pq;
-        pq.push({1,root});
-        set<int> st;
+        queue<TreeNode*> q;
+        q.push(root);
+        int level = 1;
         int maxSum = INT_MIN;
-        int maxLevel = -1;
-        int sum = 0;
-        while(!pq.empty()) {
-            auto [level, node] = pq.top();
-            pq.pop();
-            if(st.find(level)==st.end()) sum = node->val;
-            else sum += node->val;
-            if(maxSum<sum) {
-                maxSum = sum;
-                maxLevel = level;
+        int maxLevel = 1;
+
+        while(!q.empty()) {
+            int size = q.size();
+            int sum = 0;
+            for(int i=0; i<size; i++) {
+                TreeNode* node = q.front();
+                q.pop();
+                sum += node->val;
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
             }
-            st.insert(level);
-            if(node->left!=nullptr) pq.push({level+1,node->left});
-            if(node->right!=nullptr) pq.push({level+1,node->right});
+            if(sum>maxSum) {
+                maxLevel = level;
+                maxSum = sum;
+            }
+            level++;
         }
 
         return maxLevel;
