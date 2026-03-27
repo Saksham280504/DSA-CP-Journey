@@ -15,7 +15,7 @@ public:
             }
         }
 
-        int lcs = dp[n-1][m-1];
+        int lcs = dp[n][m];
 
         return (n+m-2*lcs);
     }
