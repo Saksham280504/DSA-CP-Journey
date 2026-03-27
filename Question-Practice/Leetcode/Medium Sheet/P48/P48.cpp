@@ -3,29 +3,25 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+// My solution -> O(N)
 class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        vector<int> ansArr;
-        int left=0, right=n-1, top=0, bottom=m-1;
-        while(left<=right && top<=bottom) {
-            for(int i=left; i<=right; i++) ansArr.push_back(matrix[top][i]);
-            top++;
-            for(int i=top; i<=bottom; i++) ansArr.push_back(matrix[i][right]);
-            right--;
-            if(top<=bottom) {
-                for(int i=right; i>=left; i--) ansArr.push_back(matrix[bottom][i]);
-                bottom--;
-            }
-            if(left<=right) {
-                for(int i=bottom; i>=top; i--) ansArr.push_back(matrix[i][left]);
-                left++;
-            }
+    int minSwaps(string s) {
+        int open = 0;
+        int cnt = 0;
+        for(char c: s) {
+            if(c=='[') open++;
+            else if(open==0) cnt++;
+            else open--;
         }
+        cnt += open;
+        return cnt%4==0 ? cnt/4: cnt/4+1;
+        // Intuition -> Every time we swap the left-most unbalanced ] bracket with the rightmost [ bracket, we resolve atmost 2 pairs.
+        // ][ -> cnt=2 -> on 1 swap we get [] (1 pair resolved)
+        // ]][[ -> cnt=4 -> on 1 swap we get [][] (2 pair resolved)
+        // ]]][[[ -> cnt=6 -> on 1 swap we get []][[] (2 pair resolved) -> one 1 more swap, we get [][][] (3 pair resolved)
 
-        return ansArr;
+        // Also ]][[ can also be written as A]B]C[D[E, where A,B,C,D,E are all balanced substrings
     }
 };
 
