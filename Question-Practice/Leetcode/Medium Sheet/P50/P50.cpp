@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
-// #define endl '/n'
+// #define endl '/n
 
+// Key idea -> For permutations, the frequency of occurance of elements remain same.
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
@@ -18,8 +19,8 @@ public:
 
         if(freq1==freq2) return true;
         for(int i=n; i<m; i++) {
-            freq2[s2[i]-'a']++;
-            freq2[s2[i-n]-'a']--;
+            freq2[s2[i]-'a']++; // Increment the new char frequency
+            freq2[s2[i-n]-'a']--; // Decrement the initial char frequency
             if(freq1==freq2) return true;
         }
 
