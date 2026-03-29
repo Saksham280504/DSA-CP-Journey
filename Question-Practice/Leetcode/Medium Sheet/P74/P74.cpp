@@ -14,10 +14,40 @@ class TreeNode {
         right = nullptr;
     }
 };
+
+
+// Inorder traversal of a BST gives nodes in sorted order. So there are only two cases of swaps- 1. Adjacent swaps, 2. Non-Adjacent swaps
 class Solution {
+    private:
+    TreeNode* prev;
+    TreeNode* first;
+    TreeNode* middle;
+    TreeNode* last;
+    void inOrder(TreeNode* node) {
+        if(!node) return;
+        inOrder(node->left);
+        if(prev && node->val < prev-> val) {
+            if(!first) {
+                first = prev;
+                middle = node;
+            }
+            else {
+                last = node;
+            }
+        }
+        prev = node;
+        inOrder(node->right);
+    }
     public:
     void recoverTree(TreeNode* root) {
-
+        prev = new TreeNode(INT_MIN);
+        inOrder(root);
+        if(first && last) {
+            swap(first->val,last->val);
+        }
+        else if(first && middle) {
+            swap(first->val,middle->val);
+        }
         // TC -> O(N)
         // SC -> O(1) (without ASS)
     }
