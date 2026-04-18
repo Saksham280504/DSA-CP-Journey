@@ -4,11 +4,11 @@ using namespace std;
 // #define endl '/n'
 
 // Here rather than picking element by element, we think about picking the window of size k which is closest to x.
-// There are always to windows to compare:- 
+// There are always two windows to compare:- 
 // 1. arr[mid].....arr[mid+k-1]
 // 2. arr[mid+1]....arr[mid+k]
 // So here we only need to compare arr[mid] and arr[mid+k] as all the remaining elements are common
-// If in case x-arr[mid]>arr[mid+k]-x, then that means all the elements from arr[l] to arr[mid] are at a greater distance from x than arr[mid+1] to arr[r], thus move the area of attention to right (l = mid+1)
+// If in case x-arr[mid]>arr[mid+k]-x, then that means all the elements from arr[l] to arr[mid] are at a greater distance from x than arr[mid+1], thus move the area of attention to right (l = mid+1)
 // Otherwise stay at left (r=mid)
 class Solution {
 public:
