@@ -40,13 +40,13 @@ int main() {
     // Floyd Warshall Algorithm: 
 
     // Q-1) Why does this algorithm differ from Dijkstra and Bellman Ford Algorithm?
-    // Ans. Dijkstra and and Bellman are single source shortest path algorithms, whereas Floyd Warshal algorithm is a multi source sorted path algorithm.
+    // Ans. Dijkstra and and Bellman are single source shortest path algorithms, whereas Floyd Warshal algorithm is a multi source shortest path algorithm.
 
     // We can also find negative weight cycles using Floyd Warshall Algorithm.
 
     // Procedure for Floyd Warshall Algorithm:-
 
-    // 1. Go via every vertex -> d[i][j] = min(d[i][k] + d[k][j]) (if there are 5 nodes(0 to 4) and we need to find d[0][1], then for that k will be 2,3,4). One very important thing that we have here is that it might happen that to compute d[i][j], we will need to make sure that the values of d[i][k] and d[k][j] are precomputed, and wherever we use precomputed data, that is where we know that dynamic programming comes in.
+    // 1. Go via every vertex -> d[i][j] = min(d[i][j],d[i][k] + d[k][j]) (if there are 5 nodes(0 to 4) and we need to find d[0][1], then for that k will be 2,3,4). One very important thing that we have here is that it might happen that to compute d[i][j], we will need to make sure that the values of d[i][k] and d[k][j] are precomputed, and wherever we use precomputed data, that is where we know that dynamic programming comes in.
 
     // Floyd Warshall Algorithm is just a brute-force method and no such intuition exists for this Algorithm. 
     // You just need to reach from every ith node to every jth node via every kth node, and the overall resultant that you get from all these iterations is your shortest path matrix.

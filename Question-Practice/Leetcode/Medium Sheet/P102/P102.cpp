@@ -3,6 +3,13 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+// We want (total-subarray)modp = 0
+// So subarray mod p = total mod p = k
+// Therefore, the problem will now deduce to -> find the smallest subarray such that subarray mod p = k
+// prefix -> sum from 0 to i
+// for any subarray sub from j+1 to i
+// sub = prefix[i]-prefix[j]
+// sub mod p = k -> (prefix[i]-prefix[j]) mod p = k -> prefix[j] mod p = (prefix[i]-k+p)mod p (because k might be > prefix[i], therefore we add p as it makes -k+p > 0 and also doesn't affect the remainder)
 class Solution {
 public:
     int minSubarray(vector<int>& nums, int p) {
