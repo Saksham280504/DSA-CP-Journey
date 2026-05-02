@@ -52,6 +52,18 @@ int main() {
     // }
     // cout << prob << endl;
 
-    
+    // Solution - 3
+
+    int mod = 998244353;
+    string s;
+    cin >> s;
+    int n = s.size();
+    int lastDouble = -1;
+    int total = 0;
+    for(int i=0; i<n; i++) {
+        if(i!=0 && s[i]==s[i-1]) lastDouble = i-1;
+        total += ((i-lastDouble)%mod);
+    }
+    cout << total << endl;
     return 0;
 }
