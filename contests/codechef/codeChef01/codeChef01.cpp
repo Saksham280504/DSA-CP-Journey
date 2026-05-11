@@ -19,23 +19,37 @@ using namespace std;
 // };
 
 // Q3
-void makePowerSet(int idx, vector<int>& curr, vector<int>& inputNumbers, vector<vector<int>>& powerSet) {
-    if(idx>=inputNumbers.size()) return;
-    // Take it
-    curr.push_back(inputNumbers[idx]);
-    powerSet.push_back(curr);
-    makePowerSet(idx+1,curr,inputNumbers,powerSet);
-    // Not take it
-    curr.pop_back();
-    makePowerSet(idx+1,curr,inputNumbers,powerSet);
-}
-vector<vector<int>> findSubsets(vector<int>& inputNumbers) {
-    // write your code here 
-    vector<vector<int>> powerSet;
-    vector<int> curr = {};
-    powerSet.push_back(curr);
-    makePowerSet(0,curr,inputNumbers,powerSet);
-    return powerSet;
+// void makePowerSet(int idx, vector<int>& curr, vector<int>& inputNumbers, vector<vector<int>>& powerSet) {
+//     if(idx>=inputNumbers.size()) return;
+//     // Take it
+//     curr.push_back(inputNumbers[idx]);
+//     powerSet.push_back(curr);
+//     makePowerSet(idx+1,curr,inputNumbers,powerSet);
+//     // Not take it
+//     curr.pop_back();
+//     makePowerSet(idx+1,curr,inputNumbers,powerSet);
+// }
+// vector<vector<int>> findSubsets(vector<int>& inputNumbers) {
+//     // write your code here 
+//     vector<vector<int>> powerSet;
+//     vector<int> curr = {};
+//     powerSet.push_back(curr);
+//     makePowerSet(0,curr,inputNumbers,powerSet);
+//     return powerSet;
+// }
+
+// Q4
+void findLargestOddSubstring(string nums) {
+    string ans = "";
+    for(int i=nums.size()-1; i>=0; i--) {
+        int val = nums[i]-'0';
+        if(val%2==1) {
+            for(int j=0; j<=i; j++) ans += nums[j];
+            break;
+        }
+    }
+    if(ans.size()==0) cout << -1 << endl;
+    else cout << ans << endl;
 }
 
 int main() {
@@ -48,17 +62,7 @@ int main() {
     freopen("output.txt", "w", stdout);
 #endif
 
-    // your code here
-
-    vector<int> inputNumbers = {0,1,2,3};
-    vector<vector<int>> powerSet = findSubsets(inputNumbers);
-
-    for(int i=0; i<powerSet.size(); i++) {
-        for(int j=0; j<powerSet[i].size(); j++) {
-            cout << powerSet[i][j] << " ";
-        }
-        cout << endl;
-    }
+    // your code here 
 
     return 0;
 }
