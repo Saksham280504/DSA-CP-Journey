@@ -39,18 +39,76 @@ using namespace std;
 // }
 
 // Q4
-void findLargestOddSubstring(string nums) {
-    string ans = "";
-    for(int i=nums.size()-1; i>=0; i--) {
-        int val = nums[i]-'0';
-        if(val%2==1) {
-            for(int j=0; j<=i; j++) ans += nums[j];
-            break;
-        }
+// void findLargestOddSubstring(string nums) {
+//     string ans = "";
+//     for(int i=nums.size()-1; i>=0; i--) {
+//         int val = nums[i]-'0';
+//         if(val%2==1) {
+//             for(int j=0; j<=i; j++) ans += nums[j];
+//             break;
+//         }
+//     }
+//     if(ans.size()==0) cout << -1 << endl;
+//     else cout << ans << endl;
+// }
+
+// Q5
+class TreeNode {
+    public:
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int data) {
+        val = data;
+        left = right = nullptr;
     }
-    if(ans.size()==0) cout << -1 << endl;
-    else cout << ans << endl;
-}
+};
+
+class Solution {
+public:
+    void inOrderTraversal(TreeNode* node, vector<int>& inOrder) {
+        if(!node) return;
+        inOrderTraversal(node->left, inOrder);
+        inOrder.push_back(node->val);
+        inOrderTraversal(node->right, inOrder);
+    }
+    int findCeil(vector<int>& inOrder, int key) { // Smallest value greater than or equal to the key
+        int ans = -1;
+        int low = 0;
+        int high = inOrder.size()-1;
+        while(low<=high) {
+            int mid = low + (high-low)/2;
+            if(inOrder[mid]<key) low = mid+1;
+            else { // inOrder[mid] >= key
+                ans = inOrder[mid];
+                high = mid-1;
+            }
+        }
+        return ans;
+    }
+    int findFloor(vector<int>& inOrder, int key) { // Greatest value smaller than or equal to the key
+        int ans = -1;
+        int low = 0;
+        int high = inOrder.size()-1;
+        while(low<=high) {
+            int mid = low + (high-low)/2;
+            if(inOrder[mid]>key) high = mid-1;
+            else { // inOrder[mid] <= key
+                ans = inOrder[mid];
+                low = mid+1;
+            }
+        }
+        return ans;
+    }
+    pair<int, int> floorAndCeil(TreeNode* root, int key) {
+        vector<int> inOrder;
+        inOrderTraversal(root, inOrder);
+        // InorderTraversal of a BST is sorted
+        int floor = findFloor(inOrder,key);
+        int ceil = findCeil(inOrder,key);
+        return {floor, ceil};
+    }
+};
 
 int main() {
     ios::sync_with_stdio(0);
