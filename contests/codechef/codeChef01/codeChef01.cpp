@@ -53,62 +53,91 @@ using namespace std;
 // }
 
 // Q5
-class TreeNode {
-    public:
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int data) {
-        val = data;
-        left = right = nullptr;
-    }
-};
+// class TreeNode {
+//     public:
+//     int val;
+//     TreeNode* left;
+//     TreeNode* right;
+//     TreeNode(int data) {
+//         val = data;
+//         left = right = nullptr;
+//     }
+// };
 
-class Solution {
-public:
-    void inOrderTraversal(TreeNode* node, vector<int>& inOrder) {
-        if(!node) return;
-        inOrderTraversal(node->left, inOrder);
-        inOrder.push_back(node->val);
-        inOrderTraversal(node->right, inOrder);
-    }
-    int findCeil(vector<int>& inOrder, int key) { // Smallest value greater than or equal to the key
-        int ans = -1;
-        int low = 0;
-        int high = inOrder.size()-1;
-        while(low<=high) {
-            int mid = low + (high-low)/2;
-            if(inOrder[mid]<key) low = mid+1;
-            else { // inOrder[mid] >= key
-                ans = inOrder[mid];
-                high = mid-1;
-            }
+// class Solution {
+// public:
+//     void inOrderTraversal(TreeNode* node, vector<int>& inOrder) {
+//         if(!node) return;
+//         inOrderTraversal(node->left, inOrder);
+//         inOrder.push_back(node->val);
+//         inOrderTraversal(node->right, inOrder);
+//     }
+//     int findCeil(vector<int>& inOrder, int key) { // Smallest value greater than or equal to the key
+//         int ans = -1;
+//         int low = 0;
+//         int high = inOrder.size()-1;
+//         while(low<=high) {
+//             int mid = low + (high-low)/2;
+//             if(inOrder[mid]<key) low = mid+1;
+//             else { // inOrder[mid] >= key
+//                 ans = inOrder[mid];
+//                 high = mid-1;
+//             }
+//         }
+//         return ans;
+//     }
+//     int findFloor(vector<int>& inOrder, int key) { // Greatest value smaller than or equal to the key
+//         int ans = -1;
+//         int low = 0;
+//         int high = inOrder.size()-1;
+//         while(low<=high) {
+//             int mid = low + (high-low)/2;
+//             if(inOrder[mid]>key) high = mid-1;
+//             else { // inOrder[mid] <= key
+//                 ans = inOrder[mid];
+//                 low = mid+1;
+//             }
+//         }
+//         return ans;
+//     }
+//     pair<int, int> floorAndCeil(TreeNode* root, int key) {
+//         vector<int> inOrder;
+//         inOrderTraversal(root, inOrder);
+//         // InorderTraversal of a BST is sorted
+//         int floor = findFloor(inOrder,key);
+//         int ceil = findCeil(inOrder,key);
+//         return {floor, ceil};
+//     }
+// };
+
+// Q6
+string shortestPalindrome(const string& s) {
+    //write your code here...
+    int n = s.size();
+    int idx = 0;
+    for(int i=n-1; i>=0; i--) {
+        int low = 0, high = i;
+        bool isPalindrome = true;
+        while(low<high) {
+            if(s[low]!=s[high]){
+                isPalindrome = false;
+                break;
+            } 
+            low++;
+            high--;
         }
-        return ans;
-    }
-    int findFloor(vector<int>& inOrder, int key) { // Greatest value smaller than or equal to the key
-        int ans = -1;
-        int low = 0;
-        int high = inOrder.size()-1;
-        while(low<=high) {
-            int mid = low + (high-low)/2;
-            if(inOrder[mid]>key) high = mid-1;
-            else { // inOrder[mid] <= key
-                ans = inOrder[mid];
-                low = mid+1;
-            }
+        if(isPalindrome) {
+            idx = i;
+            break;
         }
-        return ans;
     }
-    pair<int, int> floorAndCeil(TreeNode* root, int key) {
-        vector<int> inOrder;
-        inOrderTraversal(root, inOrder);
-        // InorderTraversal of a BST is sorted
-        int floor = findFloor(inOrder,key);
-        int ceil = findCeil(inOrder,key);
-        return {floor, ceil};
+    string ans = "";
+    for(int i=n-1; i>idx; i--) {
+        ans += s[i];
     }
-};
+    ans += s;
+    return ans;
+}
 
 int main() {
     ios::sync_with_stdio(0);
