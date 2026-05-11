@@ -44,7 +44,8 @@ public:
         return max(leftPath, rightPath); // 3. The parent can only carry one branch upward so it will carry the longest path.
     }
     int longestUnivaluePath(TreeNode* root) {
-        
+        dfs(root);
+        return ans;
     }
 };
 
