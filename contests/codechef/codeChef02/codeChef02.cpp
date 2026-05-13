@@ -4,11 +4,21 @@ using namespace std;
 // #define endl '/n'
 
 // Q1
-void solve1() {
-    int x,y,z;
-    cin >> x >> y >> z;
-    int rem = (x+z-y);
-    cout << ((rem<0) ? 0 : rem + 1) << endl;
+// void solve1() {
+//     int x,y,z;
+//     cin >> x >> y >> z;
+//     int rem = (x+z-y);
+//     cout << ((rem<0) ? 0 : rem + 1) << endl;
+// }
+
+// Q2
+void solve2() {
+    int x;
+    cin >> x;
+    if(x<=20) cout << (x*10) << endl;
+    else cout << (200 + ((x-20)/2)*5) << endl;
+    // If x is <=20, then cost = x*10;
+    // else cost = 200 + ((x-20)/2)*5;
 }
 
 int main() {
@@ -22,8 +32,8 @@ int main() {
 #endif
 
     // your code here
-
-
-
+    int t;
+    cin >> t;
+    while(t--) solve2();
     return 0;
 }
