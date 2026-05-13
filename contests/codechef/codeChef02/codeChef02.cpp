@@ -22,27 +22,45 @@ using namespace std;
 // }
 
 // Q3
-void solve3() {
-    int n,x,k;
-    cin >> n >> x >> k; 
-    // n -> number of participants
-    // x -> limit on number of selections
-    // k -> number of valid clusters
-    vector<int> arr(n);
-    for(int i=0; i<n; i++) cin >> arr[i];
-    sort(arr.rbegin(), arr.rend());
-    int cnt = 1, ind = 1, prev = arr[0];
-    while(cnt<=k && ind<n) {
-        if(arr[ind]==prev) {
-            ind++;
-            continue;
-        }
-        cnt++;
-        prev = arr[ind];
-        if(cnt>k) break;
-        ind++;
+// void solve3() {
+//     int n,x,k;
+//     cin >> n >> x >> k; 
+//     // n -> number of participants
+//     // x -> limit on number of selections
+//     // k -> number of valid clusters
+//     vector<int> arr(n);
+//     for(int i=0; i<n; i++) cin >> arr[i];
+//     sort(arr.rbegin(), arr.rend());
+//     int cnt = 1, ind = 1, prev = arr[0];
+//     while(cnt<=k && ind<n) {
+//         if(arr[ind]==prev) {
+//             ind++;
+//             continue;
+//         }
+//         cnt++;
+//         prev = arr[ind];
+//         if(cnt>k) break;
+//         ind++;
+//     }
+//     cout << ((x>=ind) ? ind : x) << endl;
+// }
+
+// Q4
+void solve4() {
+    int n, m;
+    cin >> n >> m;
+    if((n-2)%3!=0) {
+        cout << -1 << endl;
+        return;
     }
-    cout << ((x>=ind) ? ind : x) << endl;
+    for(int i=1; i<=n; i++) {
+        if(i%3==1 && i&1) cout << 1 << " ";
+        else if(i%3==1) cout << m-1 << " ";
+        else if(i%3==2 && i%2==0) cout << 1 << " ";
+        else if(i%3==2) cout << m-1 << " ";
+        else cout << 0 << " ";
+    }
+    cout << endl;
 }
 
 int main() {
@@ -58,6 +76,6 @@ int main() {
     // your code here
     int t;
     cin >> t;
-    while(t--) solve3();
+    while(t--) solve4();
     return 0;
 }
