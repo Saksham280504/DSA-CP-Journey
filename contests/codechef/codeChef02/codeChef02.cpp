@@ -12,13 +12,37 @@ using namespace std;
 // }
 
 // Q2
-void solve2() {
-    int x;
-    cin >> x;
-    if(x<=20) cout << (x*10) << endl;
-    else cout << (200 + ((x-20)/2)*5) << endl;
-    // If x is <=20, then cost = x*10;
-    // else cost = 200 + ((x-20)/2)*5;
+// void solve2() {
+//     int x;
+//     cin >> x;
+//     if(x<=20) cout << (x*10) << endl;
+//     else cout << (200 + ((x-20)/2)*5) << endl;
+//     // If x is <=20, then cost = x*10;
+//     // else cost = 200 + ((x-20)/2)*5;
+// }
+
+// Q3
+void solve3() {
+    int n,x,k;
+    cin >> n >> x >> k; 
+    // n -> number of participants
+    // x -> limit on number of selections
+    // k -> number of valid clusters
+    vector<int> arr(n);
+    for(int i=0; i<n; i++) cin >> arr[i];
+    sort(arr.rbegin(), arr.rend());
+    int cnt = 1, ind = 1, prev = arr[0];
+    while(cnt<=k && ind<n) {
+        if(arr[ind]==prev) {
+            ind++;
+            continue;
+        }
+        cnt++;
+        prev = arr[ind];
+        if(cnt>k) break;
+        ind++;
+    }
+    cout << ((x>=ind) ? ind : x) << endl;
 }
 
 int main() {
@@ -34,6 +58,6 @@ int main() {
     // your code here
     int t;
     cin >> t;
-    while(t--) solve2();
+    while(t--) solve3();
     return 0;
 }
