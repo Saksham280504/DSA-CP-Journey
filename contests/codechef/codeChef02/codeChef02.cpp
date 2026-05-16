@@ -64,8 +64,6 @@ using namespace std;
 // }
 
 // Q5
-#include <bits/stdc++.h>
-using namespace std;
 
 int min_max(vector<int>& temp, int m) {
     if(m==1) return temp[0];
@@ -81,6 +79,7 @@ int min_max(vector<int>& temp, int m) {
     temp1.clear();
     return ans;
 }
+
 void solve5() {
     int n,q;
     cin >> n >> q;
@@ -102,14 +101,6 @@ void solve5() {
 
     // This solution is giving TLE
 }
-
-int main() {
-	// your code goes here
-    int t;
-    cin >> t;
-    while(t--) solve5();
-}
-
 
 
 int main() {
