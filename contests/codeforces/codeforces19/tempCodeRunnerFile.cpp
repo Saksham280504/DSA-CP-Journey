@@ -48,7 +48,7 @@ void solve1() {
 void solve2() {
     int n,x1,x2,k;
     cin >> n >> x1 >> x2 >> k;
-    if(n<=3) {
+    if(n==2 || n==2) {
         cout << 1 << endl;
         return;
     }
