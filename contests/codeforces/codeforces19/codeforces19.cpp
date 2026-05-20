@@ -57,6 +57,18 @@ void solve2() {
     cout << k + d << endl;
 }
 
+void solve3() {
+    long long a, n;
+    cin >> a >> n;
+    vector<int> arr(10,0);
+    for(int i=0; i<n; i++) {
+        int x;
+        cin >> x;
+        arr[x]++;
+    }
+    
+}
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
