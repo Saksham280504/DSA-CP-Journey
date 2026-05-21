@@ -27,7 +27,7 @@ public:
         sort(arr.begin(), arr.end());
 
         // 2. Prefix sum
-        vector<int> prefixSum(n,0);
+        vector<long long> prefixSum(n,0);
         prefixSum[0] = arr[0];
 
         for(int i=1; i<n; i++) {
@@ -37,15 +37,15 @@ public:
             return arr[n-1];
         }
 
-        int diff = abs(prefixSum[n-1]-target);
+        long long diff = llabs(prefixSum[n-1]-1LL*target);
         int val = arr[n-1];
-        for(int i=1; i<arr[n-1]; i++) {
+        for(int i=0; i<arr[n-1]; i++) {
             int idx = SmallestGreaterElementIndex(arr,i,n);
-            int sum = i*(n-idx);
+            long long sum = 1LL*i*(n-idx);
             if(idx!=0) {
                 sum += prefixSum[idx-1];
             }
-            int currDiff = abs(target-sum);
+            long long currDiff = llabs(sum-1LL*target);
             if(currDiff<diff) {
                 val = i;
                 diff = currDiff;
