@@ -7,42 +7,43 @@ void solve4() {
     string s;
     cin >> s;
     int n = s.size();
-    map<char,int> mpp;
-    for(char ch: s) {
-        mpp[ch]++;
+    vector<int> freq(26,0);
+    for(char x: s) {
+        freq[x-'a']++;
     }
-    int maxCount = 0;
-    int maxElement = -1;
-    for(auto it: mpp) {
-        if(maxCount<it.second) {
-            maxCount = it.second;
-            maxElement = it.first;
-        }
-    }
-    if(maxCount>n/2) {
+    int mx = *max_element(freq.begin(),freq.end());
+    if(mx>(n+1)/2) {
         cout << "No" << endl;
         return;
     }
-    else {
-        cout << "YES" << endl;
-        string str = "";
-        int cnt = 0;
-        if(n%2==0 && maxCount==(n/2)) {
-            str += maxElement;
-            cnt++;
+    
+    vector<pair<int,char>> pairs;
+    for(int i=0; i<26; i++) {
+        if(freq[i]>0) {
+            pairs.push_back({freq[i],(char)('a'+i)});
         }
-        while(cnt!=n) {
-            for(auto it:mpp) {
-                if(it.second!=0) {
-                    str += it.first;
-                    it.second--;
-                    cnt++;
-                }
-            }
-        }
-        cout << str << endl;
     }
-}
+
+    sort(pairs.rbegin(), pairs.rend());
+
+    string sort_s = "";
+
+    for(auto p: pairs) {
+        sort_s += string(p.first,p.second);
+    }
+
+    string ans = string(n,' ');
+    int idx = 0;
+
+    for(int i=0; i<n; i+=2) {
+        ans[i] = sort_s[idx++];
+    }
+    for(int i=1; i<n; i+=2) {
+        ans[i] = sort_s[idx++];
+    }
+
+    cout << "Yes" << endl << ans << endl;
+} 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
