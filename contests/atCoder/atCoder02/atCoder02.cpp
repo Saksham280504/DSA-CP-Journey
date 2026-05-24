@@ -83,26 +83,48 @@ int main() {
     // }
 
     // Q3
-    // int n,q;
-    // cin >> n >> q;
-    // vector<int> blocks[q];
-    // int count = 0;
-    // while(q--) {
-    //     int type, action;
-    //     cin >> type >> action;
-    //     if(type==1) {
-            
-    //     }
-    //     else {
+    int n,q;
+    cin >> n >> q;
+    // Storing the max queries for comaprison later
+    int max_Queries = q;
 
-    //     }
-    // }
+    // A[x] -> The total unsubtracted block height at x
+    vector<int> A(n+1,0);
+    // B[j] -> The number of cells with atleast j height
+    vector<int> B(max_Queries+1,0);
+    int min_height = 0;
+
+    while(q--) {
+        int type;
+        cin >> type;
+        if(type==1) {
+            int x;
+            cin >> x;
+            A[x]++;
+            if(A[x]<=max_Queries) {
+                B[A[x]]++;
+            }
+            if(A[x]<=max_Queries && B[A[x]]==n) {
+                min_height = A[x];
+            }
+        }
+        else {
+            int y;
+            cin >> y;
+            int unsubtracted_min_height = y + min_height;
+            if(unsubtracted_min_height<=max_Queries) {
+                cout << B[unsubtracted_min_height] << endl;
+            }
+            else cout << 0 << endl;
+        }
+    }
+    
 
     // Q4
-    int t;
-    cin >> t;
-    while(t--) {
-        solve4();
-    }
+    // int t;
+    // cin >> t;
+    // while(t--) {
+    //     solve4();
+    // }
     return 0;
 }
