@@ -38,7 +38,7 @@ public:
     }
 };
 
-// Q3 (My Solution)
+// Q3 (My Solution) -> HardCoded
 class Solution {
 public:
     int minOperations(vector<int>& nums) {
@@ -62,6 +62,22 @@ public:
         if(position<n-1 && nums[position+1]==n-1) return min(position+2,n-position);
         if(position==n-1 && nums[position-1]==1) return 1;
         return min(n-1,3);
+    }
+};
+
+class Solution { // Gemini Solution (BFS Approach)
+public:
+    int minOperations(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> target(n);
+        iota(target.begin(), target.end(),0);
+        if(nums==target) return 0;
+        queue<pair<vector<int>,int>> q;
+        q.push({nums,0});
+
+        while(!q.empty()) {
+            
+        }
     }
 };
 
