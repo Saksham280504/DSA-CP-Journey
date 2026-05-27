@@ -65,21 +65,7 @@ public:
     }
 };
 
-class Solution { // Gemini Solution (BFS Approach)
-public:
-    int minOperations(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> target(n);
-        iota(target.begin(), target.end(),0);
-        if(nums==target) return 0;
-        queue<pair<vector<int>,int>> q;
-        q.push({nums,0});
-
-        while(!q.empty()) {
-            
-        }
-    }
-};
+// Q4 
 
 int main() {
     ios::sync_with_stdio(0);
