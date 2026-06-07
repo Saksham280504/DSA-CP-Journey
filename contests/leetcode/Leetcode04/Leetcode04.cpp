@@ -15,6 +15,40 @@ public:
     }
 };
 
+// Q2
+class Solution {
+public:
+    vector<string> generateValidStrings(int n, int k) {
+        int limit = (1<<n);
+        vector<string> ans;
+        for(int i=0; i<limit; i++) {
+            int cost = 0;
+            if((i&1) && (i&2)) continue;
+            if(i&1) cost += n-1;
+            for(int j=1; j<n-1; j++) {
+                if(!(i&(1<<j))) continue;
+                bool NoAdjacentSet = (!(i&(1<<(j+1))) && !(i&(1<<(j-1))));
+                if(!NoAdjacentSet) {
+                    cost = k+1;
+                    break;
+                }
+                cost += (n-1-j);
+                if(cost>k) break;
+            }
+            
+            if(cost<=k) {
+                string temp = "";
+                for(int j=n-1; j>=0; j--) {
+                    if(i&(1<<j)) temp += '1';
+                    else temp += '0';
+                }
+                ans.push_back(temp);
+            }
+        }
+        return ans;
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
