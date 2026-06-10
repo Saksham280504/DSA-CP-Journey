@@ -17,31 +17,26 @@ int main() {
     // your code here
     ll n,m;
     cin >> n >> m;
-    vector<ll> price(n);
-    for(ll i=0; i<n; i++) cin >> price[i];
-    sort(price.rbegin(),price.rend());
-    vector<pair<ll,ll>> maxPrice(m);
-    for(ll i=0; i<m; i++) {
-        ll cost;
-        cin >> cost;
-        maxPrice.push_back({cost,i});
+    multiset<ll> tickets;
+
+    for(ll i=0; i<n; i++) {
+        ll ticket;
+        cin >> ticket;
+        tickets.insert(ticket);
     }
-    sort(maxPrice.rbegin(), maxPrice.rend());
 
-    ll l=0, r=0;
-    vector<ll> ans(m,-1);
-
-    while(l<n && r<m) {
-        if(price[l]>maxPrice[r].first) l++;
-        else { // first occurance of price[l] <= maxPrice[r].first
-            ans[maxPrice[r].second] = price[l];
-            r++;
-            l++;
+    for(int i=0; i<m; i++) {
+        int price;
+        cin >> price;
+        auto it = tickets.upper_bound(price); // This will give me the smallest iterator at which the ticket_price > max_price 
+        if(it==tickets.begin()) { // The cheapest ticket is also expensive than the max_price.
+            cout << -1 << endl;
         }
-    }
-
-    for(ll i=0; i<m; i++) {
-        cout << ans[i] << endl;
+        else {
+            it--; // This will give the iterator for which the price of the ticket is as close to the price said and is also smaller than that.
+            cout << *it << endl;
+            tickets.erase(it);
+        }
     }
 
 
