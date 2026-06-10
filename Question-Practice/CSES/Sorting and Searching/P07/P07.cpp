@@ -16,27 +16,26 @@ int main() {
     // your code here
     ll n,x;
     cin >> n >> x;
-    unordered_map<ll,vector<ll>> mpp;
+    vector<pair<ll,ll>> arr(n);
     for(ll i=0; i<n; i++) {
-        ll y;
-        cin >> y;
-        mpp[y].push_back(i+1);
+        cin >> arr[i].first;
+        arr[i].second = (i+1);
+    }
+    sort(arr.begin(),arr.end());
+
+    ll l=0, r=n-1;
+    while(l<r) {
+        ll sum = arr[l].first + arr[r].first;
+        if(sum==x) {
+            cout << arr[l].second << " " << arr[r].second << endl;
+            return 0;
+        }
+        else if(sum<x) {
+            l++;
+        }
+        else r--;
     }
 
-    for(auto it: mpp) {
-        if(mpp.count(x-it.first)) {
-            if(it.first!=x/2) {
-                cout << it.second[0] << " " << mpp[x-it.first][0] << endl;
-                return 0;
-            }
-            else {
-                if(it.second.size()>1) {
-                    cout << it.second[0] << " " << it.second[1] << endl;
-                    return 0;
-                }
-            }
-        }
-    }
     cout << "IMPOSSIBLE" << endl;
     return 0;
 }
