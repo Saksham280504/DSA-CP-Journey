@@ -2,6 +2,7 @@
 using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
+#define ll long long
 
 void solve1() {
     int n;
@@ -22,10 +23,6 @@ void solve2() {
     cin >> n >> k;
     string s;
     cin >> s;
-    if(n==k) {
-        cout << "NO" << endl;
-        return;
-    }
     for(int i=0; i<=(n-1-k); i++) {
         if(s[i]=='1') {
             s[i] = 0;
@@ -42,6 +39,35 @@ void solve2() {
     cout << "YES" << endl;
 }
 
+void solve3() {
+    ll a,b,x;
+    cin >> a >> b >> x;
+    ll ops = 0;
+    if(a==b) {
+        cout << ops << endl;
+        return;
+    }
+    if(x>=max(a,b)) {
+        ops = abs(a-b);
+        a/=x;
+        b/=x;
+        ops = min(ops,(2+abs(a-b)));
+        cout << ops << endl;
+        return;
+    }
+    ll maxi = max(a,b);
+    ll mini = min(a,b);
+    while((maxi/x) >= mini) {
+        ops++;
+        maxi /= x;
+    }
+    ll divide = ops;
+    ops += (maxi-mini);
+    maxi /= x;
+    ops = min(ops,divide+1+mini-maxi);
+    cout << ops << endl;
+}
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -55,7 +81,7 @@ int main() {
     // your code here
     int t;
     cin >> t;
-    while(t--) solve2();
+    while(t--) solve3();
 
     return 0;
 }
