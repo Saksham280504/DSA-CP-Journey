@@ -17,19 +17,28 @@ int main() {
     // your code here
     ll x,n;
     cin >> x >> n;
-    multiset<ll> position;
-    position.insert(0);
-    position.insert(x);
-    ll maxGap = LLONG_MIN;
+    set<ll> pos;
+    multiset<ll> plens; // passage length
+    pos.insert(0);
+    pos.insert(x);
+    plens.insert(x);
+
     for(ll i=0; i<n; i++) {
-        ll p;
-        cin >> p;
-        auto it1 = position.upper_bound(p);
-        auto it2 = position.lower_bound(p);
-        it2--;
-        maxGap = max({maxGap,(*it1-p),(p-*it2)});
-        cout << maxGap << " ";
+        ll y;
+        cin >> y;
+        auto right = pos.upper_bound(y);
+        auto left = right;
+        left--;
+        ll r = *right;
+        ll l = *left;
+        plens.erase(plens.find(r-l)); // First find (r-l) and then remove it. Doing it this way will remove only one occurance of (r-l) in plens. Otherwise erasing it directly would have removed all the occurances which we don't want.
+        plens.insert((r-y));
+        plens.insert((y-l));
+        pos.insert(y);
+        cout << *plens.rbegin() << " ";
     }
     cout << endl;
+
+
     return 0;
 }

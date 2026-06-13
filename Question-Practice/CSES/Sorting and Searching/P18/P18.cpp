@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
-// #define endl '
-'
+// #define endl '/n'
 
 int main() {
     ios::sync_with_stdio(0);
@@ -15,6 +14,8 @@ int main() {
 #endif
 
     // your code here
+
+    
 
     return 0;
 }
