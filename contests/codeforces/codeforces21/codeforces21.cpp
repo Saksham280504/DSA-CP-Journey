@@ -68,6 +68,28 @@ void solve3() {
     cout << ops << endl;
 }
 
+void solve4() {
+    int n,k;
+    cin >> n >> k;
+    int maxi = INT_MIN;
+    map<int,int> mpp;
+    for(int i=0; i<n; i++) {
+        int y;
+        cin >> y;
+        maxi = max(maxi,y);
+        mpp[y]++;
+    }
+    bool isThere = false;
+    for(int i=maxi-1; i>=maxi-k; i--) {
+        if(mpp.count(i)) {
+            isThere = true;
+            break;
+        }
+    }
+    if(mpp[maxi]%2==0 || isThere) cout << "YES" << endl;
+    else cout << "NO" << endl;
+}
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -81,7 +103,7 @@ int main() {
     // your code here
     int t;
     cin >> t;
-    while(t--) solve3();
+    while(t--) solve4();
 
     return 0;
 }
