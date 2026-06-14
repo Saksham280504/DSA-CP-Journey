@@ -3,6 +3,7 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+// Q1
 class Solution {
 public:
     bool checkGoodInteger(int n) {
@@ -16,6 +17,7 @@ public:
     }
 };
 
+// Q2
 class Solution {
 public:
     int getLength(vector<int>& arr) {
@@ -44,6 +46,33 @@ public:
             }
         }
         return maxBalancedArrSize;
+    }
+};
+
+// Q3
+class Solution {
+public:
+    long long maxRatings(vector<vector<int>>& units) {
+        int m = units[0].size();
+        long long ans = 0;
+        if(m==1) { // No of units in each device = 1, so the maximum sum of ratings = sum of ratings of each device
+            for(auto it: units) {
+                ans += it[0];
+            }
+            return ans;
+        }
+
+        long long min_first_unit = LLONG_MAX, sum = 0, min_second_unit = LLONG_MAX;
+        int n = units.size();
+        for(int i=0; i<n; i++) {
+            sort(units[i].begin(), units[i].end());
+            sum += units[i][1];
+            min_first_unit = min(min_first_unit,1LL*units[i][0]);
+            min_second_unit = min(min_second_unit,1LL*units[i][1]);
+        }
+
+        ans = sum - min_second_unit + min_first_unit;
+        return ans;
     }
 };
 
