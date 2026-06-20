@@ -31,6 +31,8 @@ struct Interval {
 static bool comparator(Interval& a, Interval& b) {
     if(a.start==b.start) return a.end > b.end;
     return a.start<b.start;
+
+    // We sort the intervals in increasing order of starting, if starting is same then in decreasing order of ending. This will make sure that the preceding interval either starts before the current interval or ends afterwards the current interval, creating more chances of containing the current interval within itself.
 }
 
 int main() {
@@ -58,7 +60,10 @@ int main() {
     vector<int> is_contained_by_other(n,0);
     vector<int> contains_other(n,0);
 
-    ordered_multiset<ll> ets;
+    ordered_multiset<ll> ets; // We need an ordered multiset because we will use the property of PBDS (order_of_key) to see 2 things:-
+    // ets.size() - lb -> this number will tell us that for ith interval how many intervals in the range [0....i-1] has ending times greater than equal to ith interval, as all of them has starting time lesser than equal to the current interval's starting time.
+    // ub = ets.order_of_key(curr_end+1) will give us the total number of intervals in the range [i+1...n-1] for the ith interval, which have ending time smaller than equal to the current interval, as all of them have starting time greater than equal to that of the current interval.
+    // Also we want the multiset because the ending times can repeat.
 
     for(int i=0; i<n; i++) {
         ll current_end = intervals[i].end;

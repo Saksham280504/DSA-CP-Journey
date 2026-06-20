@@ -18,6 +18,8 @@ struct Interval {
 static bool comparator(Interval& a, Interval& b) {
     if(a.start==b.start) return a.end>b.end;
     return a.start<b.start;
+
+    // We sort the intervals in increasing order of starting, if starting is same then in decreasing order of ending. This will make sure that the preceding interval either starts before the current interval or ends afterwards the current interval, creating more chances of containing the current interval within itself.
 }
 int main() {
     ios::sync_with_stdio(0);

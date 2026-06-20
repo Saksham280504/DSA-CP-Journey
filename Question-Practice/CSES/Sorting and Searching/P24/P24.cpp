@@ -33,5 +33,12 @@ int main() {
 
     cout << reward << endl;
 
+    // Doing smaller duration tasks first will decrease their finishing time by larger extent than it would increase the finishing time of larger duration tasks and since deadlines are constant, the overall sum of reward will increase.
+
+    // For eg:- (___________a-duration task____________)(____b-duration task____)
+    //          (____b-duration task____)(___________a-duration task____________) -> as you can see the finishing time of b-duration task reduced by a-duration task length, while the finishing time of a-duration task increased by only b-duration task time.
+
+    // Thi means -> initially reward was -> (da-a) + (db-(a+b))
+    // After swapping -> reward becomes -> (db-(a+b-a)) + (da-(a+b)) -> (db-b) + (da-(a+b)) -> (2) > (1)
     return 0;
 }
