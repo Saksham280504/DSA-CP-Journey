@@ -51,7 +51,7 @@ int main() {
             for(auto adj: adjLS[node]) {
                 int v = adj.first;
                 ll wt = adj.second;
-                if(dist[v][1]<dist[node][1]+wt) {
+                if(dist[v][1]>dist[node][1]+wt) {
                     dist[v][1] = dist[node][1] + wt;
                     pq.push({dist[v][1],v,1});
                 }
