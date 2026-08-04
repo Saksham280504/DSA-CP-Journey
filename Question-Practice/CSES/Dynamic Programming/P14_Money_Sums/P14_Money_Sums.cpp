@@ -51,7 +51,7 @@ int main() {
 
     for(int i=1; i<=n; i++) {
         int val = arr[i-1];
-        for(int j=TotalSum; j>=val; j++) {
+        for(int j=TotalSum; j>=val; j--) {
             dp[j] = (dp[j] || dp[j-val]);
         }
     }
