@@ -54,7 +54,7 @@ int main() {
             int bestHash = 2*n;
             if(x+1<n) bestHash = min(bestHash, hash[x+1][y]);
             if(y+1<n) bestHash = min(bestHash, hash[x][y+1]);
-            int compressed = ((c-'a')*10000) + bestHash; // Compressed is used to provide each suffix of a diagonal a unique identity, so that when we apply sorting, we first get the smallest ordering(highest preference).
+            int compressed = ((c-'A')*10000) + bestHash; // Compressed is used to provide each suffix of a diagonal a unique identity, so that when we apply sorting, we first get the smallest ordering(highest preference).
             // Multiplication by 10000 simply ensures the character dominates. Since bestHash is at most about 2*n (<= 6000 in CSES constraints), 10000 is safely larger, so different characters never overlap numerically.
             diagonal.push_back({compressed,x});
         }
