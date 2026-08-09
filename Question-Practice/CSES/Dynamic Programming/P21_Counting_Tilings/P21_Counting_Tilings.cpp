@@ -36,15 +36,14 @@ int main() {
     // Since there are n rows, there can be 2^n configurations (or masks), like if n=4, mask can be = 0101 -> this means 0th and 2nd row of ith column is filled and 1st and 3rd row of ith column is empty.
     vector<vector<long long>> dp(m+1,vector<long long>(1<<n));
     dp[0][0] = 1;
-    // Before processing any columns, there are no occupied cells 
+    // Before processing any columns, there are no occupied cells, thus for 0th row to be completely empty is only one way when no tiles are filled.
     for(int i=0; i<m; i++) {
         for(int mask=0; mask<(1<<n); mask++) {
             if(dp[i][mask]==0) continue;
             vector<int> next;
             generate_mask(0,0,mask,n,next);
             for(auto &x: next) {
-                dp[i+1][x] += dp[i][mask];
-                dp[i+1][x] %= mod;
+                dp[i+1][x] = (dp[i+1][x]+dp[i][mask])%mod;
             }
         }
     }

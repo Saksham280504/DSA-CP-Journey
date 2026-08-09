@@ -40,7 +40,7 @@ int main() {
     // We see that dp[idx] is dependent on dp[ngeIdx] and dp[pgeIdx], so that means that before computing dp[idx] we must have already computed dp[i] for all i where height[i].first > height[idx].first, that's why we sort
     sort(height.rbegin(), height.rend());
     vector<int> dp(n);
-    // dp[i] -> max mountains in a valid route if whose final mountain is i.
+    // dp[i] -> max mountains in a valid route whose final mountain is i.
     for(int i=0; i<n; i++) {
         int idx = height[i].second; // This is the actual index of the mountain, and all nge, pge, and dp will use this idx only.
         int ngeIdx = nge[idx];
