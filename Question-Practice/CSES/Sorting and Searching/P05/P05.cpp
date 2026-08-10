@@ -26,6 +26,7 @@
 
         sort(events.begin(),events.end());
 
+        // By storing each event (arrival & departure) seperately and then sorting all the events, we will now traverse all the events in a chronological order, allowing us to know the exact customer count at every event and by comparing our customer count of every event we can get the maximum customer count.
         ll maxCustomer = 0;
         ll customer = 0;
         for(ll i=0; i<2*n; i++) {

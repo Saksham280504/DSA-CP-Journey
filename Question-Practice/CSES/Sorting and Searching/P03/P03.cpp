@@ -33,7 +33,7 @@ int main() {
             r--;
         }
         else r--;
-        gandolas++;
+        gandolas++; // the r child is always assigned a gandola, its just that either he sits alone or with l child.
     }
 
     cout << gandolas << endl;

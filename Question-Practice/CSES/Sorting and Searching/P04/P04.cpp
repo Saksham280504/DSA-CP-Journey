@@ -25,6 +25,8 @@ int main() {
         tickets.insert(ticket);
     }
 
+    // Store the tickets in a multiset so that they remain in sorted order and its easier to remove a ticket once its bought. Our trick is to sell the ticket to any person to the closest value smaller than his/her maximum price, thus greedily allowing us to sell maximum tickets.
+
     for(int i=0; i<m; i++) {
         int price;
         cin >> price;

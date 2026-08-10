@@ -45,5 +45,7 @@ int main() {
     
     cout << max_movies << endl;
 
+    // By greedily choosing the movies with smaller ending time, we gain the maximum chance of watching maximum number of movies.
+
     return 0;
 }
