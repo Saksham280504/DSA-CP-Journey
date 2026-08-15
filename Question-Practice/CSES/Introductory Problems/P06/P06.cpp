@@ -6,10 +6,6 @@ using namespace std;
 void solve() {
     long long y,x;
     cin >> y >> x;
-    if(y==1LL && x==1LL) {
-        cout << 1 << endl;
-        return;
-    }
     if(y>x) {
         if(y&1LL) {
             long long num = (y-1)*(y-1) + 1;
@@ -24,7 +20,7 @@ void solve() {
             cout << num << endl;
         }
     }
-    else {
+    else { // x>=y
         if(x&1LL) {
             long long num = x*x;
             y -= 1;

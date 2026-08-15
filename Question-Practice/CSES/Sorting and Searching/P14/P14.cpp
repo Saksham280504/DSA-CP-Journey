@@ -14,17 +14,30 @@ int main() {
 #endif
 
     // your code here
-    ll n;
-    cin >> n;
-    vector<ll> cubes(n);
-    for(ll i=0; i<n; i++) cin >> cubes[i];
-    multiset<ll> towers;
-    towers.insert(cubes[0]);
+    // ll n;
+    // cin >> n;
+    // vector<ll> cubes(n);
+    // for(ll i=0; i<n; i++) cin >> cubes[i];
+    // multiset<ll> towers;
+    // towers.insert(cubes[0]);
 
-    for(ll i=1; i<n; i++) {
-        auto it = towers.upper_bound(cubes[i]);
-        if(it!=towers.end()) towers.erase(it);
-        towers.insert(cubes[i]);
+    // for(ll i=1; i<n; i++) {
+    //     auto it = towers.upper_bound(cubes[i]);
+    //     if(it!=towers.end()) towers.erase(it);
+    //     towers.insert(cubes[i]);
+    // }
+
+    // cout << towers.size() << endl;
+
+    int n;
+    cin >> n;
+    vector<int> towers;
+    for(int i=0; i<n; i++) {
+        int size;
+        cin >> size;
+        auto it = upper_bound(towers.begin(), towers.end(), size);
+        if(it==towers.end()) towers.push_back(size);
+        else *it = size;
     }
 
     cout << towers.size() << endl;

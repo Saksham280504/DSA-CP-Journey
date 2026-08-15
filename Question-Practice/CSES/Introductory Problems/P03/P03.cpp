@@ -29,8 +29,8 @@ int main() {
             cnt = 1;
         }
     }
-    if(maxLen==0) cout << 1 << endl;
-    else cout << maxLen << endl;
+    maxLen = max(maxLen,cnt);
+    cout << maxLen << endl;
 
     return 0;
 }

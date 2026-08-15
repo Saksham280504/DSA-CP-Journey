@@ -15,6 +15,10 @@ int main() {
 #endif
 
     // your code here
+
+    // Kadane's Algorithm -> used to find the maximum subarray sum and uses two values (sum & maxSum) to do so.
+
+    // Since there are negative elements within the array, we use a fallback where if sum ever becomes <0, we make sum = 0, i.e. we disregard that entire subarray because even if the next element is positive or negative, overall the subarray sum will only decrease.
     ll n;
     cin >> n;
     vector<ll> arr(n);

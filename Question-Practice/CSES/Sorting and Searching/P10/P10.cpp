@@ -3,6 +3,7 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 #define ll long long
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -31,7 +32,7 @@ int main() {
         largest_sum += arr[i];
     }
 
-    cout << largest_sum+1 << endl; // If till the largest index it never happened that arr[i]<largest_sum+1, then the final answer will be total_sum+1
+    cout << largest_sum+1 << endl; // If till the largest index it never happened that arr[i]>largest_sum+1, then the final answer will be total_sum+1
 
     // 1. All the elements are positive, thus the largest value of minimum sum not achievable from the sum of any subset of coins is (totalSum + 1)
     // 2. Sort the array so that you can look over the smallest possible integers first.
@@ -44,9 +45,9 @@ int main() {
     // largest_sum = 0 (initially)
     // Index  Checking   Posssible sums  Largest Sum
     // i=0 -> (1<=(0+1)) [1] -> largest_sum = 1
-    // i=1 -> (2<=(1+1)) [1,2,3] -> largest_sum = 3
-    // i=2 -> (2<=(3+1)) [1,2,3,4,5] -> largest_sum = 5
-    // i=3 -> (7>(5+1))  (thus answer is 6)
+    // i=1 -> (2<=(1+1)) [1,2] -> largest_sum = 3
+    // i=2 -> (3<=(2+1)) [1,2,3] -> largest_sum = 5
+    // i=3 -> (7>(5+1)) [1,2,3,7] -> (thus answer is 6)
 
     return 0;
 }

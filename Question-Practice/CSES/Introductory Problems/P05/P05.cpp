@@ -15,30 +15,41 @@ int main() {
 
     // your code here
 
+    // Approach - 1
+    // int n;
+    // cin >> n;
+    // if(n<4 && n!=1) {
+    //     cout << "NO SOLUTION" << endl;
+    //     return 0;
+    // }
+    // if(n==4) {
+    //     cout << 2 << " " << 4 << " " << 1 << " " << 3;
+    //     return 0;
+    // }
+    // vector<int> ans(n);
+    // int num = 1;
+    // for(int i=0; i<n; i+=2) {
+    //     ans[i] = num;
+    //     num++;
+    // }
+    // for(int i=1; i<n; i+=2) {
+    //     ans[i] = num;
+    //     num++;
+    // }
+    // for(int i=0; i<n; i++) {
+    //     cout << ans[i] << " ";
+    // }
+    // cout << endl;
+
+    // Approach - 2
     int n;
     cin >> n;
-    if(n<4 && n!=1) {
-        cout << "NO SOLUTION" << endl;
-        return 0;
+    if(n==2 || n==3) cout << "NO SOLUTION" << endl;
+    else {
+        for(int i=2; i<=n; i+=2) cout << i << " ";
+        for(int i=1; i<=n; i+=2) cout << i << " ";
+        cout << endl;
     }
-    if(n==4) {
-        cout << 2 << " " << 4 << " " << 1 << " " << 3;
-        return 0;
-    }
-    vector<int> ans(n);
-    int num = 1;
-    for(int i=0; i<n; i+=2) {
-        ans[i] = num;
-        num++;
-    }
-    for(int i=1; i<n; i+=2) {
-        ans[i] = num;
-        num++;
-    }
-    for(int i=0; i<n; i++) {
-        cout << ans[i] << " ";
-    }
-    cout << endl;
 
     return 0;
 }
