@@ -57,8 +57,8 @@ int main() {
     // TC -> O(N)
     // SC -> O(N)
 
-    int prev = 0;
     int prev2 = 0;
+    int prev = 0;
     int curi = -1;
     for(int i=1; i<n; i++) {
         int fs = prev + abs(jump[i]-jump[i-1]);

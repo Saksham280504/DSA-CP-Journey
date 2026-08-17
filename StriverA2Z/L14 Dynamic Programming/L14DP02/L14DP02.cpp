@@ -6,9 +6,9 @@ using namespace std;
 int ClimbingStairs(int ind, vector<int>& dp) {
     // Normal way
     // if(ind<=1) return 1;
-    // int left = ClimbingStairs(ind-1);
-    // int right = ClimbingStairs(ind-2);
-    // return left+right;
+    // int oneDown = ClimbingStairs(ind-1);
+    // int twoDown = ClimbingStairs(ind-2);
+    // return oneDown + twoDown;
 
     // Memoization:
     if(ind<=1) return 1;
@@ -65,17 +65,17 @@ int main() {
     // TC -> O(N)
     // SC -> O(1)
 
-    // Tabulation Approach: SC(1) approach
+    // Space Optimization Approach: SC(1) approach
 
-    int prev2 = 1;
-    int prev = 1;
-    int curi = -1;
+    int prev2 = 1; // dp[i-2]
+    int prev1 = 1; // dp[i-1]
+    int curi = -1; // dp[i]
     for(int i = 2; i<=n; i++) {
-        curi = prev + prev2;
-        prev2 = prev;
-        prev = curi;
+        curi = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = curi;
     } 
-    cout << prev << endl;
+    cout << prev1 << endl;
     // TC -> O(N)
     // SC -> O(1)
 

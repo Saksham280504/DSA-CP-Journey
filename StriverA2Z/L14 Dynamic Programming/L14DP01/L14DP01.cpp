@@ -60,9 +60,9 @@ int main() {
 
     // Recursive approach goes from answer to base-case and then comes back (top-down).
 
-    // Tabular approach goes from base-case to answer (bottom-up).
+    // Tabulation approach goes from base-case to answer (bottom-up).
 
-    // Tabular approach -> SC -> O(N) approach:
+    // Tabulation approach -> SC -> O(N) approach:
 
     vector<int> dpTab(n+1,-1);
     // Base-Cases 
@@ -76,7 +76,7 @@ int main() {
     // TC -> O(N)
     // SC -> O(N)
 
-    // Tabular approach -> SC(1) approach:
+    // Space Optimization approach -> SC(1) approach:
 
     int prev2 = 0;
     int prev1 = 1;

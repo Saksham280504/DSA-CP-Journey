@@ -44,8 +44,8 @@ int main() {
     // for(int i=1; i<n; i++) {
     //     int take = arr[i];
     //     if(i>1) take += dp[i-2];
-    //     int nontake = 0 + dp[i-1];
-    //     dp[i] = max(take, nontake);
+    //     int notTake = 0 + dp[i-1];
+    //     dp[i] = max(take, notTake);
     // }
     // cout << dp[n-1] << endl;
 
@@ -54,11 +54,11 @@ int main() {
 
     // SPace-optimization Approach:
     
-    int prev = arr[0];
-    int prev2 = 0;
+    int prev = arr[0]; // dp[i-1]
+    int prev2 = 0; // dp[i-2]
     for(int i=1; i<n; i++) {
         int pick = arr[i];
-        if(i>1) pick += prev2;
+        pick += prev2;
         int notpick = 0 + prev;
         int curi = max(pick, notpick);
         prev2 = prev;

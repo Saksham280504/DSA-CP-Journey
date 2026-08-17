@@ -2,6 +2,7 @@
 using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
+
 int maxiSum(int ind, vector<int>& arr,vector<int>& dp) {
     if(ind==0) return arr[ind];
     if(ind<0) return 0;
@@ -15,7 +16,7 @@ int maxiSum(int ind, vector<int>& arr,vector<int>& dp) {
 }
 
 int maxiSumTab(int n,vector<int>& arr) {
-    // vector<int>dp(n-1,-1);
+    // vector<int> dp(n-1,-1);
     // dp[0] = arr[0];
     // for(int i=1; i<n-1; i++) {
     //     int pick = arr[i];
@@ -26,21 +27,25 @@ int maxiSumTab(int n,vector<int>& arr) {
     // return dp[n-2];
     // TC -> O(N)
     // SC ->O(N)
+}
 
-    int prev = arr[0];
-    int prev2 = 0;
+int maxSumSO(int n, vector<int>& arr) {
+    int prev = arr[0]; // dp[i-1]
+    int prev2 = 0; // dp[i-2]
     for(int i=1; i<n-1; i++) {
         int pick = arr[i];
-        if(i>1) pick += prev2;
+        pick += prev2;
         int notpick = 0 + prev;
         int curi = max(pick, notpick);
         prev2 = prev;
         prev = curi;
     }
     return prev;
+
     // TC -> O(N)
     // SC -> O(1)
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -79,6 +84,10 @@ int main() {
 
     int sum1 = maxiSumTab(n,temp1);
     int sum2 = maxiSumTab(n,temp2);
+    cout << max(sum1,sum2) << endl;
+
+    int sum1 = maxSumSO(n,temp1);
+    int sum2 = maxSumSO(n,temp2);
     cout << max(sum1,sum2) << endl;
 
     return 0;

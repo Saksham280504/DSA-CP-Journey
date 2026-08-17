@@ -8,7 +8,7 @@ int KJumpDistance(int ind, int k, vector<int>& jumps, vector<int>& dp) {
     if(dp[ind]!=-1) return dp[ind];
     int minEnergySteps = INT_MAX;
     for(int j=1; j<=k; j++) {
-        if(ind-j>=0) {
+        if((ind-j)>=0) {
             int EnergyTaken = KJumpDistance(ind-j,k,jumps,dp) + abs(jumps[ind]-jumps[ind-j]);
             minEnergySteps = min(minEnergySteps,EnergyTaken);
         }
@@ -52,7 +52,7 @@ int main() {
     for(int i=1; i<n; i++) {
         int minEnergySteps = INT_MAX;
         for(int j=1; j<=k; j++) {
-            if(i-j>=0) {
+            if((i-j)>=0) {
                 int energyTaken = dp[i-j] + abs(jumps[i]-jumps[i-j]);
                 minEnergySteps = min(minEnergySteps, energyTaken);
             }
