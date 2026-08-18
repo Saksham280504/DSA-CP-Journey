@@ -5,12 +5,10 @@ using namespace std;
 
 int minPath(int i, int j, vector<vector<int>>& grid,vector<vector<int>>& dp) {
     if(i==0 && j==0) return grid[i][j];
-    if(i<0 || j<0) return 0;
+    if(i<0 || j<0) return 1e9;
     if(dp[i][j]!=-1) return dp[i][j];
-    int up = minPath(i-1,j,grid,dp) == 0 ? -1: grid[i][j] + minPath(i-1,j,grid,dp);
-    int left = minPath(i,j-1,grid,dp) == 0 ? -1 : grid [i][j] + minPath(i,j-1,grid,dp);
-    if(up<0) return left;
-    if(left<0) return up;
+    int up = grid[i][j] + minPath(i-1,j,grid,dp);
+    int left = grid[i][j] + minPath(i,j-1,grid,dp);
     return dp[i][j] = min(up,left);
 
     // Recursive Approach:
@@ -27,13 +25,13 @@ int minPathTab(int n, int m, vector<vector<int>>& grid, vector<vector<int>>& dp)
         for(int j=0; j<m; j++) {
             if(i==0 && j==0) dp[i][j] = grid[i][j];
             else {
-                int up = 0;
-                int left = 0;
-                if(i>0) up = grid[i][j] + dp[i-1][j];
-                if(j>0) left = grid[i][j] + dp[i][j-1];
-                if(up==0) dp[i][j] = left;
-                else if(left==0) dp[i][j] = up;
-                else dp[i][j] = min(up,left);
+                int up = grid[i][j];
+                if(i>0) up += dp[i-1][j];
+                else up = 1e9;
+                int left = grid[i][j];
+                if(j>0) left += dp[i][j-1];
+                else left = 1e9;
+                dp[i][j] = min(up,left);
             }
         }
     }
@@ -47,13 +45,12 @@ int minPathSO(int n, int m, vector<vector<int>>& grid) {
         for(int j=0; j<m; j++) {
             if(i==0 && j==0) temp[j] = grid[i][j];
             else {
-                int up = 0;
-                int left = 0;
-                if(i>0) up = grid[i][j] + prev[j];
-                if(j>0) left = grid[i][j] + temp[j-1];
-                if(up==0) temp[j] = left;
-                else if(left==0) temp[j] = up;
-                else temp[j] = min(up,left);
+                int up = grid[i][j];
+                if(i>0) up += prev[j];
+                else up = 1e9;
+                int left = grid[i][j];
+                if(j>0) left += temp[j-1];
+                temp[j] = min(up,left);
             }
         }
         prev = temp;

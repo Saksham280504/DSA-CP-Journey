@@ -35,7 +35,6 @@ int maxPointsTab(int n, vector<vector<int>> arr) {
 
     // for(int day=1; day<n; day++) {
     //     for(int last=0; last<4; last++) {
-    //         dp[day][last] = 0;
     //         for(int task=0; task<3; task++) {
     //             if(task!=last) {
     //                 int point = arr[day][task] + dp[day-1][task];
@@ -50,6 +49,7 @@ int maxPointsTab(int n, vector<vector<int>> arr) {
     // SC -> O(4*N)
 
     vector<int> prev(4);
+    // dp[i-1] = prev
     prev[0] = max(arr[0][1], arr[0][2]);
     prev[1] = max(arr[0][2], arr[0][0]);
     prev[2] = max(arr[0][0], arr[0][1]);
@@ -57,10 +57,11 @@ int maxPointsTab(int n, vector<vector<int>> arr) {
 
     for(int day=1; day<n; day++) {
         vector<int> temp(4,0);
+        // dp[i] = temp
         for(int last=0; last<4; last++) {
             temp[last] = 0;
             for(int task=0; task<3; task++) {
-                if(task!=last) temp[last] = max(temp[last], arr[day][last] + prev[task]);
+                if(task!=last) temp[last] = max(temp[last], arr[day][task] + prev[task]);
             }
         }
         prev = temp;
