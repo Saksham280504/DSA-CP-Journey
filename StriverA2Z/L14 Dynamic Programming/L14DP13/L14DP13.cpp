@@ -68,8 +68,8 @@ int maxChocoTab(int r,int c,vector<vector<vector<int>>>& dp, vector<vector<int>>
 
 int MaxChocoSO(int r, int c, vector<vector<int>>& grid) {
 
-    vector<vector<int>> front(c,vector<int>(c,0));
-    vector<vector<int>> curi(c,vector<int>(c,0));
+    vector<vector<int>> front(c,vector<int>(c,0)); // dp[i+1][j1][j2]
+    vector<vector<int>> curi(c,vector<int>(c,0)); // dp[i][j1][j2]
 
     for(int j1=0; j1<c; j1++) {
         for(int j2=0; j2<c; j2++) {

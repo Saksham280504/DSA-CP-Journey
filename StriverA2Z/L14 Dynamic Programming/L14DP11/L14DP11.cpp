@@ -79,7 +79,7 @@ int main() {
     }
     vector<vector<int>> dp(n,vector<int>(n,-1));
 
-    // Recursive/Memoization Approach:
+    // Recurtion/Memoization Approach:
     // int cnt = TriangleMinPathSum(0,0,n,arr,dp);
     // cout << cnt << endl;
 

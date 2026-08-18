@@ -12,7 +12,7 @@ bool isSsThere(int ind, int target, vector<int>& arr, vector<vector<int>>& dp) {
     if(target>=arr[ind]) {
         take = isSsThere(ind-1,target-arr[ind],arr,dp);
     }
-    dp[ind][target] = (take||notTake) ? 1:0;
+    dp[ind][target] = (take || notTake) ? 1:0;
     return dp[ind][target];
 
     // For recursion approach:
@@ -26,7 +26,7 @@ bool isSsThere(int ind, int target, vector<int>& arr, vector<vector<int>>& dp) {
 
 bool isSsTab(int n, int target,vector<int>& arr, vector<vector<bool>>& dp) {
     for(int i=0; i<n; i++) dp[i][0] = true;
-    if(arr[0]<=target)dp[0][arr[0]] = true;
+    if(arr[0]<=target) dp[0][arr[0]] = true;
 
     for(int ind=1; ind<n; ind++) {
         for(int k=1; k<=target; k++) {
@@ -46,10 +46,10 @@ bool isSsTab(int n, int target,vector<int>& arr, vector<vector<bool>>& dp) {
 }
 
 bool isSsSO(int n, int target, vector<int>& arr) {
-    vector<bool> prev(target+1,false);
+    vector<bool> prev(target+1,false); // dp[i-1][k]
     prev[0] = true;
     if(arr[0]<=target)prev[arr[0]] = true;
-    vector<bool> curr(target+1,false);
+    vector<bool> curr(target+1,false); // dp[i][k]
     curr[0] = true;
     for(int ind=1; ind<n; ind++) {
         for(int k=1; k<=target; k++) {
