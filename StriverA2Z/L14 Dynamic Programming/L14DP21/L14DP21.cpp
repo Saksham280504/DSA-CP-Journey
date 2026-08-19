@@ -54,6 +54,7 @@ int numOfWaysSO(int n, int S2, vector<int>& arr) {
     }
     return prev[S2];
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -83,7 +84,7 @@ int main() {
     cin >> target;
     int TotalSum = 0;
     for(int i=0; i<n; i++) TotalSum += arr[i];
-    if((TotalSum-target)<0 || (TotalSum-target)%2!=0) {
+    if((TotalSum-target)<0 || (TotalSum-target)%2) {
         cout << 0 << endl;
         return 0;
     }

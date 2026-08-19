@@ -4,14 +4,14 @@ using namespace std;
 // #define endl '/n'
 
 int bestPrice(int ind, int N, vector<int>& price, vector<vector<int>> &dp) {
-    if(ind==0) {
+    if(ind==0) { // length = 1
         return N*price[ind];
     }
     if(dp[ind][N]!=-1) return dp[ind][N];
     int notTake = 0 + bestPrice(ind-1,N,price,dp);
     int take = INT_MIN;
     int rodlength = ind+1;
-    if(rodlength<=N) take = price[ind] + bestPrice(ind,N-rodlength,price,dp);
+    if(rodlength<=N) take = price[ind] + bestPrice(ind,N-rodlength,price,dp); // I can use the same-length piece again, thus we stay at the same index
     return dp[ind][N] = max(take,notTake);
 
     // For Recursion:-
