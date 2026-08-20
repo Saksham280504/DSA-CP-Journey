@@ -21,7 +21,7 @@ void lcsPrint(int n, int m, string s1, string s2, vector<vector<int>>& dp) {
 
     // Back-tracking -> O(N+M) for the worst case
     int length = dp[n][m];
-    int ind = length -1;
+    int ind = length-1;
     string s3 = "";
     for(int i=0; i<length; i++) s3 += '$';
     int i = n;
@@ -36,9 +36,9 @@ void lcsPrint(int n, int m, string s1, string s2, vector<vector<int>>& dp) {
         else if(dp[i-1][j] > dp[i][j-1]) i--;
         else j--; // In case of not matching, if dp[i][j-1] == dp[i-1][j], then in that case multiple answers are possible and for that we need to go to brute-force approach
     }
-
     cout << s3 << endl;
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);

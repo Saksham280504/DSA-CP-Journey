@@ -53,7 +53,7 @@ int main() {
     // We are asked to find out the minimum number of insertions to be made in order to make a string a palindromic string.
     // Maximum number of operations = length of string (Here, we just paste the reverse of the string at the end of the string and it becomes a palindrome).
     // But in order to find the minimum number of operations, we just find the longest palindromic subsequence and make it constant, except it all of the remaining characters are non-palindromic so we would have to paste them at their mirror positions in order to generate a palindromic string.
-    // Here the number of operations become -> length of string - length of longest common subsequence
+    // Here the number of operations become -> length of string - length of longest palindromic subsequence
 
     string s1;
     cin >> s1;

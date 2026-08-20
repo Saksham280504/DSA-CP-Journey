@@ -73,7 +73,7 @@ int main() {
 
     string s1;
     cin >> s1;
-    string s2;
+    string s2 = "";
     int n = s1.size();
     for(int i=n-1; i>=0; i--) {
         s2 += s1[i];
