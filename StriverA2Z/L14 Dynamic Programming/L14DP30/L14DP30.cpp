@@ -37,6 +37,7 @@ int minOperationsSO(int n, int m, string s1, string s2) {
     }
     return prev[m];
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
