@@ -6,8 +6,8 @@ using namespace std;
 int lis(int ind, int prev_ind, int n, vector<int>& arr, vector<vector<int>>& dp) {
     if(ind==n) return 0;
     if(dp[ind][prev_ind+1]!=-1) return dp[ind][prev_ind+1];
-    int len = 0 + lis(ind+1,prev_ind,n,arr,dp); // We initially consider that arr[prev_ind] >= arr[ind]
-    if(prev_ind==-1||arr[ind]>arr[prev_ind]) len = max(len, 1 + lis(ind+1,ind,n,arr,dp));
+    int len = 0 + lis(ind+1,prev_ind,n,arr,dp); // We initially consider that arr[prev_ind] >= arr[ind], but for LIS we need arr[prev_ind]<arr[ind]
+    if(prev_ind==-1 || arr[ind]>arr[prev_ind]) len = max(len, 1 + lis(ind+1,ind,n,arr,dp));
     return dp[ind][prev_ind+1] = len;
 
     // Recursive Approach:
@@ -43,7 +43,7 @@ int lisSO(int n, vector<int>& arr) {
     for(int ind=n-1; ind>=0; ind--) {
         for(int prev_ind=ind-1; prev_ind>=-1; prev_ind--) {
             int len = 0 + next[prev_ind+1];
-            if(prev_ind==-1 || arr[ind] > arr[prev_ind]) len = max(len,1 + next[ind+1]);
+            if(prev_ind==-1 || arr[ind] > arr[prev_ind]) len = max(len, 1 + next[ind+1]);
             curr[prev_ind+1] = len;
         }
         next = curr;
@@ -83,7 +83,7 @@ int main() {
 
     // your code here
 
-    // You are given an array of n integers and you need to print the length of the largest increasing subsequence of that array.
+    // You are given an array of n integers and you need to print the length of the longest increasing subsequence of that array.
 
     int n;
     cin >> n;

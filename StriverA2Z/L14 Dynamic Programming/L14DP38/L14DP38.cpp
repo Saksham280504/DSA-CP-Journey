@@ -6,7 +6,7 @@ using namespace std;
 int maxProfit(int ind, int transaction, int n, int k, vector<int>& prices,vector<vector<int>>& dp) {
     if(ind==n || transaction==(2*k)) return 0;
     if(dp[ind][transaction]!=-1) return dp[ind][transaction];
-    if(transaction%2==0) return dp[ind][transaction] =  max(-prices[ind] + maxProfit(ind+1,transaction+1,n,k,prices,dp), 0 + maxProfit(ind+1,transaction,n,k,prices,dp));
+    if((transaction&1)==0) return dp[ind][transaction] =  max(-prices[ind] + maxProfit(ind+1,transaction+1,n,k,prices,dp), 0 + maxProfit(ind+1,transaction,n,k,prices,dp));
     return dp[ind][transaction] = max(prices[ind] + maxProfit(ind+1,transaction+1,n,k,prices,dp), 0 + maxProfit(ind+1,transaction,n,k,prices,dp));
 
     // Recursive Approach:
@@ -23,7 +23,7 @@ int maxProfitTab(int n, int k, vector<int>& prices, vector<vector<int>>& dp) {
 
     for(int i=n-1; i>=0; i--) {
         for(int transaction=2*k-1; transaction>=0; transaction--) {
-            if(transaction%2==0) dp[i][transaction] =  max(-prices[i] + dp[i+1][transaction+1], 0 + dp[i+1][transaction]);
+            if((transaction&1)==0) dp[i][transaction] =  max(-prices[i] + dp[i+1][transaction+1], 0 + dp[i+1][transaction]);
             else dp[i][transaction] = max(prices[i] + dp[i+1][transaction+1], 0 + dp[i+1][transaction]);
         }
     }
