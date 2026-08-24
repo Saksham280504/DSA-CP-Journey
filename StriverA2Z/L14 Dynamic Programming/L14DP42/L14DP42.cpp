@@ -6,7 +6,7 @@ using namespace std;
 int lisPrint(int n, vector<int>& arr) {
     vector<int> dp(n,1), hash(n);
     // DP-Array stores the size of LIS from index 0 to index 'i' where arr[i] is present in the LIS.
-    // Hash-Array stores the index of the last variable of the LIS initiially (i.e. itself) and then afterwards if omitted stores the index of the second last element of the LIS formed till that index.
+    // Hash-Array stores the index of the last variable of the LIS initially (i.e. itself) and then afterwards if omitted stores the index of the second last element of the LIS formed till that index.
     
     int lastIndex = 0;
     int maxi = 1;

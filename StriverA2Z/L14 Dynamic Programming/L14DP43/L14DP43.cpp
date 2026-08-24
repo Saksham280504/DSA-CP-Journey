@@ -14,7 +14,7 @@ int lb(vector<int>& arr, int n, int val) {
             ans = mid;
             high = mid-1;
         }
-        else low = mid+1;
+        else low = mid+1; // arr[mid]<val
     }
 
     return ans;
@@ -29,7 +29,7 @@ int lisBest(int n, vector<int>& arr) {
             temp.push_back(arr[i]);
             length++;
         }
-        else {
+        else { // arr[i] <= temp.back()
             // int ind = lower_bound(temp.begin(), temp.end(), arr[i]) - temp.begin();
             int ind = lb(temp,length,arr[i]);
             // LowerBound is the lowermost index such that arr[ind] >= val

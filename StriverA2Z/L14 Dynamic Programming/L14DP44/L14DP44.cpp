@@ -32,7 +32,7 @@ void lds(int n, vector<int>& arr) {
         temp.push_back(arr[lastIndex]);
     }
     
-    while(length--) {
+    while(length--) { // The array is reversed, so you need to print from backc
         cout << temp[length] << " ";
     }
 }
