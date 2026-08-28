@@ -31,6 +31,8 @@ public:
         }
         return true;
     }
+
+    // The important point to note here is that graph is bidirectional, as if A hates B, then if A is in group 1, B must be in group 2, but if B is in group 1, then also A must be in group 2. Thus this tells us that graph is bidirectional.
 };
 
 int main() {
