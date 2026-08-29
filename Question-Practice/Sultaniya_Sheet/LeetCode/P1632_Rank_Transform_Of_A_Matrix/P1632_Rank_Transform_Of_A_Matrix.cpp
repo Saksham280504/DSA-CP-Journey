@@ -22,6 +22,7 @@ public:
         vector<int> rank(m+n,0);
         vector<vector<int>> ans(m,vector<int>(n));
         for(auto [val,cells]: mpp) {
+            // For every val group of cells, we generate a DSU and assign ranks
             vector<int> parent(m+n);
             iota(parent.begin(), parent.end(), 0);
             auto root = [&](int i) { // Lambda function
