@@ -73,6 +73,50 @@ public:
  * int param_2 = obj->diagonalSum(value);
  */
 
+// Q2
+
+class Solution {
+public:
+    vector<vector<int>> adjLS;
+    int shortestPath(int n) {
+        queue<int> q;
+        vector<int> dist(n,1e9);
+        q.push(0);
+        dist[0] = 0;
+        while(!q.empty()) {
+            int u = q.front();
+            q.pop();
+            if(u==(n-1)) break;
+            for(int v: adjLS[u]) {
+                if(dist[v]>dist[u]+1) {
+                    dist[v] = dist[u] + 1;
+                    q.push(v);
+                }
+            }
+        }
+        return dist[n-1];
+    }
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        adjLS.resize(n);
+        for(int u=0; u<n-1; u++) {
+            adjLS[u].push_back(u+1);
+        }
+        int q = queries.size();
+        vector<int> ans;
+        for(int i=0; i<q; i++) {
+            int u = queries[i][0];
+            int v = queries[i][1];
+            adjLS[u].push_back(v);
+            int sp = shortestPath(n);
+            ans.push_back(sp);
+        }
+        return ans;
+    }
+};
+
+// Q3
+
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
