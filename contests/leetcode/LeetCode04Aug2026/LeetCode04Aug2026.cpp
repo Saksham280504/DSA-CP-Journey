@@ -115,7 +115,24 @@ public:
 };
 
 // Q3
-
+class Solution {
+public:
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        set<int> active;
+        for(int i=0; i<n; i++) active.insert(i);
+        int q = queries.size();
+        vector<int> ans;
+        for(int i=0; i<q; i++) {
+            int u = queries[i][0], v = queries[i][1];
+            auto it = active.upper_bound(u);
+            while(it!=active.begin() && *it<v) {
+                it = active.erase(it);
+            }
+            ans.push_back(active.size()-1);
+        }
+        return ans;
+    }
+};
 
 int main() {
     ios::sync_with_stdio(0);
