@@ -66,6 +66,27 @@ public:
     }
 };
 
+// Q3
+class Solution {
+public:
+    int countGroups(vector<int>& position, vector<int>& speed, int distance) {
+        vector<int> combined_speeds;
+        int n = position.size();
+        for(int i=0; i<n; i++) {
+                if(i==n-1 || (position[i+1]-position[i])>distance)      combined_speeds.push_back(speed[i]);
+        }
+        int cnt = 0;
+        int min_right_speed = 2e9;
+        for(int i=combined_speeds.size()-1; i>=0; i--) {
+            if(combined_speeds[i]<=min_right_speed) {
+                cnt++;
+                min_right_speed = combined_speeds[i];
+            }
+        }
+        return cnt;
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
