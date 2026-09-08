@@ -100,6 +100,55 @@ public:
     }
 };
 
+// Q4
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int sum) {
+        int INF = 1e9;
+        vector<int> dp(sum+1,INF);
+        dp[0] = 0;
+        vector<int> best_cost(sum+1,INF);
+        vector<int> best_vals;
+        for(int x: nums) {
+            best_vals.clear();
+            int a = x;
+            int dcost = 0;
+            while(a>0) {
+                int v = a;
+                int mcost = 0;
+                while(v<=sum) {
+                    if(best_cost[v]==INF) {
+                        best_cost[v] = dcost+mcost;
+                        best_vals.push_back(v);
+                    }
+                    else if(dcost+mcost<best_cost[v]) {
+                        best_cost[v] = dcost+mcost;
+                    }
+                    mcost++;
+                    v *= 2;
+                }
+                dcost++;
+                a /= 2;
+            }
+            vector<pair<int,int>> cand;
+            while(!best_vals.empty()) {
+                int v = best_vals.back();
+                best_vals.pop_back();
+                cand.push_back({v,best_cost[v]});
+                best_cost[v] = INF;
+            }
+            for(int w=sum; w>=0; w--) {
+                for(auto &[v,c]: cand) {
+                    if(w>=v && dp[w-v]!=INF) {
+                        dp[w] = min(dp[w],dp[w-v]+c);
+                    }
+                } 
+            }
+        }
+        return ((dp[sum]==INF) ? -1: dp[sum]);
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
