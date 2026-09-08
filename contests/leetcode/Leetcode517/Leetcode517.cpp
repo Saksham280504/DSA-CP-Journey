@@ -27,6 +27,42 @@ public:
     }
 };
 
+// Q2
+#define ll long long
+class Solution {
+private:
+    ll power(ll base, ll exp, ll mod) {
+        base %= mod;
+        ll res = 1;
+        while(exp) {
+            if(exp&1) res = (res*base)%mod;
+            base = (base*base)%mod;
+            exp >>= 1;
+        }
+        return res;
+    }
+public:
+    int sumDecoded(vector<long long>& nums) {
+        ll mod = 1e9+7;
+        ll sum = 0;
+        for(ll num: nums) {
+            ll width = num%10;
+            ll d = num/10;
+            string ds = to_string(d);
+            ll dsize = ds.size();
+            ll x=0, y=0;
+            for(ll i=0; i<dsize; i++) {
+                char c = ds[i];
+                ll z = c-'0';
+                if(i<width) x = (x*10)+z;
+                else y = (y*10)+z;
+            }
+            sum = (sum + power(x,y,mod))%mod;
+        }
+        return sum;
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
