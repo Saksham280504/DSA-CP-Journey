@@ -161,5 +161,11 @@ int main() {
 
     // your code here
 
+    // 1. Hashing
+    // 2. Logarithmic Exponentiation
+    // 3. 0-1 Grounded Knapsack but multiplication always occurs before division
+    // 4. 0-1 Grounded Knapsack but no ordering of operations. For optimal answer generation we know that divsion never occurs after multiplication. Therefore for each x in nums, we figure out its division state, and for each division state, we figure out its multiplication states, store them and then apply 0-1 Knapsack on sum.
+
+    // (1/4) -> Very Good Contest!!
     return 0;
 }
