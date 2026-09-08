@@ -63,6 +63,43 @@ public:
     }
 };
 
+// Q3
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int sum) {
+        int INF = 1e9;
+        vector<int> dp(sum+1,INF);
+        dp[0] = 0;
+        for(int x: nums) {
+            vector<pair<int,int>> cand;
+            // Multiplication
+            int val = x;
+            int cost = 0;
+            while(val<=sum) {
+                cand.push_back({val,cost});
+                cost++;
+                val*=2;
+            }
+            // Division
+            val = x/2;
+            cost = 1;
+            while(val>0) {
+                cand.push_back({val,cost});
+                cost++;
+                val/=2;
+            }
+            for(int w=sum; w>=0; w--) {
+                for(auto &[v,c]: cand) {
+                    if(w>=v && dp[w-v]!=INF) {
+                        dp[w] = min(dp[w],dp[w-v]+c);
+                    }
+                }
+            }
+        }
+        return (dp[sum]==INF) ? -1 : dp[sum];
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
