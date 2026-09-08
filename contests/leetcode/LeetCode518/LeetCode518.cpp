@@ -26,6 +26,46 @@ public:
     }
 };
 
+// Q2
+#define ll long long
+class Solution {
+public:
+    int countGoodRotations(vector<int>& nums) {
+        int n = nums.size();
+        for(int idx=0; idx<n; idx++) {
+            int num = nums[idx];
+            nums.push_back(num);
+        }
+       int i=0, j=0;
+        ll leftSum = 0;
+        while(j<(n/2)) {
+            leftSum += (ll)nums[j];
+            j++;
+        }
+        j--;
+        int k=n/2, l=n/2;
+        ll rightSum = 0;
+        while(l<n) {
+            rightSum += (ll)nums[l];
+            l++;
+        }
+        l--;
+        int cnt = 0;
+        while(l<(2*n-1)) {
+            if(leftSum>rightSum) cnt++;
+            leftSum -= (ll)nums[i];
+            i++;
+            j++;
+            leftSum += (ll)nums[j];
+            rightSum -= (ll)nums[k];
+            k++;
+            l++;
+            rightSum += (ll)nums[l];
+        }
+        return cnt;
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
