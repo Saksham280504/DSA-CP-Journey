@@ -22,7 +22,30 @@ public:
 // Q2
 
 
-// 
+// Q3
+class Solution {
+public:
+    vector<string> largestString(vector<int>& nums) {
+        vector<string> ans;
+        for(int x: nums) {
+            string str = "";
+            while(x>0) {
+                int i=0;
+                while((1<<i)<=x) {
+                    i++;
+                    if(i==26) break;
+                }
+                i--;
+                char chToCome = 'a' + i;
+                str += chToCome;
+                x -= (1<<i);
+            }
+            ans.push_back(str);
+        }
+        return ans;
+    }
+};  
+
 
 int main() {
     ios::sync_with_stdio(0);
