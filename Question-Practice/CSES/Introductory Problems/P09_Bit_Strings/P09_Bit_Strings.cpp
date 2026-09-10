@@ -5,6 +5,17 @@ using namespace std;
 #define ll long long
 ll mod = 1e9+7;
 
+ll power(ll base, ll exp) {
+    if(exp==0) return 1;
+    ll res = 1;
+    while(exp) {
+        if(exp&1) res = ((res%mod)*(base%mod))%mod;
+        base = ((base%mod)*(base%mod))%mod;
+        exp >>= 1;
+    }
+    return res;
+}
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -18,12 +29,17 @@ int main() {
     // your code here
     ll n;
     cin >> n;
-    ll bitStrings = 1;
-    for(int i=1; i<=n; i++) {
-        bitStrings = ((bitStrings%mod)*(2%mod))%mod;
-        // (a*b)%mod = ((a%mod)*(b%mod))%mod
-    }
-    cout << bitStrings << endl;
+
+    // Approach - 1
+    // ll bitStrings = 1;
+    // for(int i=1; i<=n; i++) {
+    //     bitStrings = ((bitStrings%mod)*(2%mod))%mod;
+    //     // (a*b)%mod = ((a%mod)*(b%mod))%mod
+    // }
+    // cout << bitStrings << endl;
+
+    // Approach-2 (Logarithmic Exponentiation)
+    cout << power(2LL,n) << endl;
 
     return 0;
 }

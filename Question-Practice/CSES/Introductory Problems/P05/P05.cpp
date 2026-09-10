@@ -44,10 +44,10 @@ int main() {
     // Approach - 2
     int n;
     cin >> n;
-    if(n==2 || n==3) cout << "NO SOLUTION" << endl;
+    if(n==2 || n==3) cout << "NO SOLUTION" << endl; // 2-> 1,2 or 2,1 (both don't work), 3-> (123,132,213,231,321,312) -> none works
     else {
-        for(int i=2; i<=n; i+=2) cout << i << " ";
-        for(int i=1; i<=n; i+=2) cout << i << " ";
+        for(int i=2; i<=n; i+=2) cout << i << " "; // Print all the even numbers in ascending order
+        for(int i=1; i<=n; i+=2) cout << i << " "; // Print all the odd numbers in increasing order
         cout << endl;
     }
 
