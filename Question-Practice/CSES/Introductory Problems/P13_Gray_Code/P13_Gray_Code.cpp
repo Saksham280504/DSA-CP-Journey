@@ -15,7 +15,7 @@ int main() {
 
     // your code here
 
-    // To create the nth gray code, we will use the n-1th grayCode. We will first put 0 as the prefix of the n=1th graycode, and then put 1 as the prefix of the reversed n-1th graycode.
+    // To create the nth gray code, we will use the (n-1)th grayCode. We will first put 0 as the prefix of the (n-1)th graycode, and then put 1 as the prefix of the reversed (n-1)th graycode.
 
     int n;
     cin >> n;
@@ -23,10 +23,11 @@ int main() {
 
     for(int i=0; i<limit; i++) {
         int g = (i^(i>>1)); // This is the formula to create all the 2^n numbers in grayCode form
-        for(int k=n-1; k>=0; k--) {
-            cout << ((g>>k)&1);
-        }
-        cout << endl;
+        cout << g << endl;
+        // for(int k=n-1; k>=0; k--) {
+        //     cout << ((g>>k)&1);
+        // }
+        // cout << endl;
     }
 
     return 0;

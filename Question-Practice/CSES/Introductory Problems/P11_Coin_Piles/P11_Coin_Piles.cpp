@@ -9,6 +9,7 @@ void solve() {
     if((a+b)%3==0 && max(a,b)<=(2*min(a,b))) cout << "YES" << endl;
     else cout << "NO" << endl;
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);

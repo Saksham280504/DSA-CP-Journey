@@ -11,6 +11,7 @@ void hanoi(int n, int from, int to, int aux) {
     moves.push_back({from,to});
     hanoi(n-1,aux,to,from);
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
