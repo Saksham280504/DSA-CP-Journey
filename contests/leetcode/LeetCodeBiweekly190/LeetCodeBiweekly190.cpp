@@ -20,7 +20,52 @@ public:
 };
 
 // Q2
-
+class Solution {
+public:
+    int maxValidSplits(vector<int>& nums) {
+        int n = nums.size();
+        int maxScore = INT_MIN;
+        // Case-1 Don't remove any element
+        vector<int> prefix1(n), suffix1(n);
+        prefix1[0] = nums[0], suffix1[n-1] = nums[n-1];
+        for(int i=1; i<n; i++) {
+            prefix1[i] = __gcd(prefix1[i-1],nums[i]);
+        }
+        for(int i=n-2; i>=0; i--) {
+            suffix1[i] = __gcd(suffix1[i+1],nums[i]);
+        }
+        int cnt1 = 0;
+        for(int i=0; i<(n-1); i++) {
+            if(prefix1[i]==suffix1[i+1]) cnt1++;
+        }
+        maxScore = max(maxScore,cnt1);
+        
+        // Case-2 Remove 1 Element
+        for(int i=0; i<n; i++) {
+            vector<int> arr;
+            for(int j=0; j<n; j++) {
+                if(j!=i) arr.push_back(nums[j]);
+            }
+            int m = n-1;
+            vector<int> prefix(m);
+            vector<int> suffix(m);
+            prefix[0] = arr[0];
+            suffix[m-1] = arr[m-1];
+            for(int k=1; k<m; k++) {
+                prefix[k] = __gcd(prefix[k-1],arr[k]);
+            }
+            for(int k=(m-2); k>=0; k--) {
+                suffix[k] = __gcd(suffix[k+1],arr[k]);
+            }
+            int cnt = 0;
+            for(int i=0; i<(m-1); i++) {
+                if(prefix[i]==suffix[i+1]) cnt++;
+            }
+            maxScore = max(maxScore,cnt);
+        }
+        return maxScore;
+    }
+};
 
 // Q3
 class Solution {
@@ -44,8 +89,7 @@ public:
         }
         return ans;
     }
-};  
-
+}; 
 
 int main() {
     ios::sync_with_stdio(0);
@@ -58,6 +102,11 @@ int main() {
 #endif
 
     // your code here
+
+    // 1. ChessBoard Knowledge
+    // 2. gcd STL->(__gcd(num1,num2)), also remember if there are exist an array arr with gcd of all elements (__gcd(arr)), and now we want to find the gcd of all elements in arr and one more element ele, then that will be = __gcd(__gcd(arr),ele)
+    // 3. Bit Algebra
+    // 4. Sparse Table (Range Queries) -> Don't know
 
     return 0;
 }
