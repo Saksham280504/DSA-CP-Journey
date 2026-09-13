@@ -3,26 +3,26 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+using tiii = tuple<int,int,int>;
 class Solution {
 public:
     vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
-        vector<vector<int>> pairs;
-        int n = nums1.size(), m = nums2.size();
-        int i=0, j=0;
-        while(k--) { 
-            pairs.push_back({nums1[i],nums2[j]});
-            if(i==(n-1)) {
-                j++;
-                i=0;
-            }
-            else if(j==(m-1)) {
-                i++;
-                j=0;
-            }
-            else if((nums1[i+1]+nums2[j])<(nums1[i]+nums2[j+1])) i++;
-            else j++;
+        int n1 = nums1.size(), n2 = nums2.size();
+        vector<vector<int>> result;
+        if(n1==0 || n2==0 || k==0) return result;
+        priority_queue<tiii,vector<tiii>,greater<tiii>> pq;
+        for(int i=0; i<min(n1,k); i++) {
+            pq.push({nums1[i]+nums2[0],i,0});
         }
-        return pairs;
+        while(!pq.empty() && result.size()<k) {
+            auto [sum,i,j] = pq.top();
+            pq.pop();
+            result.push_back({nums1[i],nums2[j]});
+            if(j+1<n2) {
+                pq.push({nums1[i]+nums2[j+1],i,j+1});
+            }
+        }
+        return result;
     }
 };
 
