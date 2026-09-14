@@ -4,26 +4,32 @@ using namespace std;
 // #define endl '/n'
 
 class Solution {
-private:
-    int n;
-    int dfs(int idx, vector<int>& arr, vector<bool>& vis, vector<int>& dp) {
-        if(arr[idx]==0) return true;
-        if(dp[idx]!=-1) return dp[idx];
-        vis[idx] = true;
-        bool canVisit = false;
-        int right = idx + arr[idx];
-        int left = idx - arr[idx];
-        if(right<n && !vis[right]) canVisit |= dfs(right,arr,vis,dp);
-        if(left>=0 && !vis[left]) canVisit |= dfs(left,arr,vis,dp);
-        vis[idx] = false;
-        return dp[idx] = canVisit;
-    }
 public:
-    bool canReach(vector<int>& arr, int start) {
-        n = arr.size();
-        vector<bool> vis(n,false);
-        vector<int> dp(n,-1);
-        return dfs(start,arr,vis,dp);
+    bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
+        vector<int> adjLS[n+1];
+        for(auto dis: dislikes) {
+            adjLS[dis[0]].push_back(dis[1]);
+            adjLS[dis[1]].push_back(dis[0]);
+        }
+        vector<int> color(n+1,0);
+        for(int i=1; i<=n; i++) {
+            if(color[i]!=0) continue;
+            queue<int> q;
+            q.push(i);
+            color[i]=1;
+            while(!q.empty()) {
+                int u = q.front();
+                q.pop();
+                for(int v: adjLS[u]) {
+                    if(color[v]==color[u]) return false;
+                    if(color[v]==0) {
+                        color[v] = -color[u];
+                        q.push(v);
+                    }
+                }
+            }
+        }
+        return true;
     }
 };
 

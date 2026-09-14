@@ -4,6 +4,29 @@ using namespace std;
 // #define endl '/n'
 
 class Solution {
+    int n;
+    int dfs(int idx, vector<int>& arr, vector<bool>& vis, vector<int>& dp) {
+        if(arr[idx]==0) return true;
+        if(dp[idx]!=-1) return dp[idx];
+        vis[idx] = true;
+        bool canVisit = false;
+        int right = idx + arr[idx];
+        int left = idx - arr[idx];
+        if(right<n && !vis[right]) canVisit |= dfs(right,arr,vis,dp);
+        if(left>=0 && !vis[left]) canVisit |= dfs(left,arr,vis,dp);
+        vis[idx] = false;
+        return dp[idx] = canVisit;
+    }
+public:
+    bool canReach(vector<int>& arr, int start) {
+        n = arr.size();
+        vector<bool> vis(n,false);
+        vector<int> dp(n,-1);
+        return dfs(start,arr,vis,dp);
+    }
+};
+
+class Solution {
 private:
     bool bfsPartition(int node, vector<vector<int>>& adjLS, vector<int>& teams) {
         queue<pair<int,int>> q; // {node,group}
