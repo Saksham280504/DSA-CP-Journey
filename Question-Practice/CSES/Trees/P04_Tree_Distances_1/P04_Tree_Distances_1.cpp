@@ -3,6 +3,8 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+// Youtube Channel -> Senior
+
 int n;
 vector<vector<int>> adjLS;
 vector<int> maxd1, maxd2,c;
