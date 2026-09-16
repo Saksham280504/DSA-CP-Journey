@@ -2,13 +2,13 @@
 using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
-
+#define ll long long
 // Youtube Channel -> Senior
-int n;
+ll n;
 vector<vector<int>> adjLS;
-vector<int> ans,dp;
+vector<ll> ans,dp;
 
-void dfs1(int u, int p, int dist) {
+void dfs1(int u, int p, ll dist) {
     ans[1] += dist;
     dp[u] = 1;
     for(int v: adjLS[u]) {
@@ -21,7 +21,8 @@ void dfs1(int u, int p, int dist) {
 void dfs2(int u, int p) {
     for(int v: adjLS[u]) {
         if(v==p) continue;
-        
+        ans[v] = ans[u] + n - 2*dp[v];
+        dfs2(v,u);
     }
 }
 
@@ -44,9 +45,14 @@ int main() {
         adjLS[a].push_back(b);
         adjLS[b].push_back(a);
     }
-    ans.resize(n+1);
+    ans.assign(n+1,0);
     dp.assign(n+1,0);
 
+    dfs1(1,0,0);
+    dfs2(1,0);
+
+    for(int i=1; i<=n; i++) cout << ans[i] << " ";
+    cout << endl;
 
     return 0;
 }
