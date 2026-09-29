@@ -22,6 +22,25 @@ public:
     }
 };
 
+// Approach-2 : TC -> O(N), SC-> O(1)
+class Solution {
+public:
+    int partitionDisjoint(vector<int>& nums) {
+        int n = nums.size();
+        int left_max = nums[0]; // The maximum element of our till now accepted left array
+        int maxi = nums[0]; // The maximum element of all the scanned so far elements
+        int partitionIndex = 0;
+        for(int i=1; i<n; i++) {
+            maxi = max(maxi,nums[i]);
+            if(nums[i]< left_max) {
+                left_max = maxi;
+                partitionIndex = i;
+            }
+        }
+        return partitionIndex+1;
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
