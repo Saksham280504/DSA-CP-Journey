@@ -3,6 +3,33 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
+int MAX_LOG = 20;
+
+struct BinaryLifting {
+    private:
+    vector<vector<int>> bl;
+    public:
+    BinaryLifting(int n, vector<int>& parent) {
+        bl.assign(MAX_LOG,vector<int>(n+1,0));
+        bl[0][0] = 0;
+        bl[0][1] = 0;
+        for(int i=2; i<=n; i++) bl[0][i] = parent[i];
+        for(int k=1; k<MAX_LOG; k++) {
+            for(int i=1; i<=n; i++) {
+                bl[k][i] = bl[k-1][bl[k-1][i]];
+            }
+        }
+    }
+
+    int get_kth_ancestor(int u, int k) {
+        for(int i=0; i<MAX_LOG; i++) {
+            if(k&(1<<i)) u = bl[i][u];
+            if(u==0) return -1;
+        }
+        return (u==0 ? -1 : u);
+    }
+};
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -14,30 +41,20 @@ int main() {
 #endif
 
     // your code here
+
     int n,q;
-    int MAX_JUMP = 20;
     cin >> n >> q;
-    vector<vector<int>> BinaryLift(n+1,vector<int>(MAX_JUMP,0));
+    vector<int> parent(n+1);
     for(int i=2; i<=n; i++) {
-        cin >> BinaryLift[i][0];
-    }
-    // Since the order of nodes in tree was topologically sorted, so we could just iteratively find out the Binary Jumps for each node
-    for(int j=1; j<MAX_JUMP; j++) {
-        for(int i=1; i<=n; i++) {
-            BinaryLift[i][j] = BinaryLift[BinaryLift[i][j-1]][j-1];
-        }
+        cin >> parent[i];
     }
 
+    BinaryLifting bs(n,parent);
+
     while(q--) {
-        int node, k;
-        cin >> node >> k;
-        for(int bit=MAX_JUMP-1; bit>=0; bit--) {
-            if(k&(1<<bit)) {
-                node = BinaryLift[node][bit];
-                if(node==0) break;
-            }
-        }
-        cout << (node == 0 ? -1: node) << endl;
+        int x,k;
+        cin >> x >> k;
+        cout << bs.get_kth_ancestor(x,k) << endl;
     }
 
     return 0;
