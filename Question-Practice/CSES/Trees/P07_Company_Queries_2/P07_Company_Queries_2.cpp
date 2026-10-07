@@ -3,26 +3,60 @@ using namespace std;
 // #define int long long  => when use this convert int main()  to int32_t main()
 // #define endl '/n'
 
-int n,q;
-int MAX_BIT = 20;
-vector<vector<int>> BinaryLift;
-vector<int> depth;
-
-int find_lca(int u, int v) {
-    if(depth[u]<depth[v]) swap(u,v); // We always want depth[u] >= depth[v]
-    int diff = depth[u]-depth[v];
-    for(int i=MAX_BIT-1; i>=0; i--) {// Make the depth of both u,v equal
-        if(diff&(1<<i)) u = BinaryLift[u][i];
+int max_log = 20;
+struct LCA {
+    int n;
+    vector<vector<int>> adjLS;
+    vector<vector<int>> bl;
+    vector<int> depth;
+    public:
+    LCA(int n) {
+        this->n = n;
+        adjLS.resize(n+1);
+        bl.assign(max_log,vector<int>(n+1,0)); // bl[0][0] = 0 handled
+        depth.assign(n+1,0);
     }
-    if(u==v) return u; // u,v belong to same branch
-    for(int i=MAX_BIT-1; i>=0; i--) {
-        if(BinaryLift[u][i]!=BinaryLift[v][i]) {
-            u = BinaryLift[u][i];
-            v = BinaryLift[v][i];
+    void edge_join(int u, int v) {
+        adjLS[u].push_back(v);
+    }
+
+    void build(int root) {
+        dfs(root,0,0);
+        // Every node's 2^0th ancestor is assigned in the DFS
+        for(int k=1; k<max_log; k++) {
+            for(int u=1; u<=n; u++) {
+                bl[k][u] = bl[k-1][bl[k-1][u]];
+            }
         }
     }
-    return BinaryLift[u][0];
-}
+
+    void dfs(int u, int p, int d) {
+        depth[u] = d;
+        bl[0][u] = p; 
+        for(int v: adjLS[u]) {
+            if(v!=p) dfs(v,u,d+1);
+        }
+    }
+
+    int lowest_common_ancestor(int u, int v) {
+        if(depth[u]<depth[v]) swap(u,v); // depth[u] >= depth[v]
+        int diff = depth[u] - depth[v];
+
+        for(int k=0; k<max_log; k++) {
+            if(diff&(1<<k)) u = bl[k][u];
+        }
+        if(u==v) return u;
+
+        for(int k=max_log-1; k>=0; k--) {
+            if(bl[k][u]!=bl[k][v]) {
+                u = bl[k][u];
+                v = bl[k][v];
+            }
+        }
+
+        return bl[0][u];
+    }
+};
 
 int main() {
     ios::sync_with_stdio(0);
@@ -35,26 +69,23 @@ int main() {
 #endif
 
     // your code here
+
+    int n,q;
     cin >> n >> q;
-    BinaryLift.assign(n+1,vector<int>(MAX_BIT,0));
-    depth.assign(n+1,0);
+    LCA lc(n);
+
     for(int i=2; i<=n; i++) {
-        int boss;
-        cin >> boss;
-        BinaryLift[i][0] = boss;
-        depth[i] = depth[boss]+1;
+        int p;
+        cin >> p;
+        lc.edge_join(p,i);
     }
-    for(int j=1; j<MAX_BIT; j++) {
-        for(int i=1; i<=n; i++) {
-            BinaryLift[i][j] = BinaryLift[BinaryLift[i][j-1]][j-1];
-        }
-    }
+
+    lc.build(1);
 
     while(q--) {
-        int a,b;
-        cin >> a >> b;
-        cout << find_lca(a,b) << endl;
+        int u,v;
+        cin >> u >> v;
+        cout << lc.lowest_common_ancestor(u,v) << endl;
     }
-
     return 0;
 }
