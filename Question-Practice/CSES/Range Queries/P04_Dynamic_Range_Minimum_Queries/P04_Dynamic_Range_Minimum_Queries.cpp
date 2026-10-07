@@ -13,7 +13,7 @@ struct SegmentTree {
         this->n = n;
         tree.resize(4*n+1,INF);
     }
-
+    
     void build_tree(vector<ll>& a, int node, int L, int R) {
         if(L==R) {
             tree[node] = a[L];
