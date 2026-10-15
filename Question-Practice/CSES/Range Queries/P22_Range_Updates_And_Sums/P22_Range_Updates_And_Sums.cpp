@@ -71,7 +71,7 @@ struct LazySegmentTree {
         push_down(node,L,R);
         int mid = L + (R-L)/2;
         range_add(2*node,L,mid,qL,qR,val);
-        range_add(2*node+1,mid+1,R,q L,qR,val);
+        range_add(2*node+1,mid+1,R,qL,qR,val);
         tree[node] = tree[2*node]+tree[2*node+1];
     }
     void range_add(int qL, int qR, ll val) {
