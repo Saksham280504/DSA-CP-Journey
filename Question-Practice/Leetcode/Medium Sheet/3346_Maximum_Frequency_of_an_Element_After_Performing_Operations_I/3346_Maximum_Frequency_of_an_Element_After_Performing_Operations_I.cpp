@@ -16,7 +16,7 @@ public:
             auto lb = lower_bound(nums.begin(),nums.end(),x-k); 
             auto rb = upper_bound(nums.begin(), nums.end(), x+k);
             int range = distance(lb,rb); // [x-k,x+k]
-            int current = min(numOperations + count[x], range);
+            int current = min(numOperations + count[x], range); // count[x] + min(numOfOperations,range-count[x]);
             maxFreq = max(maxFreq, current);
         }
         // Case-2: Count[x] == 0
