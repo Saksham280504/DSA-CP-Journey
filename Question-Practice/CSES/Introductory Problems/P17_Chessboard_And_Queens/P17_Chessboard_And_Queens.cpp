@@ -5,8 +5,8 @@ using namespace std;
 
 vector<string> board(8);
 vector<bool> col(8);
-vector<bool> diag1(8); // row + col -> [0....14]
-vector<bool> diag2(8); // row - col -> [-7....7]
+vector<bool> diag1(15); // row + col -> [0....14]
+vector<bool> diag2(15); // row - col -> [-7....7]
 int ans = 0;
 
 // The idea is to place 1 queen on 1 row such that no two queens share the same column or diagonals
